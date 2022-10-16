@@ -59,9 +59,9 @@ function loginUser($conn, $username, $pwd) {
     }
 }
 
-function emptyInputSingup($username, $email, $pwd, $pwdRepeat){
+function emptyInputSignup($username, $email, $pwd, $pwdRepeat){
     $result;
-    if(empty($username) || empty($email) || empty($pwd) || empty($pwdRepeat)){
+    if(empty($username) | empty($email) | empty($pwd) | empty($pwdRepeat)){
         $result = true;
     }
     else {
@@ -99,7 +99,7 @@ function createUser($conn, $fname, $surname, $username, $email, $pwd, $pronouns,
     $sql ="INSERT INTO users (userEmail, userUid, userPwd, userName, userSurname, userDescription, userPronouns) VALUES (?, ?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
-        header("location: ../singup.php?error=stmtfailed");
+        header("location: ../signup.php?error=stmtfailed");
         exit();
     }
 
@@ -116,6 +116,6 @@ function createUser($conn, $fname, $surname, $username, $email, $pwd, $pronouns,
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
-    header("location: ../singup.php?error=none");
+    header("location: ../signup.php?error=none");
     exit();
 }

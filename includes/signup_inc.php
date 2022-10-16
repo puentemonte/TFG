@@ -16,24 +16,24 @@ if(isset($_POST["submit"])){
     require_once "functions_inc.php";
 
     // errors for the necessary inputs
-    if(emptyInputSingup($username, $email, $pwd, $pwdRepeat) !== false){ // error = anything else than false
-        header("location : ../singup.php?error=emptyinput");
+    if(emptyInputSignup($username, $email, $pwd, $pwdRepeat) !== false){ // error = anything else than false
+        header("location: ../signup.php?error=emptyinput");
         exit();
     }
-    if(invalidEmail($email) !== false){
-        header("location: ../singup.php?error=invalidemail");
+    if (invalidEmail($email) !== false){ // no internal error
+        header("location: ../signup.php?error=invalidemail");
         exit();
     }
-    if(pwdMatch($pwd, $pwdRepeat) !== false){
-        header("location: ../singup.php?error=pwdnomatch");
+    if(pwdMatch($pwd, $pwdRepeat) !== false){  // no invalid error
+        header("location: ../signup.php?error=pwdnomatch");
         exit();
     }
     if(uidExists($conn, $username, $email) !== false){
-        header("location: ../singup.php?error=usrnametaken");
+        header("location: ../signup.php?error=usrnametaken");
         exit();
     }
-    if(invalidPwd($pwd) !== false){
-        header("location: ../singup.php?error=invalidpwd");
+    if(invalidPwd($pwd) !== false){ //no internal error
+        header("location: ../signup.php?error=invalidpwd");
         exit();
     }
     

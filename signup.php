@@ -3,7 +3,7 @@
 ?>
 
 <h2>Registrarse</h2>
-<form action="includes/singup_inc.php" method="post">
+<form action="includes/signup_inc.php" method="post">
 <!--opcional-->
 <input type="text" name="fname" placeholder="Nombre">
 <input type="text" name="surname" placeholder="Apellidos">
