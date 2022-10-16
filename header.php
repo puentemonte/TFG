@@ -14,7 +14,7 @@
 
     <body>
         <nav>
-            <div class="wrapper">
+            <div class="menu">
                 <ul>
                     <li><a href='index.php'>Inicio</a></li>
                     <?php
@@ -30,5 +30,3 @@
                 </ul>
             </div>
         </nav>
-
-        <div class="wrapper">

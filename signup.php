@@ -4,19 +4,19 @@
 
 <h2>Registrarse</h2>
 <form action="includes/signup_inc.php" method="post">
-<!--opcional-->
-<input type="text" name="fname" placeholder="Nombre">
-<input type="text" name="surname" placeholder="Apellidos">
-<!---->
-<input type="text" name="uid" placeholder="Nombre de usuario">
-<input type="text" name="email" placeholder="Correo electrónico">
-<input type="password" name="pwd" placeholder="Contraseña">
-<input type="password" name="pwdrepeat" placeholder="Repite la contraseña">
-<!--opcional-->
-<input type="text" name="pronouns" placeholder="Pronombres"> <!--drop-down?-->
-<input type="text" name="description" placeholder="Descripción">
-<!---->
-<button type="submit" name="submit">Crear cuenta</button>
+    <!--opcional-->
+    <input type="text" name="fname" placeholder="Nombre">
+    <input type="text" name="surname" placeholder="Apellidos">
+    <!---->
+    <input type="text" name="uid" placeholder="Nombre de usuario">
+    <input type="text" name="email" placeholder="Correo electrónico">
+    <input type="password" name="pwd" placeholder="Contraseña">
+    <input type="password" name="pwdrepeat" placeholder="Repite la contraseña">
+    <!--opcional-->
+    <input type="text" name="pronouns" placeholder="Pronombres"> <!--drop-down?-->
+    <!--<input type="text" name="description" class="descr" placeholder="Descripción">-->
+    <!---->
+    <button type="submit" name="submit" class="submit-btn">Crear cuenta</button>
 </form>
 <?php
     if(isset($_GET['error'])){
