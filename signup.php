@@ -40,7 +40,7 @@
             echo "<p>Algo ha ido mal, por favor inténtalo de nuevo</p>";
         }
         else if($_GET['error'] == "none"){
-            echo "<p>Yay! Todo ha ido bien :)</p>";
+            echo "<p>Todo ha ido bien</p>";
         }
     }
 ?>

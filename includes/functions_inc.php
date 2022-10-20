@@ -101,9 +101,9 @@ function createUser($conn, $fname, $surname, $username, $email, $pwd, $pronouns,
     if(!mysqli_stmt_prepare($stmt, $sql)){
         header("location: ../signup.php?error=stmtfailed");
         exit();
-    }
+    }     
 
-    // security duhhh
+    // security
     $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 
     // check optional fields
@@ -116,6 +116,37 @@ function createUser($conn, $fname, $surname, $username, $email, $pwd, $pronouns,
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
+    loginUserAfterSignUp($conn, $fname, $surname, $username, $email, $pwd, $pronouns, $descr);
     header("location: ../signup.php?error=none");
     exit();
+}
+
+function loginUserAfterSignUp($conn, $fname, $surname, $username, $email, $pwd, $pronouns, $descr) {
+    $uidExists = uidExists($conn, $username, $username);
+
+    if ($uidExists === false) {
+        header("location: ../login.php?error=wronglogin");
+        exit();
+    }
+
+    $pwdHashed = $uidExists["userPwd"];
+    $checkPwd = password_verify($pwd, $pwdHashed);
+
+    if ($checkPwd === false) {
+        header("location: ../login.php?error=wronglogin");
+        exit();
+    }
+    else if ($checkPwd === true){
+        session_start();
+        // save session data of user
+        $_SESSION["userid"] =  $uidExists["userId"];
+        $_SESSION["useruid"] =  $uidExists["userUid"];
+        $_SESSION["fname"] = $fname;
+        $_SESSION["surname"] = $surname;
+        $_SESSION["email"] = $email;
+        $_SESSION["pronouns"] = $pronouns;
+        $_SESSION["descr"] = $descr;
+        header("location: ../index.php");
+        exit();
+    }
 }

@@ -73,3 +73,13 @@ input {
     height: 45px;
     width: 150px;
 }
+
+.ajustes {
+    display: grid;
+    grid-template-columns: 25px auto;
+}
+
+.menu-ajustes {
+    margin-left: 100%;
+    margin-top: 35%;
+}
