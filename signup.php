@@ -5,15 +5,21 @@
 <h2>Registrarse</h2>
 <form action="includes/signup_inc.php" method="post">
     <!--opcional-->
-    <input type="text" name="fname" placeholder="Nombre">
-    <input type="text" name="surname" placeholder="Apellidos">
+    <p class="p">Nombre <input type="text" class="alignment" name="fname" placeholder="Nombre"></p>
+    <p class="p">Apellidos</p>
+    <input type="text" class="alignment" name="surname" placeholder="Apellidos">
     <!---->
-    <input type="text" name="uid" placeholder="Nombre de usuario">
-    <input type="text" name="email" placeholder="Correo electrónico">
-    <input type="password" name="pwd" placeholder="Contraseña">
-    <input type="password" name="pwdrepeat" placeholder="Repite la contraseña">
+    <p class="p">Nombre de usuario</p>
+    <input type="text" class="alignment" name="uid" placeholder="Nombre de usuario">
+    <p class="p">Email</p>
+    <input type="text" class="alignment" name="email" placeholder="Correo electrónico">
+    <p class="p">Contraseña</p>
+    <input type="password" class="alignment" name="pwd" placeholder="Contraseña">
+    <p class="p">Repite la contraseña</p>
+    <input type="password" class="alignment" name="pwdrepeat" placeholder="Repite la contraseña">
     <!--opcional-->
-    <input type="text" name="pronouns" placeholder="Pronombres"> <!--drop-down?-->
+    <p class="p">Pronombres</p>
+    <input type="text" class="alignment" name="pronouns" placeholder="Pronombres"> <!--drop-down?-->
     <!--<input type="text" name="description" class="descr" placeholder="Descripción">-->
     <!---->
     <button type="submit" name="submit" class="submit-btn">Crear cuenta</button>

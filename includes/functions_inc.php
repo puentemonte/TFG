@@ -181,3 +181,85 @@ function loginUserAfterSignUp($conn, $fname, $surname, $username, $email, $pwd, 
         exit();
     }
 }
+
+function emptyInputUpdate($username, $email){
+    $result;
+    if(empty($username) || empty($email)){
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+}
+
+function updateUser($conn, $fname, $surname, $username, $email, $pronouns) {
+    $prev_uid = $_SESSION["useruid"];
+    $prev_email = $_SESSION["email"];
+    $sql = "UPDATE users SET userEmail=?, userUid=? WHERE userUid = ? OR userEmail = ?;";
+    //, userName=?, userSurname=?, userPronouns=? 
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        header("location: ../settings.php?error=stmtfailed");
+        exit();
+    }
+
+    // check changes
+    if($prev_uid != $username){
+        if(uidExists($conn, $username, $username) === false){ // check uid
+            header("location: ../settings.php?error=usrnametaken");
+            exit();
+        }
+        else { // the user changed their uid/email correctly
+            // update the data
+            mysqli_stmt_bind_param($stmt, "ssss", $email, $username, $prev_uid, $prev_email);
+            //, $fname, $surname, $pronouns
+            mysqli_stmt_execute($stmt);
+
+            // update session data
+            session_start();
+            $_SESSION["useruid"] =  $username;
+            $_SESSION["fname"] = $fname;
+            $_SESSION["surname"] = $surname;
+            $_SESSION["email"] = $email;
+            $_SESSION["pronouns"] = $pronouns;
+        }
+    }
+    if ($prev_email != $email){
+        if(uidExists($conn, $email, $email) === false){ // check email
+            header("location: ../settings.php?error=emailtaken");
+            exit();
+        }
+        else { // the user changed their uid/email correctly
+            // update the data
+            mysqli_stmt_bind_param($stmt, "ssss", $email, $username, $prev_uid, $prev_email);
+            //, $fname, $surname, $pronouns
+            mysqli_stmt_execute($stmt);
+
+            // update session data
+            session_start();
+            $_SESSION["useruid"] =  $username;
+            $_SESSION["fname"] = $fname;
+            $_SESSION["surname"] = $surname;
+            $_SESSION["email"] = $email;
+            $_SESSION["pronouns"] = $pronouns;
+        }
+    }
+    if($prev_uid == $username && $prev_email == $email) {
+        // otherwise the changes are saved with prev data and optionaly new data
+        mysqli_stmt_bind_param($stmt, "ssss", $prev_email, $prev_uid, $fname, $surname, $pronouns, $prev_uid, $prev_email);
+        mysqli_stmt_execute($stmt);
+
+        // update session data
+        session_start();
+        $_SESSION["useruid"] =  $prev_uid;
+        $_SESSION["fname"] = $fname;
+        $_SESSION["surname"] = $surname;
+        $_SESSION["email"] = $prev_email;
+        $_SESSION["pronouns"] = $pronouns;
+    }
+    mysqli_stmt_close($stmt);
+
+    header("location: ../settings.php?error=none");
+    exit();
+}
