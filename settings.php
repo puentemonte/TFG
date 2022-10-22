@@ -10,39 +10,36 @@
     $pronouns = $_SESSION["pronouns"];
 ?>
 <div class="ajustes">
-    <div class="menu-ajustes">
-        <button type="button" name="change-pwd" class="submit-btn">Cambiar contraseña</button>
-        <button type="button" name="delete-usr" class="submit-btn">Eliminar cuenta</button>
+    <div class="change-pwd-div">
+        <form action="change-pwd.php">
+            <button type="submit" name="change-pwd" class="submit-btn">Cambiar contraseña</button>
+        </form>
+    </div>
+    <div class="change-data-div">
+        <form action="settings.php" method="post">
+            <button type="submit" name="change-data" class="submit-btn">Actualizar perfil</button>
+        </form>
+    </div>
+    <div class="delete-usr-div">
+        <form action="delete-usr.php">
+            <button type="submit" name="delete-usr" class="submit-btn">Eliminar cuenta</button>
+        </form>
     </div>
     <div class="campos">
-        <form action="includes/settings_inc.php" method="post">
-            <input type="text" name="fname" placeholder="Nombre" value="<?php
-                if($fname != "NULL"){
-                    echo $fname;
-                }
-                else{
-                    echo "";
-                }
-            ?>">
+        <form action="includes/changedata_inc.php" method="post">
+            <div class="alignment">
+                <p>Nombre: <input type="text" name="fname" placeholder="Nombre" value="<?php
+                    echo ($fname != "NULL") ? $fname : "";?>">
+                </p>
+            </div>
+            <p>Apellidos:</p>
             <input type="text" name="surname" placeholder="Apellidos" value="<?php
-                if($surname != "NULL"){
-                    echo $surname;
-                }
-                else{
-                    echo "";
-                }
-            ?>">">
+                echo ($surname != "NULL") ? $surname : "";
+            ?>">
             <input type="text" name="uid" placeholder="Nombre de usuario" value="<?php echo $username ?>">
             <input type="text" name="email" placeholder="Correo electrónico" value="<?php echo $email?>">
-            <input type="password" name="pwd" placeholder="Contraseña">
-            <input type="password" name="pwdrepeat" placeholder="Repite la contraseña">
             <input type="text" name="pronouns" placeholder="Pronombres" value="<?php
-                if($pronouns != "NULL"){
-                    echo $pronouns;
-                }
-                else{
-                    echo "";
-                }
+                echo ($pronouns != "NULL") ? $pronouns : "";
             ?>">
             <button type="submit" name="submit" class="submit-btn">Guardar cambios</button>
         </form>

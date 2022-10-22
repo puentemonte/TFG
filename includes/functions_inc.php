@@ -52,8 +52,39 @@ function loginUser($conn, $username, $pwd) {
     }
     else if ($checkPwd === true){
         session_start();
+        // retrieve data from db
+        $email;
+        $fname;
+        $surname;
+        $pronouns;
+
+        $sql = "SELECT * FROM users WHERE userUid = ? OR userEmail = ?;";
+        $stmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header("location: ../signup.php?error=stmtfailed");
+            exit();
+        }
+
+        mysqli_stmt_bind_param($stmt, "ss", $username, $username);
+        mysqli_stmt_execute($stmt);
+        $resultData = mysqli_stmt_get_result($stmt);
+        if ($row = mysqli_fetch_assoc($resultData)) {
+            $email = $row["userEmail"];
+            $fname = $row["userName"];
+            $surname = $row["userSurname"];
+            $pronouns = $row["userPronouns"];
+        }
+        else {
+            header("location: ../login.php?error=wronglogin");
+            exit();
+        }
+        mysqli_stmt_close($stmt);
         $_SESSION["userid"] =  $uidExists["userId"];
         $_SESSION["useruid"] =  $uidExists["userUid"];
+        $_SESSION["email"] = $email;
+        $_SESSION["fname"] = $fname;
+        $_SESSION["surname"] = $surname;
+        $_SESSION["pronouns"] = $pronouns;
         header("location: ../index.php");
         exit();
     }
