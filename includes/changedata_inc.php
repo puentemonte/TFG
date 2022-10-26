@@ -21,7 +21,7 @@ if(isset($_POST["submit"])){
         exit();
     }
 
-    updateUser($conn, $fname, $surname, $username, $email, $pronouns);
+    updateUser2($conn, $fname, $surname, $username, $email, $pronouns);
 }
 else {
     header("location: ../settings.php");

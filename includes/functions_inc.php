@@ -152,7 +152,7 @@ function createUser($conn, $fname, $surname, $username, $email, $pwd, $pronouns,
     exit();
 }
 
-function loginUserAfterSignUp($conn, $fname, $surname, $username, $email, $pwd, $pronouns, $descr) {
+/*function loginUserAfterSignUp($conn, $fname, $surname, $username, $email, $pwd, $pronouns, $descr) {
     $uidExists = uidExists($conn, $username, $username);
 
     if ($uidExists === false) {
@@ -180,7 +180,7 @@ function loginUserAfterSignUp($conn, $fname, $surname, $username, $email, $pwd, 
         header("location: ../index.php");
         exit();
     }
-}
+}*/
 
 function emptyInputUpdate($username, $email){
     $result;
@@ -260,6 +260,39 @@ function updateUser($conn, $fname, $surname, $username, $email, $pronouns) {
     }
     mysqli_stmt_close($stmt);
 
+    header("location: ../settings.php?error=none");
+    exit();
+}
+
+function updateUser2($conn, $fname, $surname, $username, $email, $pronouns) {
+    // Faltaría el control de errores en changedata_inc.php
+    session_start();
+    // Guardamos el id del usuario
+    $userid = $_SESSION["userid"];
+    $sql = "UPDATE users SET userEmail = ?, userUid = ?, userName = ?, userSurname = ?, userPronouns = ? WHERE userId = ?;";
+
+    // preparing the stmt
+    $stmt = mysqli_stmt_init($conn);
+    // error
+    if(!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../settings.php?error=stmtfailed");
+        exit();
+    }
+    else { 
+        mysqli_stmt_bind_param($stmt, "sssssi", $email, $username, $fname, $surname, $pronouns, $userid);
+        //, $fname, $surname, $pronouns
+        mysqli_stmt_execute($stmt);
+
+        // update session data
+        session_start();
+        $_SESSION["useruid"] =  $username;
+        $_SESSION["fname"] = $fname;
+        $_SESSION["surname"] = $surname;
+        $_SESSION["email"] = $email;
+        $_SESSION["pronouns"] = $pronouns;
+    }
+
+    mysqli_stmt_close($stmt);
     header("location: ../settings.php?error=none");
     exit();
 }
