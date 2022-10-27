@@ -9,7 +9,7 @@ if(isset($_POST["submit"])){
     $pwd = $_POST["pwd"];
     $pwdRepeat = $_POST["pwdrepeat"];
     $pronouns = $_POST["pronouns"];
-    $descr = $_POST["description"];
+    $descr = NULL;
 
     // external functions
     require_once "dbh_inc.php";
@@ -38,7 +38,6 @@ if(isset($_POST["submit"])){
     }
     
     createUser($conn, $fname, $surname, $username, $email, $pwd, $pronouns, $descr);
-    loginUser($conn, $username, $pwd);
 }
 else {
     header("location: ../signup.php");

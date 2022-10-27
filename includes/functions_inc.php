@@ -35,6 +35,48 @@ function emptyInputLogin($username, $pwd) {
     return $result;
 }
 
+function emptyInputPwdChange($pwd, $newpwd, $newpwdrepeat) {
+    $result; 
+    if (empty($pwd) | empty($newpwd) | empty($newpwdrepeat)){
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+}
+
+function emptyInputDelete($pwd) {
+    $result; 
+    if (empty($pwd)){
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+}
+
+function wrongPwd($conn, $pwd) {
+    session_start();
+    $username = $_SESSION["useruid"];
+
+    $uidExists = uidExists($conn, $username, $username);
+
+    // Acheck the session pwd
+    $pwdHashed = $uidExists["userPwd"];
+    $checkPwd = password_verify($pwd, $pwdHashed);
+
+    $result;
+    if ($checkPwd === false) {
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+}
+
 function loginUser($conn, $username, $pwd) {
     $uidExists = uidExists($conn, $username, $username);
 
@@ -147,40 +189,10 @@ function createUser($conn, $fname, $surname, $username, $email, $pwd, $pronouns,
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
-    loginUserAfterSignUp($conn, $fname, $surname, $username, $email, $pwd, $pronouns, $descr);
-    header("location: ../signup.php?error=none");
+    loginUser($conn, $username, $pwd);
+    header("location: ../index.php");
     exit();
 }
-
-/*function loginUserAfterSignUp($conn, $fname, $surname, $username, $email, $pwd, $pronouns, $descr) {
-    $uidExists = uidExists($conn, $username, $username);
-
-    if ($uidExists === false) {
-        header("location: ../login.php?error=wronglogin");
-        exit();
-    }
-
-    $pwdHashed = $uidExists["userPwd"];
-    $checkPwd = password_verify($pwd, $pwdHashed);
-
-    if ($checkPwd === false) {
-        header("location: ../login.php?error=wronglogin");
-        exit();
-    }
-    else if ($checkPwd === true){
-        session_start();
-        // save session data of user
-        $_SESSION["userid"] =  $uidExists["userId"];
-        $_SESSION["useruid"] =  $uidExists["userUid"];
-        $_SESSION["fname"] = $fname;
-        $_SESSION["surname"] = $surname;
-        $_SESSION["email"] = $email;
-        $_SESSION["pronouns"] = $pronouns;
-        $_SESSION["descr"] = $descr;
-        header("location: ../index.php");
-        exit();
-    }
-}*/
 
 function emptyInputUpdate($username, $email){
     $result;
@@ -194,80 +206,7 @@ function emptyInputUpdate($username, $email){
 }
 
 function updateUser($conn, $fname, $surname, $username, $email, $pronouns) {
-    $prev_uid = $_SESSION["useruid"];
-    $prev_email = $_SESSION["email"];
-    $sql = "UPDATE users SET userEmail=?, userUid=? WHERE userUid = ? OR userEmail = ?;";
-    //, userName=?, userSurname=?, userPronouns=? 
-    $stmt = mysqli_stmt_init($conn);
-    if(!mysqli_stmt_prepare($stmt, $sql)){
-        header("location: ../settings.php?error=stmtfailed");
-        exit();
-    }
-
-    // check changes
-    if($prev_uid != $username){
-        if(uidExists($conn, $username, $username) === false){ // check uid
-            header("location: ../settings.php?error=usrnametaken");
-            exit();
-        }
-        else { // the user changed their uid/email correctly
-            // update the data
-            mysqli_stmt_bind_param($stmt, "ssss", $email, $username, $prev_uid, $prev_email);
-            //, $fname, $surname, $pronouns
-            mysqli_stmt_execute($stmt);
-
-            // update session data
-            session_start();
-            $_SESSION["useruid"] =  $username;
-            $_SESSION["fname"] = $fname;
-            $_SESSION["surname"] = $surname;
-            $_SESSION["email"] = $email;
-            $_SESSION["pronouns"] = $pronouns;
-        }
-    }
-    if ($prev_email != $email){
-        if(uidExists($conn, $email, $email) === false){ // check email
-            header("location: ../settings.php?error=emailtaken");
-            exit();
-        }
-        else { // the user changed their uid/email correctly
-            // update the data
-            mysqli_stmt_bind_param($stmt, "ssss", $email, $username, $prev_uid, $prev_email);
-            //, $fname, $surname, $pronouns
-            mysqli_stmt_execute($stmt);
-
-            // update session data
-            session_start();
-            $_SESSION["useruid"] =  $username;
-            $_SESSION["fname"] = $fname;
-            $_SESSION["surname"] = $surname;
-            $_SESSION["email"] = $email;
-            $_SESSION["pronouns"] = $pronouns;
-        }
-    }
-    if($prev_uid == $username && $prev_email == $email) {
-        // otherwise the changes are saved with prev data and optionaly new data
-        mysqli_stmt_bind_param($stmt, "ssss", $prev_email, $prev_uid, $fname, $surname, $pronouns, $prev_uid, $prev_email);
-        mysqli_stmt_execute($stmt);
-
-        // update session data
-        session_start();
-        $_SESSION["useruid"] =  $prev_uid;
-        $_SESSION["fname"] = $fname;
-        $_SESSION["surname"] = $surname;
-        $_SESSION["email"] = $prev_email;
-        $_SESSION["pronouns"] = $pronouns;
-    }
-    mysqli_stmt_close($stmt);
-
-    header("location: ../settings.php?error=none");
-    exit();
-}
-
-function updateUser2($conn, $fname, $surname, $username, $email, $pronouns) {
-    // Faltaría el control de errores en changedata_inc.php
     session_start();
-    // Guardamos el id del usuario
     $userid = $_SESSION["userid"];
     $sql = "UPDATE users SET userEmail = ?, userUid = ?, userName = ?, userSurname = ?, userPronouns = ? WHERE userId = ?;";
 
@@ -294,5 +233,54 @@ function updateUser2($conn, $fname, $surname, $username, $email, $pronouns) {
 
     mysqli_stmt_close($stmt);
     header("location: ../settings.php?error=none");
+    exit();
+}
+
+function updatePwd($conn, $newpwd){
+    session_start();
+    $userid = $_SESSION["userid"];
+    $sql = "UPDATE users SET userPwd = ? WHERE userId = ?;";
+
+    // preparing the stmt
+    $stmt = mysqli_stmt_init($conn);
+    // error
+    if(!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../settings.php?error=stmtfailed");
+        exit();
+    }
+    else { 
+        // hashing the pwd
+        $hashedPwd = password_hash($newpwd, PASSWORD_DEFAULT);
+
+        mysqli_stmt_bind_param($stmt, "si", $hashedPwd, $userid);
+        mysqli_stmt_execute($stmt);
+    }
+    mysqli_stmt_close($stmt);
+
+    header("location: ../settings.php?error=none");
+    exit();
+}
+
+function deleteUsr($conn, $pwd) {
+    // Obtener la id de la session
+    session_start();
+    $userid = $_SESSION["userid"];
+
+    $sql = "DELETE FROM users WHERE userId = ?;";
+    // preparing the stmt
+    $stmt = mysqli_stmt_init($conn);
+
+    // error
+    if(!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../settings.php?error=stmtfailed");
+        exit();
+    }
+    else { 
+        mysqli_stmt_bind_param($stmt, "i", $userid);
+        mysqli_stmt_execute($stmt);
+    }
+    mysqli_stmt_close($stmt);
+
+    header("location: ../includes/logout_inc.php");
     exit();
 }
