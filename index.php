@@ -1,5 +1,5 @@
 <?php
-    include_once 'header.php';
+    include_once 'header1.php';
 ?>
 
 <h2>Hola, esta es solo una prueba</h2>
