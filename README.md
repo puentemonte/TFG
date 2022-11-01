@@ -1,3 +1,3 @@
 ### TFG
 
-Dia 08/10/2022: enenita se encarga del login y los inc del login y logout y nenik pesioso se encarga del signup.
+01/11/2022: hay que revisar el form-control de los formularios en login y signup (hace control de errores) y añadir la comprobación de mayúsculas y minúsculas y modificar el formato del formulario del signup y del settings...

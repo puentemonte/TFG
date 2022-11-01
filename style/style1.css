@@ -1,0 +1,26 @@
+.custom-color-header {
+    background-color: #a39193;
+}
+
+body {
+    background-color: #2c2428;
+}
+
+.custom-color-button {
+    background-color: #f6e0b5;
+}
+
+h2 {
+    color: white;
+}
+
+form{
+    margin-top: 45px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-floating{
+    margin-bottom: 10px;
+}

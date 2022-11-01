@@ -2,14 +2,23 @@
     include_once 'header.php';
 ?>
 
-<h2>Iniciar sesión</h2>
-<form action="includes/login_inc.php" method="post">
-    <p class="p">Nombre de usuario o Email</p>
-    <input type="text" class="alignment" name="uid" placeholder="Nombre de usuario o correo electrónico...">
-    <p class="p">Contraseña</p>
-    <input type="password" class="alignment" name="pwd" placeholder="Contraseña...">
-    <button type="submit" name="submit" class="submit-btn">Iniciar sesión</button>
-</form>
+<body class="text-center">
+<main class="form-signin w-100 m-auto">
+  <form action="includes/login_inc.php" method="post">
+    <h2 class="h3 mb-3 fw-normal">Iniciar sesión</h2>
+    <div class="form-floating">
+      <input class="form-control" name="uid" placeholder="nombre@ejemplo.es">
+      <label for="floatingInput">Nombre de usuario o correo electrónico</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" name="pwd" placeholder="Password">
+      <label for="floatingPassword">Contraseña</label>
+    </div>
+    <button class="w-100 btn btn-lg custom-color-button" name="submit" type="submit">Iniciar sesión</button>
+  </form>
+</main>
+</body>
+
 <?php
 if (isset($_GET["error"])) {
     if ($_GET["error"] == "emptyinput"){
