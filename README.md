@@ -1,3 +1,3 @@
 ### TFG
 
-01/11/2022: hay que revisar el form-control de los formularios en login y signup (hace control de errores) y añadir la comprobación de mayúsculas y minúsculas y modificar el formato del formulario del signup y del settings...
+02/11/2022: añadir la comprobación de mayúsculas y minúsculas y modificar el formato del formulario del settings, meter en la misma fila varios inputs del formulario

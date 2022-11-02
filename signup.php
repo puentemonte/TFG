@@ -2,28 +2,50 @@
     include_once 'header.php';
 ?>
 
-<h2>Registrarse</h2>
-<form action="includes/signup_inc.php" method="post">
-    <!--opcional-->
-    <p class="p">Nombre <input type="text" class="alignment" name="fname" placeholder="Nombre"></p>
-    <p class="p">Apellidos</p>
-    <input type="text" class="alignment" name="surname" placeholder="Apellidos">
-    <!---->
-    <p class="p">Nombre de usuario</p>
-    <input type="text" class="alignment" name="uid" placeholder="Nombre de usuario">
-    <p class="p">Email</p>
-    <input type="text" class="alignment" name="email" placeholder="Correo electrónico">
-    <p class="p">Contraseña</p>
-    <input type="password" class="alignment" name="pwd" placeholder="Contraseña">
-    <p class="p">Repite la contraseña</p>
-    <input type="password" class="alignment" name="pwdrepeat" placeholder="Repite la contraseña">
-    <!--opcional-->
-    <p class="p">Pronombres</p>
-    <input type="text" class="alignment" name="pronouns" placeholder="Pronombres"> <!--drop-down?-->
-    <!--<input type="text" name="description" class="descr" placeholder="Descripción">-->
-    <!---->
-    <button type="submit" name="submit" class="submit-btn">Crear cuenta</button>
-</form>
+<body class="text-center">
+<main class="form-signin w-100 m-auto">
+  <form action="includes/signup_inc.php" method="post" novalidate>
+    <div class="mt-custom">
+        <h2 class="h3 mb-3 fw-normal">Registrarse</h2>
+    </div>
+    <div class="form-floating">
+        <input type="text" class="form-control" name="fname" placeholder="Nombre">
+        <label for="floatingInput">Nombre</label>
+    </div>
+    <div class="form-floating">
+        <input type="text" class="form-control" name="surname" placeholder="Apellidos">
+        <label for="floatingInput">Apellidos</label>
+    </div>
+    <div class="form-floating">
+        <input type="text" class="form-control" name="uid" placeholder="Nombre de usuario">
+        <label for="floatingInput">Nombre de usuario</label>
+    </div>
+    <div class="form-floating">
+      <input class="form-control" name="email" placeholder="nombre@ejemplo.es">
+      <label for="floatingInput">Correo electrónico</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" name="pwd" placeholder="Contraseña">
+      <label for="floatingPassword">Contraseña</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" name="pwdrepeat" placeholder="Repite tu contraseña">
+      <label for="floatingPassword">Repite tu contraseña</label>
+    </div>
+    <div class="form-floating">
+        <select class="custom-select my-1 mr-sm-2 form-control" name = "pronouns">
+            <option selected>No seleccionado</option>
+            <option value="Él">Él</option>
+            <option value="Ella">Ella</option>
+            <option value="Elle">Elle</option>
+        </select>
+        <label for="floatingInput">Pronombres</label>
+    </div>
+    <button class="w-100 btn btn-lg custom-color-button" name="submit" type="submit">Registrarse</button>
+  </form>
+</main>
+</body>
+
 <?php
     if(isset($_GET['error'])){
         if($_GET['error'] == "emptyinput"){

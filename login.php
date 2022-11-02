@@ -4,8 +4,10 @@
 
 <body class="text-center">
 <main class="form-signin w-100 m-auto">
-  <form action="includes/login_inc.php" method="post">
-    <h2 class="h3 mb-3 fw-normal">Iniciar sesión</h2>
+  <form action="includes/login_inc.php" method="post" novalidate>
+    <div class="mt-custom">
+        <h2 class="h3 mb-3 fw-normal">Iniciar sesión</h2>
+    </div>
     <div class="form-floating">
       <input class="form-control" name="uid" placeholder="nombre@ejemplo.es">
       <label for="floatingInput">Nombre de usuario o correo electrónico</label>

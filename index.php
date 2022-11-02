@@ -2,7 +2,11 @@
     include_once 'header.php';
 ?>
 
-<h2>Hola, esta es solo una prueba</h2>
+<body class="text-center">
+    <div class="mt-custom">
+        <h2 class="h3 mb-3 fw-normal">Inicio</h2>
+    </div>
+</body>
 
 <?php
     include_once 'footer.php';
