@@ -8,21 +8,13 @@
     $pronouns = $_SESSION["pronouns"];
 ?>
 <div class="ajustes">
-    <div class="change-pwd-div">
-        <form action="change-pwd.php">
-            <button type="submit" name="change-pwd" class="submit-btn">Cambiar contraseña</button>
-        </form>
-    </div>
-    <div class="change-data-div">
-        <form action="settings.php" method="post">
-            <button type="submit" name="change-data" class="submit-btn">Actualizar perfil</button>
-        </form>
-    </div>
-    <div class="delete-usr-div">
-        <form action="delete-usr.php">
-            <button type="submit" name="delete-usr" class="submit-btn">Eliminar cuenta</button>
-        </form>
-    </div>
+    <nav class="nav nav-pills nav-fill">
+        <div class="settings-menu">
+            <a class="nav-link active" aria-current="page" href="change-pwd.php">Cambiar contraseña</a>
+            <a class="nav-link" href="settings.php">Actualizar perfil</a>
+            <a class="nav-link" href="delete-usr.php">Eliminar cuenta</a>
+        </div>    
+    </nav>
     <div class="campos">
         <form action="includes/changedata_inc.php" method="post">
             <p class="p">Nombre</p>

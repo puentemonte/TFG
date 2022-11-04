@@ -158,11 +158,11 @@ function pwdMatch($pwd, $pwdRepeat){
 function invalidPwd($pwd){
     $result;
     // contraseña válida: mínimo una mayúscula, un número, long 8
-    $pattern = "/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z]{8,}$/";
-    if(preg_match($pattern, $pwd)){
+    $pattern = "/^(?=.*[A-Z])(?=.*[0-9]).{8,}$/";
+    if(preg_match($pattern, $pwd)) {
         $result = false;
     }
-    else{
+    else {
         $result = true;
     }
     return $result;

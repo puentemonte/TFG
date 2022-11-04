@@ -10,7 +10,7 @@ body {
     background-color: #f6e0b5;
 }
 
-h2 {
+p, h2 {
     color: white;
 }
 
@@ -30,4 +30,23 @@ form{
 
 .form-floating{
     margin-bottom: 10px;
+}
+
+.ajustes {
+    display: grid;
+    /* 2 columnas y 1 fila*/
+    grid-template-columns: 150px auto;
+    grid-template-rows: auto;
+    margin-left: 20px;
+    margin-top: 45px;
+}
+
+.settings-menu {
+    display: block;
+    /*<start> / <end>*/
+    grid-column: 1 / 2;
+}
+
+.campos {
+    grid-column: 2 / 3;
 }
