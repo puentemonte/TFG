@@ -2,34 +2,39 @@
 <?php
     include_once 'header.php';
 ?>
+
 <div class="ajustes">
-    <div class="change-pwd-div">
-        <form action="change-pwd.php">
-            <button type="submit" name="change-pwd" class="submit-btn">Cambiar contraseña</button>
-        </form>
+<nav class="nav nav-pills nav-fill">
+    <div class="settings-menu">
+        <a class="nav-link" href="settings.php">Actualizar perfil</a>
+        <a class="nav-link active" aria-current="page" href="change-pwd.php">Cambiar contraseña</a>
+        <a class="nav-link" href="delete-usr.php">Eliminar cuenta</a>
+    </div>   
+</nav>
+<body class="text-center campos">
+    <main class="form-signin w-100 m-auto">
+    <form action="includes/changepwd_inc.php" method="post" novalidate>
+    <div class="mt-custom">
+        <h2 class="h3 mb-3 fw-normal">Cambiar contraseña</h2>
     </div>
-    <div class="change-data-div">
-        <form action="settings.php" method="post">
-            <button type="submit" name="change-data" class="submit-btn">Actualizar perfil</button>
-        </form>
+    <div class="form-floating">
+      <input type="password" class="form-control" name="pwd" placeholder="Contraseña actual">
+      <label for="floatingPassword">Contraseña actual</label>
     </div>
-    <div class="delete-usr-div">
-        <form action="delete-usr.php">
-            <button type="submit" name="delete-usr" class="submit-btn">Eliminar cuenta</button>
-        </form>
+    <div class="form-floating">
+      <input type="password" class="form-control" name="newpwd" placeholder="Contraseña nueva">
+      <label for="floatingPassword">Contraseña nueva</label>
     </div>
-    <div class="campos">
-        <form action="includes/changepwd_inc.php" method="post">
-            <p class="p">Contraseña actual</p>
-            <input type="password" class="aligment" name="pwd" placeholder="Contraseña actual">
-            <p class="p">Contraseña nueva</p>
-            <input type="password" class="alignment" name="newpwd" placeholder="Contraseña nueva">
-            <p class="p">Repite la contraseña nueva</p>
-            <input type="password" class="alignment" name="newpwdrepeat" placeholder="Repite la contraseña nueva">
-            <button type="submit" name="submit" class="submit-btn">Guardar cambios</button>
-        </form>
+    <div class="form-floating">
+      <input type="password" class="form-control" name="newpwdrepeat" placeholder="Repite tu contraseña nueva">
+      <label for="floatingPassword">Repite tu contraseña nueva</label>
     </div>
+    <button class="w-100 btn btn-lg custom-color-button" name="submit" type="submit">Cambiar</button>
+    </form>
+    </main>
+</body>
 </div>
+
 <?php
     if (isset($_GET["error"])) {
         if ($_GET["error"] == "emptyinput"){

@@ -7,35 +7,53 @@
     $email = $_SESSION["email"];
     $pronouns = $_SESSION["pronouns"];
 ?>
+
 <div class="ajustes">
-    <nav class="nav nav-pills nav-fill">
-        <div class="settings-menu">
-            <a class="nav-link active" aria-current="page" href="change-pwd.php">Cambiar contraseña</a>
-            <a class="nav-link" href="settings.php">Actualizar perfil</a>
-            <a class="nav-link" href="delete-usr.php">Eliminar cuenta</a>
-        </div>    
-    </nav>
-    <div class="campos">
-        <form action="includes/changedata_inc.php" method="post">
-            <p class="p">Nombre</p>
-            <input type="text" class="alignment" name="fname" placeholder="Nombre" value="<?php
-                echo ($fname != "NULL") ? $fname : "";?>">
-            <p class="p">Apellidos</p>
-            <input type="text" class="alignment" name="surname" placeholder="Apellidos" value="<?php
-                echo ($surname != "NULL") ? $surname : "";
-            ?>">
-            <p class="p">Nombre de usuario</p>
-            <input type="text" class="alignment" name="uid" placeholder="Nombre de usuario" value="<?php echo $username ?>">
-            <p class="p">Email</p>
-            <input type="text" class="alignment" name="email" placeholder="Correo electrónico" value="<?php echo $email?>">
-            <p class="p">Pronombres</p>
-            <input type="text" class="alignment" name="pronouns" placeholder="Pronombres" value="<?php
-                echo ($pronouns != "NULL") ? $pronouns : "";
-            ?>">
-            <button type="submit" name="submit" class="submit-btn">Guardar cambios</button>
-        </form>
+<nav class="nav nav-pills nav-fill">
+    <div class="settings-menu">
+        <a class="nav-link active" aria-current="page" href="settings.php">Actualizar perfil</a>
+        <a class="nav-link" href="change-pwd.php">Cambiar contraseña</a>
+        <a class="nav-link" href="delete-usr.php">Eliminar cuenta</a>
+    </div>   
+</nav>
+<body class="text-center campos">
+    <main class="form-signin w-100 m-auto">
+    <form action="includes/changedata_inc.php" method="post" novalidate>
+    <div class="mt-custom">
+        <h2 class="h3 mb-3 fw-normal">Actualizar perfil</h2>
     </div>
+    <div class="form-floating">
+        <input type="text" class="form-control" name="fname" placeholder="Nombre" value="<?php
+        echo ($fname != "NULL") ? $fname : "";?>">
+        <label for="floatingInput">Nombre</label>
+    </div>
+    <div class="form-floating">
+        <input type="text" class="form-control" name="surname" placeholder="Apellidos" value="<?php
+        echo ($surname != "NULL") ? $surname : "";?>">
+        <label for="floatingInput">Apellidos</label>
+    </div>
+    <div class="form-floating">
+        <input type="text" class="form-control" name="uid" placeholder="Nombre de usuario" value="<?php echo $username ?>">
+        <label for="floatingInput">Nombre de usuario</label>
+    </div>
+    <div class="form-floating">
+        <input class="form-control" name="email" placeholder="nombre@ejemplo.es" value="<?php echo $email?>">
+        <label for="floatingInput">Correo electrónico</label>
+    </div>
+    <div class="form-floating">
+        <select class="custom-select my-1 mr-sm-2 form-control" name = "pronouns" selected="<?php echo $pronouns?>">
+            <option value="Él" <?php  if ($pronouns === "Él"){ echo "selected";}?>>Él</option>
+            <option value="Ella" <?php if ($pronouns === "Ella"){ echo "selected";}?>>Ella</option>
+            <option value="Elle"<?php if ($pronouns === "Elle"){ echo "selected";}?>>Elle</option>
+        </select>
+        <label for="floatingInput">Pronombres</label>
+    </div>
+    <button class="w-100 btn btn-lg custom-color-button" name="submit" type="submit">Actualizar</button>
+    </form>
+    </main>
+</body>
 </div>
+
 <?php
     if(isset($_GET['error'])){
         if($_GET['error'] == "emptyinput"){
