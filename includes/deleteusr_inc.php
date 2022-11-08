@@ -17,6 +17,7 @@ if(isset($_POST["submit"])){
         exit();
     }
 
+    
     deleteUsr($conn, $pwd);
 }
 else {

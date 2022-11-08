@@ -2,6 +2,10 @@
     background-color: #a39193;
 }
 
+.custom-color-side-bar {
+    background-color: #eea990;
+}
+
 body {
     background-color: #2c2428;
 }
@@ -16,6 +20,10 @@ p, h2 {
 
 .mt-custom {
     margin-top: 45px;
+}
+
+.mb-custom {
+    margin-bottom: 100px;
 }
 
 .mr-custom {
@@ -49,4 +57,17 @@ form{
 
 .campos {
     grid-column: 2 / 3;
+}
+
+.custom-link {
+    text-decoration: none;
+    color:#eea990;
+    margin-bottom: 30px;
+}
+
+.alert{
+    width: 600px;
+    background-color: #ffc4c4;
+    margin-left: auto;
+    margin-right: auto;
 }
