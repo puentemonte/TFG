@@ -8,15 +8,15 @@
     $pronouns = $_SESSION["pronouns"];
 ?>
 
-<div class="ajustes">
+<div class="ajustes text-center">
     <nav class="nav nav-pills nav-fill">
         <div class="settings-menu">
-            <a class="btn custom-color-side-bar" aria-current="page" href="settings.php">Actualizar perfil</a>
-            <a class="custom-link" href="change-pwd.php">Cambiar contraseña</a>
-            <a class="custom-link" href="delete-usr.php">Eliminar cuenta</a>
+            <a class="btn custom-color-sidebar mb-sidebar-custom" aria-current="page" href="settings.php">Actualizar perfil</a>
+            <a class="btn sidebar-custom" href="change-pwd.php">Cambiar contraseña</a>
+            <a class="btn sidebar-custom" href="delete-usr.php">Eliminar cuenta</a>
         </div>   
     </nav>
-    <body class="text-center campos">
+    <div class="campos">
         <main class="form-signin w-100 m-auto">
             <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                 <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
@@ -92,7 +92,7 @@
                 <button class="w-100 btn btn-lg custom-color-button mb-custom" name="submit" type="submit">Actualizar</button>
             </form>
         </main>
-    </body>
+    </div>
 </div>
 
 <?php

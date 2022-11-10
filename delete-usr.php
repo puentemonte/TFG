@@ -2,12 +2,12 @@
     include_once 'header.php';
 ?>
 
-<div class="ajustes">
+<div class="ajustes text-center">
     <nav class="nav nav-pills nav-fill">
         <div class="settings-menu">
-            <a class="nav-link" href="settings.php">Actualizar perfil</a>
-            <a class="nav-link" href="change-pwd.php">Cambiar contraseña</a>
-            <a class="nav-link active" aria-current="page" href="delete-usr.php">Eliminar cuenta</a>
+            <a class="btn sidebar sidebar-custom" href="settings.php">Actualizar perfil</a>
+            <a class="btn sidebar sidebar-custom" href="change-pwd.php">Cambiar contraseña</a>
+            <a class="btn sidebar custom-color-sidebar  mb-sidebar-custom" aria-current="page" href="delete-usr.php">Eliminar cuenta</a>
         </div>   
     </nav>
 
