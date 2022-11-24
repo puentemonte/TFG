@@ -20,6 +20,10 @@ if(isset($_POST["submit"])){
         header("location: ../settings.php?error=invalidemail");
         exit();
     }
+    if(uidExists($conn, $username, $email)){
+        header("location: ../settings.php?error=usrnametaken");
+        exit();
+    }
 
     updateUser($conn, $fname, $surname, $username, $email, $pronouns);
 }

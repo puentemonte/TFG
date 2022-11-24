@@ -59,7 +59,7 @@
                 }
             }
             ?>
-            <form action="includes/changedata_inc.php" method="post" onsubmit="openModal()" novalidate>
+            <form action="includes/changedata_inc.php" method="post" novalidate>
                 <div class="mt-custom">
                     <h2 class="h3 mb-3 fw-normal">Actualizar perfil</h2>
                 </div>
