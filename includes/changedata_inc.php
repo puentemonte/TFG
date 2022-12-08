@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if(isset($_POST["submit"])){
     // data from form
     $fname = $_POST["fname"];
@@ -20,8 +20,12 @@ if(isset($_POST["submit"])){
         header("location: ../settings.php?error=invalidemail");
         exit();
     }
-    if(uidExists($conn, $username, $email)){
+    if($_SESSION["useruid"] != $username && uidExists($conn, $username, $username)){
         header("location: ../settings.php?error=usrnametaken");
+        exit();
+    }
+    if($_SESSION["email"] != $email && uidExists($conn, $email, $email)){
+        header("location: ../settings.php?error=emailtaken");
         exit();
     }
 

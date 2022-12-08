@@ -49,6 +49,14 @@
                                 </div>
                         </div>";
                 }
+                else if ($_GET["error"] == "emailtaken"){
+                    echo "<div class='mt-custom alert alert-danger d-flex align-items-center' role='alert'>
+                                <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='#exclamation-triangle-fill'/></svg>
+                                <div>
+                                    El email introducido se encuentra en uso
+                                </div>
+                        </div>";
+                }
                 else if ($_GET["error"] == "stmtfailed"){
                     echo "<div class='mt-custom alert alert-danger d-flex align-items-center' role='alert'>
                                 <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='#exclamation-triangle-fill'/></svg>
@@ -83,6 +91,7 @@
                 </div>
                 <div class="form-floating">
                     <select class="custom-select my-1 mr-sm-2 form-control" name = "pronouns" selected="<?php echo $pronouns?>">
+                        <option value="No seleccionado" <?php  if ($pronouns === "No seleccionado"){ echo "selected";}?>>No seleccionado</option>
                         <option value="Él" <?php  if ($pronouns === "Él"){ echo "selected";}?>>Él</option>
                         <option value="Ella" <?php if ($pronouns === "Ella"){ echo "selected";}?>>Ella</option>
                         <option value="Elle"<?php if ($pronouns === "Elle"){ echo "selected";}?>>Elle</option>
