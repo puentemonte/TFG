@@ -3,7 +3,7 @@
 }
 
 .custom-color-sidebar {
-    background-color: #e1bce7
+    background-color: #e1bce7;
 }
 
 body {
@@ -14,8 +14,9 @@ body {
     background-color: #e1bce7;
 }
 
-p, h2 {
-    color: white;
+p{
+    color: rgb(221, 221, 221);;
+    font-family: Montserrat-Regular;
 }
 
 h2{
@@ -25,6 +26,18 @@ h2{
 
 .mt-custom {
     margin-top: 100px;
+}
+
+.ml-custom {
+    margin-left: 50px;
+}
+
+.ml-book {
+    margin-left: 200px;
+}
+
+.mr-book {
+    margin-right: 250px;
 }
 
 .mb-custom {
@@ -94,4 +107,32 @@ form{
 @font-face {
     font-family: Montserrat-Bold;
     src: url(./fonts/Montserrat-Bold.ttf);
-  }
+}
+
+@font-face {
+    font-family: Montserrat-Regular;
+    src: url(./fonts/Montserrat-Regular.ttf);
+}
+
+.book-cover {
+    border-radius: 2%;
+}
+
+.synopsis{
+    text-align: justify;
+    color: white;
+}
+
+.special-card {
+/* create a custom class so you 
+    do not run into specificity issues 
+    against bootstraps styles
+    which tends to work better than using !important 
+    (future you will thank you later)*/
+
+    background-color: white;
+    opacity: 60%;
+    border-radius: 2%;
+    max-width: 230;
+    max-height: 350;
+}

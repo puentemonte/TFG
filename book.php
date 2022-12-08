@@ -1,109 +1,25 @@
 <?php
+    include_once 'header.php';
+?>
 
-class Book {
-    // book isbn
-    private $isbn;
+<body>
+    <div class="mt-custom">
+        <div class="row ml-book mr-book">
+            <div class="col-md-auto">
+                <img class="book-cover" src="https://drive.google.com/uc?export=view&id=1MXvk3Ilpzld45VcZUx3H_DXeEa8LJa3W" alt="Buenos presagios" width="230" height="350">
+            </div>
+            <div class="col ml-custom">
+                <h2 class="h2 fw-normal">Buenos presagios</h2>
+                <p>1990, Terry Prattchet & Neil Gaiman</p>
+                <p class="synopsis">Según Las Buenas y Acertadas profecías de Agnes la Chalada Bruja (el único libro fiable de profecías, escrito en 1655, antes de que ella explotara), el fin del mundo tendrá lugar el sábado. El próximo sábado, para ser exactos. Justo antes de la hora de la cena. Los ejércitos del Bien y del Mal se están agrupando, la Atlántida está resurgiendo, llueven sapos y los ánimos  están algo alterados así que... todo parece ajustarte al Plan Divino. De no ser por un ángel quisquilloso y un demonio buscavidas que han vivido a costa de los mortales desde el comienzo de los tiempos y que no están dispuestos a aceptar tan fácilmente eso del “Fin de la civilización tal y como la conocemos” . Y... ¡vaya por Dios! ¡Parece que alguien ha hecho desaparecer al Anticristo! Amazon Video estrena este año la serie basada en este libro»</p>
+            </div>
+            <div class="col-md-auto ml-custom special-card">
+                <p>Esto es una tarjeta especial</p>
+            </div>
+        </div>
+    </div>
+</body>
 
-    // queries
-	private $conn;
-
-    public function __construct($conn, $isbn){
-		$this->conn = $conn;
-        $this->isbn = $isbn;      
-	}
-
-    public function get_full_info(){
-		// get the data from books table
-        $query = mysqli_query($this->conn, "SELECT * FROM books WHERE isbn='$isbn'");
-        $book_data = mysqli_fetch_array($query);
-
-        // get reviews from books-users table
-        $reviews = get_reviews();
-        
-        // get average rating
-        $avg_rating = get_avg_rating($reviews);       
-
-        // get rating distribution
-        $distribution_ratings = get_distribution_ratings($reviews);
-
-        $ret = array("title" => $book_data['title'], 
-                    "author" => $book_data['author'],
-                    "editorial" => $book_data['editorial'],
-                    "translator" => $book_data['translator'],
-                    "pages" => $book_data['pages'],
-                    "releaseDate" => $book_data['releaseDate'],
-                    "genres" => $book_data['genres'],
-                    "synopsis" => $book_data['synopsis'],
-                    "image" => $book_data['cover'],
-                    "reviews" => $reviews, 
-                    "avg_rating" => $avg_rating,
-                    "distribution_ratings" => $distribution_ratings);
-        
-        return $ret;
-	}
-
-    public function get_overview_partial_info(){
-		// get the data from books table
-        $query = mysqli_query($this->conn, "SELECT * FROM books WHERE isbn='$isbn'");
-        $book_data = mysqli_fetch_array($query);
-
-        
-        $ret = array("title" => $book_data['title'],
-                    "image" => $book_data['cover']);
-        return $ret;
-	}
-
-    public function get_overview_full_info(){
-        $query = mysqli_query($this->conn, "SELECT * FROM books WHERE isbn='$isbn'");
-        $book_data = mysqli_fetch_array($query);
-
-        $ret = array("title" => $book_data['title'],
-                    "author" => $book_data['author'],
-                    "rating" => $book_data['rating'],
-                    "cover" => $book_data['cover']);
-        return $ret;
-    }
-
-    private function get_reviews() {
-        $query = mysqli_query($this->conn, "SELECT * FROM books WHERE isbn='$isbn'");
-        $reviews = mysqli_fetch_array($query);
-        return $reviews;
-    }
-
-    private function get_avg_rating($reviews){
-        $total = 0;
-        $acc = 0;
-        foreach($reviews as $key => $value) {
-            if ($value['rating'] != NULL){
-                $acc += $value['rating'];
-                ++$total;
-            }
-        }
-
-        // calculating the avg
-        $avg = acc / total;
-        return round($avg, 1); // round to the first decimal 
-    }
-
-    private function get_distribution_ratings($reviews){
-        // 0.5 -> 1, 1 -> 2, 1.5 -> 3...
-        $ret = array(1 => 0,
-                    2 => 0,
-                    3 => 0,
-                    4 => 0,
-                    5 => 0,
-                    6 => 0,
-                    7 => 0,
-                    8 => 0,
-                    9 => 0,
-                    10 => 0,);
-
-        foreach($reviews as $key => $value) {
-            if ($value['rating'] != NULL){
-                $rating_10 = round($value * 2, 0);
-                ++$ret[$rating_10];
-            }
-        }
-        return ret;
-    }
-}
+<?php
+    include_once 'footer.php';
+?>
