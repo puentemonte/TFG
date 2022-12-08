@@ -34,7 +34,7 @@ class Book {
                     "releaseDate" => $book_data['releaseDate'],
                     "genres" => $book_data['genres'],
                     "synopsis" => $book_data['synopsis'],
-                    "image" => $book_data['image'],
+                    "image" => $book_data['cover'],
                     "reviews" => $reviews, 
                     "avg_rating" => $avg_rating,
                     "distribution_ratings" => $distribution_ratings);
@@ -49,12 +49,23 @@ class Book {
 
         
         $ret = array("title" => $book_data['title'],
-                    "image" => $book_data['image']);
+                    "image" => $book_data['cover']);
         return $ret;
 	}
 
+    public function get_overview_full_info(){
+        $query = mysqli_query($this->conn, "SELECT * FROM books WHERE isbn='$isbn'");
+        $book_data = mysqli_fetch_array($query);
+
+        $ret = array("title" => $book_data['title'],
+                    "author" => $book_data['author'],
+                    "rating" => $book_data['rating'],
+                    "cover" => $book_data['cover']);
+        return $ret;
+    }
+
     private function get_reviews() {
-        $query = mysqli_query($this->conn, "SELECT * FROM books WHERE isbn='$isbn'")
+        $query = mysqli_query($this->conn, "SELECT * FROM books WHERE isbn='$isbn'");
         $reviews = mysqli_fetch_array($query);
         return $reviews;
     }
