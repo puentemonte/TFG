@@ -285,19 +285,19 @@ function deleteUsr($conn, $pwd) {
     exit();
 }
 
-function get_full_info($isbn){
+function get_full_info($conn, $isbn){
     // get the data from books table
-    $query = mysqli_query($this->conn, "SELECT * FROM books WHERE isbn='$isbn'");
+    $query = mysqli_query($conn, "SELECT * FROM books WHERE isbn='$isbn'");
     $book_data = mysqli_fetch_array($query);
 
     // get reviews from books-users table
-    $reviews = get_reviews();
+    //$reviews = get_reviews($conn, $isbn);
     
     // get average rating
-    $avg_rating = get_avg_rating($reviews);       
+    //$avg_rating = get_avg_rating($reviews);       
 
     // get rating distribution
-    $distribution_ratings = get_distribution_ratings($reviews);
+    //$distribution_ratings = get_distribution_ratings($reviews);
 
     $ret = array("title" => $book_data['title'], 
                 "author" => $book_data['author'],
@@ -307,17 +307,17 @@ function get_full_info($isbn){
                 "releaseDate" => $book_data['releaseDate'],
                 "genres" => $book_data['genres'],
                 "synopsis" => $book_data['synopsis'],
-                "image" => $book_data['cover'],
+                "image" => $book_data['cover']/*,
                 "reviews" => $reviews, 
                 "avg_rating" => $avg_rating,
-                "distribution_ratings" => $distribution_ratings);
+"distribution_ratings" => $distribution_ratings*/);
     
     return $ret;
 }
 
-function get_overview_partial_info($isbn){
+function get_overview_partial_info($conn, $isbn){
     // get the data from books table
-    $query = mysqli_query($this->conn, "SELECT * FROM books WHERE isbn='$isbn'");
+    $query = mysqli_query($conn, "SELECT * FROM books WHERE isbn='$isbn'");
     $book_data = mysqli_fetch_array($query);
 
     
@@ -326,8 +326,8 @@ function get_overview_partial_info($isbn){
     return $ret;
 }
 
-function get_overview_full_info($isbn){
-    $query = mysqli_query($this->conn, "SELECT * FROM books WHERE isbn='$isbn'");
+function get_overview_full_info($conn, $isbn){
+    $query = mysqli_query($conn, "SELECT * FROM books WHERE isbn='$isbn'");
     $book_data = mysqli_fetch_array($query);
 
     $ret = array("title" => $book_data['title'],
@@ -337,8 +337,8 @@ function get_overview_full_info($isbn){
     return $ret;
 }
 
-function get_reviews($isbn) {
-    $query = mysqli_query($this->conn, "SELECT * FROM books WHERE isbn='$isbn'");
+function get_reviews($conn, $isbn) {
+    $query = mysqli_query($conn, "SELECT * FROM book_user WHERE isbn='$isbn'");
     $reviews = mysqli_fetch_array($query);
     return $reviews;
 }
@@ -346,7 +346,7 @@ function get_reviews($isbn) {
 function get_avg_rating($reviews){
     $total = 0;
     $acc = 0;
-    foreach($reviews as $key => $value) {
+    foreach($reviews as $value) {
         if ($value['rating'] != NULL){
             $acc += $value['rating'];
             ++$total;
@@ -378,4 +378,21 @@ function get_distribution_ratings($reviews){
         }
     }
     return ret;
+}
+
+function get_url_export($url){
+    $pfx = "https://drive.google.com/uc?export=view&id=";
+    $start = 0; // position from which we take the id
+    $num = 0; // num of slashes
+    for($i = 0; $i < strlen($url); ++$i){
+        if($url[$i] === '/'){
+            ++$num;
+            if($num === 5){
+                $start = $i + 1;
+            }
+            else if($num === 6)
+                $pfx .= substr($url, $start, ($i - $start));
+        }
+    }
+    return $pfx;
 }
