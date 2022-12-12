@@ -24,12 +24,11 @@
                             <p class='synopsis'>$synopsis</p>
                         </div>
                         <div class='col-md-auto ml-custom special-card'>
-                        <img class='icon' src='./icons/0-circle.svg' alt='tuna'>
-                        <img class='icon' src='./icons/7-circle.svg' alt='tuna'>
-                        <img class='icon' src='./icons/alarm.svg' alt='tuna'>
-                        <img class='icon' src='./icons/badge-vr.svg' alt='tuna'>
-                        </div>
-
+                        <i class='fa-solid fa-book-open-reader icon'></i>
+                        <i class='fa-solid fa-glasses icon'></i>
+                        <i class='fas fa-archive icon'></i> 
+                        <i class='fa fa-book icon' ></i>
+                        <i class='fas fa-trash-alt icon'></i>
                     </div>
                 </div>
             </body>";

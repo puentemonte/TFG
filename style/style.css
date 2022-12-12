@@ -130,3 +130,7 @@ form{
     max-width: 230;
     max-height: 350;
 }
+
+.icon:hover, .icon:hover i{
+    color: greenyellow;
+}
