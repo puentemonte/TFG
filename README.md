@@ -2,13 +2,13 @@
 
 **[ ]** Vista libro
 
-  **[ ]** Interactuar libro
+  * **[ ]** Interactuar libro
 
 **[ ]** Añadir libro
 
-  **[ ]** Desplegable perfil
+  * **[ ]** Desplegable perfil
 
-  **[ ]** Añadir form
+  * **[ ]** Añadir form
 
 **[ ]** Vista inicio
 
