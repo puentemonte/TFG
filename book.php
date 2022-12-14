@@ -24,11 +24,26 @@
                             <p class='synopsis'>$synopsis</p>
                         </div>
                         <div class='col-md-auto ml-custom special-card'>
-                        <i class='fa-solid fa-book-open-reader icon'></i>
-                        <i class='fa-solid fa-glasses icon'></i>
-                        <i class='fas fa-archive icon'></i> 
-                        <i class='fa fa-book icon' ></i>
-                        <i class='fas fa-trash-alt icon'></i>
+                        <div class='row'>
+                            <div class= 'col-md-auto text-center'>
+                                <i class='fa-solid fa-book-open-reader icon'></i>
+                                <p class='text-icon'>Leyendo</p>
+                            </div>
+                            <div class= 'col-md-auto text-center'>
+                                <i class='fa-solid fa-bookmark icon'></i>
+                                <p class='text-icon'>Guardado</p>
+                            </div>
+                            <div class= 'col-md-auto text-center'>
+                                <i class='fa fa-book icon'></i>
+                                <p class='text-icon'>Leído</p>
+                            </div>
+                            <div class= 'col-md-auto text-center'>
+                                <i class='fa-solid fa-trash icon'></i>
+                                <p class='text-icon'>Abandonado</p>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </body>";
