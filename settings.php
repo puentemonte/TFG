@@ -8,16 +8,22 @@
     $pronouns = $_SESSION["pronouns"];
 ?>
 
-<div class="ajustes text-center">
-    <nav class="nav nav-pills nav-fill">
+<div class="row">
+    <div class="col-md-auto">
         <div class="settings-menu">
-            <a class="btn custom-color-sidebar mb-sidebar-custom" aria-current="page" href="settings.php">Actualizar perfil</a>
-            <a class="btn sidebar-custom" href="change-pwd.php">Cambiar contraseña</a>
-            <a class="btn sidebar-custom" href="delete-usr.php">Eliminar cuenta</a>
+            <div class='row'>
+            <a class="btn custom-color-sidebar mb-sidebar-custom" aria-current="page" href="settings.php"><b>Actualizar perfil</b></a>
+            </div>
+            <div class='row'>
+                <a class="btn sidebar-custom" href="change-pwd.php"><b>Cambiar contraseña</b></a>
+            </div>
+            <div class='row'>
+                <a class="btn sidebar-custom" href="delete-usr.php"><b>Eliminar cuenta</b></a>
+            </div>
         </div>   
-    </nav>
-    <div class="campos">
-        <main class="form-signin w-100 m-auto">
+    </div>
+    <div class="col-md-auto">
+        <div class="form-signin w-100 m-auto text-center">
             <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                 <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
                     <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
@@ -74,20 +80,20 @@
                 <div class="form-floating">
                     <input type="text" class="form-control" name="fname" placeholder="Nombre" value="<?php
                     echo ($fname != "NULL") ? $fname : "";?>">
-                    <label for="floatingInput">Nombre</label>
+                    <label for="floatingInput" class='floating-input'>Nombre</label>
                 </div>
                 <div class="form-floating">
                     <input type="text" class="form-control" name="surname" placeholder="Apellidos" value="<?php
                     echo ($surname != "NULL") ? $surname : "";?>">
-                    <label for="floatingInput">Apellidos</label>
+                    <label for="floatingInput" class='floating-input'>Apellidos</label>
                 </div>
                 <div class="form-floating">
                     <input type="text" class="form-control" name="uid" placeholder="Nombre de usuario" value="<?php echo $username ?>">
-                    <label for="floatingInput">Nombre de usuario</label>
+                    <label for="floatingInput" class='floating-input'>Nombre de usuario</label>
                 </div>
                 <div class="form-floating">
                     <input class="form-control" name="email" placeholder="nombre@ejemplo.es" value="<?php echo $email?>">
-                    <label for="floatingInput">Correo electrónico</label>
+                    <label for="floatingInput" class='floating-input'>Correo electrónico</label>
                 </div>
                 <div class="form-floating">
                     <select class="custom-select my-1 mr-sm-2 form-control" name = "pronouns" selected="<?php echo $pronouns?>">
@@ -100,7 +106,7 @@
                 </div>
                 <button class="w-100 btn btn-lg custom-color-button mb-custom" name="submit" type="submit">Actualizar</button>
             </form>
-        </main>
+        </div>
     </div>
 </div>
 

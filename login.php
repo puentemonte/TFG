@@ -35,11 +35,11 @@
     </div>
     <div class="form-floating">
       <input class="form-control" name="uid" placeholder="nombre@ejemplo.es">
-      <label for="floatingInput">Nombre de usuario o correo electrónico</label>
+      <label for="floatingInput" class='floating-input'>Nombre de usuario o correo electrónico</label>
     </div>
     <div class="form-floating">
       <input type="password" class="form-control" name="pwd" placeholder="Password">
-      <label for="floatingPassword">Contraseña</label>
+      <label for="floatingPassword" class='floating-input'>Contraseña</label>
     </div>
     <button class="w-100 btn btn-lg custom-color-button" name="submit" type="submit">Iniciar sesión</button>
   </form>

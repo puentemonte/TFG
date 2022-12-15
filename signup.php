@@ -68,27 +68,27 @@
         </div>
         <div class="form-floating">
             <input type="text" class="form-control" name="fname" placeholder="Nombre">
-            <label for="floatingInput">Nombre</label>
+            <label for="floatingInput" class='floating-input'>Nombre</label>
         </div>
         <div class="form-floating">
             <input type="text" class="form-control" name="surname" placeholder="Apellidos">
-            <label for="floatingInput">Apellidos</label>
+            <label for="floatingInput" class='floating-input'>Apellidos</label>
         </div>
         <div class="form-floating">
             <input type="text" class="form-control" name="uid" placeholder="Nombre de usuario">
-            <label for="floatingInput">Nombre de usuario</label>
+            <label for="floatingInput" class='floating-input'>Nombre de usuario</label>
         </div>
         <div class="form-floating">
             <input class="form-control" name="email" placeholder="nombre@ejemplo.es">
-            <label for="floatingInput">Correo electrónico</label>
+            <label for="floatingInput" class='floating-input'>Correo electrónico</label>
         </div>
         <div class="form-floating">
             <input type="password" class="form-control" name="pwd" placeholder="Contraseña">
-            <label for="floatingPassword">Contraseña</label>
+            <label for="floatingPassword" class='floating-input'>Contraseña</label>
         </div>
         <div class="form-floating">
             <input type="password" class="form-control" name="pwdrepeat" placeholder="Repite tu contraseña">
-            <label for="floatingPassword">Repite tu contraseña</label>
+            <label for="floatingPassword" class='floating-input'>Repite tu contraseña</label>
         </div>
         <div class="form-floating">
             <select class="custom-select my-1 mr-sm-2 form-control" name = "pronouns">

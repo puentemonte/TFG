@@ -1,27 +1,46 @@
+:root{
+    --primary-color: #8FD2E6;
+    --secondary-color: #EBCDA7;
+    --tertiary-color: #DFABCF;
+    --quaternary-color: #313131;
+    --quinary-color: #5D7AB5;
+}
+
 .custom-color-header {
-    background-color: #2e2e3a;
+    background-color: white;
 }
 
 .custom-color-sidebar {
-    background-color: #e1bce7;
+    color: white;
+    background-color: var(--quinary-color);
+}
+
+.custom-color-sidebar:hover {
+    background-color: var(--primary-color);
 }
 
 body {
-    background-color: #424254;
+    background-color: white;
 }
 
 .custom-color-button {
-    background-color: #e1bce7;
+    background-color: var(--quinary-color);
+    color: white;
+}
+
+.custom-color-button:hover{
+    background-color: var(--primary-color);
+    color: white;
 }
 
 p{
-    color: rgb(221, 221, 221);;
+    color: var(--quaternary-color);
     font-family: Montserrat-Regular;
 }
 
 h2{
     font-family: Montserrat-Bold;
-    color: #f6defa;
+    color: var(--tertiary-color);
 }
 
 .mt-custom {
@@ -62,6 +81,10 @@ form{
     margin-bottom: 10px;
 }
 
+.floating-input {
+    color:var(--quaternary-color);
+}
+
 .ajustes {
     display: grid;
     /* 2 columnas y 1 fila*/
@@ -72,37 +95,42 @@ form{
 }
 
 .settings-menu {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    /*<start> / <end>*/
-    grid-column: 1 / 2;
-}
-
-.campos {
-    grid-column: 2 / 3;
-    justify-content: center;
+    margin-left: 5em;
+    margin-top: 6em;
 }
 
 .alert{
     width: 600px;
-    background-color: #f6b5b5;
+    background-color: var(--tertiary-color);
     margin-left: auto;
     margin-right: auto;
 }
 
 .sidebar-custom {
-    color: #e1bce7;
+    color: var(--quaternary-color);
     margin-bottom: 5px;
+}
+
+a.sidebar-custom:hover{
+    color: var(--primary-color);
 }
 
 .btn:hover {
     color: white;
 }
 
-.btn-outline-light:hover{
-    color: #2c2428;
+.custom-color-button-2:hover{
+    color: var(--primary-color);
 }
+
+.nav-link:hover{
+    color: var(--primary-color);
+}
+
+.nav-link{
+    color: var(--quaternary-color);
+}
+
 
 @font-face {
     font-family: Montserrat-Bold;
@@ -116,33 +144,81 @@ form{
 
 .book-cover {
     border-radius: 2%;
+    height: 15.3em;
+    width: 10.2em;
+}
+
+.details {
+    color: var(--quaternary-color);
+    opacity: 75%;
 }
 
 .synopsis{
     text-align: justify;
-    color: white;
+    color: var(--quaternary-color);
 }
 
 .special-card {
-    background-color: white;
-    opacity: 60%;
+    background-color: var(--quinary-color);
+    opacity: 80%;
     border-radius: 2%;
-    width: 230;
-    height: 350;
+    width: 17em;
+    height: 12em;
 }
 
 .icon{
-    font-size: 1.8em;
-    margin-top: 0.5em;
+    font-size: 1.4em;
+    margin-top: 0.8em;
     margin-bottom: 0.25em;
-    opacity: 100%;
+    margin-right: 0;
+    margin-left: 0;
+    color: white;
 }
 
 .icon:hover, .icon:hover i{
-    color: #db81ff;
+    color: var(--secondary-color);
+}
+
+.rating {
+    font-size: 1.8em;
+}
+
+.rating:hover{
+    
 }
 
 .text-icon{
     font-size: 0.8em;
-    color: #313131;
+    color: white;
+}
+
+.icon-btn {
+    background: none;
+    border-style: none;
+    margin: 0;
+}
+
+.txt-box {
+    width: 30%;
+    height: 75%;
+    text-align: right;
+    display: inline-block;
+    margin-left: 0;
+}
+
+label{
+    color: white;
+}
+
+/* SPIN BOX INPUT HIDE*/
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
 }

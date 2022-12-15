@@ -285,10 +285,13 @@ function deleteUsr($conn, $pwd) {
     exit();
 }
 
-function get_full_info($conn, $isbn){
+function get_full_info($conn, $isbn, $uid){
     // get the data from books table
     $query = mysqli_query($conn, "SELECT * FROM books WHERE isbn='$isbn'");
     $book_data = mysqli_fetch_array($query);
+
+    $query_user = mysqli_query($conn, "SELECT * FROM book_user WHERE isbn='$isbn' AND userId='$uid'");
+    $book_user_data = mysqli_fetch_array($query_user);
 
     // get reviews from books-users table
     //$reviews = get_reviews($conn, $isbn);
@@ -307,8 +310,11 @@ function get_full_info($conn, $isbn){
                 "releaseDate" => $book_data['releaseDate'],
                 "genres" => $book_data['genres'],
                 "synopsis" => $book_data['synopsis'],
-                "image" => $book_data['cover']/*,
-                "reviews" => $reviews, 
+                "image" => $book_data['cover'],
+                "pages_read" => $book_user_data == NULL ? '0' : $book_user_data['pages'],
+                "rating" => $book_user_data == NULL ? '0' : $book_user_data['rating'],
+                "list" => $book_user_data == NULL ? 'none' : $book_user_data['list']
+                /*"reviews" => $reviews, 
                 "avg_rating" => $avg_rating,
 "distribution_ratings" => $distribution_ratings*/);
     
