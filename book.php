@@ -14,6 +14,7 @@
         $synopsis = $ret['synopsis'];
         $pages = $ret['pages_read'];
         $total_pages = $ret['pages'];
+        $isbn = $_GET['isbn'];
 
         echo "<body>
                 <div class='mt-custom'>
@@ -29,20 +30,20 @@
                         <div class='col-md-auto ml-custom special-card'>
                             <div class='row'>
                                 <div class='col text-center'>
-                                    <button class='icon-btn'><i class='fa-solid fa-book-open-reader icon'></i></button>
+                                    <button class='icon-btn'><a href='includes/interact_inc.php?list=reading&isbn=$isbn' class='fa-solid fa-book-open-reader icon'></a></button>
                                     <p class='text-icon'>Leyendo</p>
                                 </div>
                                 <div class='col text-center'>
-                                    <button class='icon-btn'><i class='fa fa-book icon'></i></button>
+                                    <button class='icon-btn'><a href='includes/interact_inc.php?list=read&isbn=$isbn' class='fa fa-book icon'></a></button>
                                     <p class='text-icon'>Leído</p>
                                 </div>
                                 <div class='col text-center'>
-                                    <button class='icon-btn'><i class='fa-solid fa-bookmark icon'></i></button>
+                                    <button class='icon-btn'><a href='includes/interact_inc.php?list=pending&isbn=$isbn' class='fa-solid fa-bookmark icon'></a></button>
                                     <p class='text-icon'>Pendiente</p>
                                 </div>                       
                             </div>
                             <div class='row text-center'>
-                                <form method='get' action='update-pages.php'>
+                                <form method='post' action='includes/interact_inc.php?isbn=$isbn'>
                                     <input type='number' name='pages' id='pages' class='form-control txt-box'  value=$pages>
                                     <label>/ $total_pages</label>
                                 </form>

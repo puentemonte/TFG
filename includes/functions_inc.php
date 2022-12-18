@@ -402,3 +402,29 @@ function get_url_export($url){
     }
     return $pfx;
 }
+
+function update_list($isbn, $conn, $list) {
+    session_start();
+    $userid = $_SESSION["userid"]; 
+
+    $query = mysqli_query($conn, "SELECT * FROM book_user WHERE userId = '$userid' AND isbn = '$isbn';");
+
+    if ($query !== false) // already exists -> update
+        $update = mysqli_query($conn, "UPDATE book_user SET list = '$list' WHERE userId = '$userid' AND isbn = '$isbn';");
+    else // doesn't exist -> insert
+        $insert = mysqli_query($conn, "INSERT INTO book_user (isbn, userId, list) VALUES ('$isbn', '$userid', '$list');");
+}
+
+function update_pages_read($isbn, $conn, $pages) {
+    session_start();
+    $userid = $_SESSION["userid"]; 
+    $list = "reading";
+
+    $query = mysqli_query($conn, "SELECT * FROM book_user WHERE userId = '$userid' AND isbn = '$isbn';");
+
+    if ($query !== false) // already exists -> update
+        $update = mysqli_query($conn, "UPDATE book_user SET pages = '$pages', list = '$list' WHERE userId = '$userid' AND isbn = '$isbn';");
+    else // doesn't exist -> insert
+        $insert = mysqli_query($conn, "INSERT INTO book_user (isbn, userId, pages, list) VALUES ('$isbn', '$userid', '$pages', '$list');");
+        
+}
