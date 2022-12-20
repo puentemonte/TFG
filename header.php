@@ -28,6 +28,11 @@
           <li><a href="#" class="nav-link px-2 mr-custom"><b>Social</b></a></li>
           <li><a href="#" class="nav-link px-2 mr-custom"><b>Eventos</b></a></li>
         </ul>
+
+        <form action = "search.php" class="d-flex" method="GET" role="search">
+          <input class="form-control me-2" name="k" value="<?php echo isset($_GET['k']) ? $_GET['k'] : ''; ?>" type="search" placeholder="Título, autor, ISBN..." aria-label="Search">
+          <button class="btn custom-color-button" type="submit"><b>Buscar</b></button>
+        </form>
         
         <?php
         if (isset($_SESSION["useruid"])){

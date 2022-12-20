@@ -338,7 +338,7 @@ function get_overview_full_info($conn, $isbn){
 
     $ret = array("title" => $book_data['title'],
                 "author" => $book_data['author'],
-                "rating" => $book_data['rating'],
+                /*"rating" => $book_data['rating'],*/
                 "cover" => $book_data['cover']);
     return $ret;
 }
@@ -427,4 +427,12 @@ function update_pages_read($isbn, $conn, $pages) {
     else // doesn't exist -> insert
         $insert = mysqli_query($conn, "INSERT INTO book_user (isbn, userId, pages, list) VALUES ('$isbn', '$userid', '$pages', '$list');");
         
+}
+
+function get_all_books($conn){
+    $query = mysqli_query($conn, "SELECT * FROM books");
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+    return $rows;
 }
