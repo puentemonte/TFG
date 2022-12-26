@@ -40,6 +40,11 @@ p{
     white-space: normal;
 }
 
+small{
+    word-break: normal;
+    white-space: normal;
+}
+
 h2{
     font-family: Montserrat-Bold;
     color: var(--tertiary-color);
@@ -96,9 +101,16 @@ form{
     margin-top: 100px;
 }
 
-.settings-menu {
-    margin-left: 5em;
-    margin-top: 6em;
+.settings-btn {
+    display:flex;
+}
+
+.center{
+    margin: 7em auto 0em auto;
+}
+
+.center a{
+    margin: 0 2em;
 }
 
 .alert{
