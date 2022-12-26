@@ -9,8 +9,7 @@ if (isset($_GET["list"])) { // updating the list
     require_once "functions_inc.php";
 
     // update de list
-    update_list($isbn, $conn, $list);
-
+    $ret = update_list($isbn, $conn, $list);
     header("location: ../book.php?isbn=$isbn");
 }
 
