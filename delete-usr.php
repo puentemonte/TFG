@@ -36,7 +36,7 @@
     }
     ?>
     <form class="delete-usr-form" action="includes/deleteusr_inc.php" method="post" novalidate>
-        <div class="mt-custom">
+        <div class="mt-custom-settings">
             <h2 class="h3 mb-3 fw-normal">Eliminar cuenta</h2>
         </div>
         

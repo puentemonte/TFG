@@ -62,7 +62,7 @@
     }
     ?>
     <form action="includes/changepwd_inc.php" method="post" novalidate>
-        <div class="mt-custom">
+        <div class="mt-custom-settings">
             <h2 class="h3 mb-3 fw-normal">Cambiar contraseña</h2>
         </div>
         <div class="form-floating">

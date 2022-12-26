@@ -66,7 +66,7 @@
     }
     ?>
     <form action="includes/changedata_inc.php" method="post" novalidate>
-        <div class="mt-custom">
+        <div class="mt-custom-settings">
             <h2 class="h3 mb-3 fw-normal">Actualizar perfil</h2>
         </div>
         <div class="form-floating">
