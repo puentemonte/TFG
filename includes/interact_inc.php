@@ -8,13 +8,22 @@ if (isset($_GET["list"])) { // updating the list
     require_once "dbh_inc.php";
     require_once "functions_inc.php";
 
-    // update de list
+    // update the list
     $ret = update_list($isbn, $conn, $list);
     header("location: ../book.php?isbn=$isbn");
 }
 
 if(isset($_GET["rating"])) { // updating the rating
+    $isbn = $_GET["isbn"];
+    $rating = $_GET["rating"];
 
+    // external functions
+    require_once "dbh_inc.php";
+    require_once "functions_inc.php";
+
+    // update the rating
+    $ret = update_rating($isbn, $conn, $rating);
+    header("location: ../book.php?isbn=$isbn");
 }
 
 if(isset($_GET["review"])) { // adding a review

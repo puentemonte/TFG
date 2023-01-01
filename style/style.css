@@ -50,6 +50,12 @@ h2{
     color: var(--tertiary-color);
 }
 
+
+h5{
+    font-family: Montserrat-Bold;
+    color: var(--tertiary-color);
+}
+
 .mt-custom {
     margin-top: 100px;
 }
@@ -153,8 +159,8 @@ a.sidebar-custom:hover{
 
 .book-cover {
     border-radius: 2%;
-    height: 15.3em;
-    width: 10.2em;
+    height: 16.83em;
+    width: 11.22em;
 }
 
 .details {
@@ -184,16 +190,26 @@ a.sidebar-custom:hover{
     color: white;
 }
 
+.icon-filled{
+    font-size: 1.4em;
+    margin-top: 0.8em;
+    margin-bottom: 0.25em;
+    margin-right: 0;
+    margin-left: 0;
+    color: var(--secondary-color);
+}
+
+.icon-filled:hover{
+    color: var(--secondary-color);
+}
+
 .icon:hover, .icon:hover i{
     color: var(--secondary-color);
 }
 
 .rating {
     font-size: 1.8em;
-}
-
-.rating:hover{
-    
+    text-decoration: none;
 }
 
 .text-icon{
@@ -230,4 +246,17 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
     -moz-appearance:textfield; /* Firefox */
+}
+
+.review{
+    border-radius: 2%;
+    margin: 0.4em auto;
+}
+
+.reviews {
+    margin-top: 3.5em ;
+}
+
+.synopsis{
+    min-height: 10em;
 }

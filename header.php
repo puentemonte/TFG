@@ -44,6 +44,8 @@
               <li><a class='dropdown-item' href='profile.php'>Mi perfil</a></li>
               <li><a class='dropdown-item' href='settings.php'>Ajustes</a></li>
               <li><hr class='dropdown-divider'></li>
+              <li><a class='dropdown-item' href='add-book.php'>Añadir libro</a></li>
+              <li><hr class='dropdown-divider'></li>
               <li><a class='dropdown-item' href='includes/logout_inc.php'>Cerrar sesión</a></li>
             </ul>
           </div>";
