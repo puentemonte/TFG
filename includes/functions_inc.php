@@ -294,7 +294,7 @@ function get_full_info($conn, $isbn, $uid){
     $book_user_data = mysqli_fetch_array($query_user);
 
     // get reviews from books-users table
-    //$reviews = get_reviews($conn, $isbn);
+    $reviews = get_reviews($conn, $isbn);
     
     // get average rating
     //$avg_rating = get_avg_rating($reviews);       
@@ -313,9 +313,9 @@ function get_full_info($conn, $isbn, $uid){
                 "image" => $book_data['cover'],
                 "pages_read" => $book_user_data == NULL ? '0' : $book_user_data['pages'],
                 "rating" => $book_user_data == NULL ? NULL : $book_user_data['rating'],
-                "list" => $book_user_data == NULL ? 'none' : $book_user_data['list']
-                /*"reviews" => $reviews, 
-                "avg_rating" => $avg_rating,
+                "list" => $book_user_data == NULL ? 'none' : $book_user_data['list'],
+                "reviews" => $reviews, 
+                /*"avg_rating" => $avg_rating,
 "distribution_ratings" => $distribution_ratings*/);
     
     return $ret;
@@ -345,8 +345,14 @@ function get_overview_full_info($conn, $isbn){
 
 function get_reviews($conn, $isbn) {
     $query = mysqli_query($conn, "SELECT * FROM books_users WHERE isbn='$isbn';");
-    $reviews = mysqli_fetch_array($query);
-    return $reviews;
+    if (mysqli_num_rows($query) == 0) // no reviews
+        return false;
+    
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+        
+    return $rows;
 }
 
 function get_avg_rating($reviews){
@@ -406,6 +412,8 @@ function get_url_export($url){
 function update_list($isbn, $conn, $list) {
     session_start();
     $userid = $_SESSION["userid"]; 
+    if ($userid == 0)
+        return false; // no está iniciada la sesión
 
     $query = mysqli_query($conn, "SELECT * FROM books_users WHERE userId = '$userid' AND isbn = '$isbn';");
     
@@ -413,11 +421,14 @@ function update_list($isbn, $conn, $list) {
         $update = mysqli_query($conn, "UPDATE books_users SET list = '$list' WHERE userId = '$userid' AND isbn = '$isbn';");
     else // doesn't exist -> insert
         $insert = mysqli_query($conn, "INSERT INTO books_users (isbn, userId, list) VALUES ('$isbn', '$userid', '$list');");
+    return true;
 }
 
 function update_pages_read($isbn, $conn, $pages) {
     session_start();
     $userid = $_SESSION["userid"]; 
+    if ($userid == 0)
+        return false; // no está iniciada la sesión
     $list = "reading";
 
     $query = mysqli_query($conn, "SELECT * FROM books_users WHERE userId = '$userid' AND isbn = '$isbn';");
@@ -426,7 +437,7 @@ function update_pages_read($isbn, $conn, $pages) {
         $update = mysqli_query($conn, "UPDATE books_users SET pages = '$pages', list = '$list' WHERE userId = '$userid' AND isbn = '$isbn';");
     else // doesn't exist -> insert
         $insert = mysqli_query($conn, "INSERT INTO books_users (isbn, userId, pages, list) VALUES ('$isbn', '$userid', '$pages', '$list');");
-        
+    return true;    
 }
 
 function get_all_books($conn){
@@ -440,6 +451,8 @@ function get_all_books($conn){
 function update_rating($isbn, $conn, $rating){
     session_start();
     $userid = $_SESSION["userid"]; 
+    if ($userid == 0)
+        return false; // no está iniciada la sesión
     $list = "read";
 
     $query = mysqli_query($conn, "SELECT * FROM books_users WHERE userId = '$userid' AND isbn = '$isbn';");
@@ -448,4 +461,28 @@ function update_rating($isbn, $conn, $rating){
         $update = mysqli_query($conn, "UPDATE books_users SET rating = '$rating', list = '$list' WHERE userId = '$userid' AND isbn = '$isbn';");
     else // doesn't exist -> insert
         $insert = mysqli_query($conn, "INSERT INTO books_users (isbn, userId, pages, rating, list) VALUES ('$isbn', '$userid', '$pages', '$rating','$list');");
+    return true;
+}
+
+function get_username($conn, $uid){
+    $query = mysqli_query($conn, "SELECT * FROM users WHERE userId = '$uid';");
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+    return $rows[0]['userUid'];
+}
+
+function add_review($isbn, $conn, $comment) {
+    session_start();
+    $userid = $_SESSION["userid"];
+    if ($userid == 0)
+        return false; // no está iniciada la sesión
+
+    $query = mysqli_query($conn, "SELECT * FROM books_users WHERE userId = '$userid' AND isbn = '$isbn';");
+
+    if (mysqli_num_rows($query) > 0) // already exists -> update
+        $update = mysqli_query($conn, "UPDATE books_users SET review = '$comment' WHERE userId = '$userid' AND isbn = '$isbn';");
+    else // doesn't exist -> insert
+        $insert = mysqli_query($conn, "INSERT INTO books_users (isbn, userId, review) VALUES ('$isbn', '$userid', '$comment');");
+    return true;    
 }

@@ -3,7 +3,7 @@
     --secondary-color: #EBCDA7;
     --tertiary-color: #DFABCF;
     --quaternary-color: #313131;
-    --quinary-color: #5D7AB5;
+    --quinary-color: #949494;
 }
 
 .custom-color-header {
@@ -196,15 +196,15 @@ a.sidebar-custom:hover{
     margin-bottom: 0.25em;
     margin-right: 0;
     margin-left: 0;
-    color: var(--secondary-color);
+    color: var(--primary-color);
 }
 
 .icon-filled:hover{
-    color: var(--secondary-color);
+    color: var(--primary-color);
 }
 
 .icon:hover, .icon:hover i{
-    color: var(--secondary-color);
+    color: var(--primary-color);
 }
 
 .rating {
@@ -259,4 +259,8 @@ input[type=number] {
 
 .synopsis{
     min-height: 10em;
+}
+
+.mb-comment{
+    margin-bottom: 3em;
 }

@@ -17,6 +17,7 @@
         $isbn = $_GET['isbn'];
         $list = $ret['list'];
         $rating = $ret['rating'];
+        $reviews = $ret['reviews'];
 
         echo "<body>
                 <div class='mt-custom'>
@@ -31,48 +32,41 @@
 
                             <div class = 'reviews'>
                                 <h5 class='h5 fw-normal'>Reseñas</h5>
+                                <div class = 'row'>
+                                    <form action='includes/interact_inc.php?isbn=$isbn' method='post'>
+                                        <div class='d-flex flex-start w-100'>
+                                            <div class='form-outline w-100'>
+                                                <textarea class='form-control' placeholder='Escribe tu comentario...' name='review' rows='4'style='background: #fff;'></textarea>
+                                            </div>
+                                        </div>
+                                        <div class='float-end mt-2 pt-1 mb-comment'>
+                                            <button type='submit' name='comment' class='btn custom-color-button'><b>Publicar</b></button>
+                                        </div>
+                                    </form>
+                                </div>";
 
-                                <div class = 'row'>
-                                    <div class= 'card p-4 review'>
-                                        <div class='d-flex flex-start'>
-                                            <div>
-                                                <h6 class='fw-bold mb-1'>Betty Walker</h6>
-                                                <div class='d-flex align-items-center mb-3'>
-                                                    <p class='mb-0'>
-                                                        March 30, 2021
-                                                    </p>
+                            if ($reviews != false){
+                                // recorremos todos los comentarios
+                                foreach($reviews as $rev) {
+                                    // conseguir el nombre del usuario utilizando su id
+                                    $username = get_username($conn, $rev['userId']);
+                                    $comment = $rev['review'];
+                                    if ($comment != NULL)
+                                        echo "<div class ='row'>
+                                                <div class= 'card p-4 review'>
+                                                    <div class='d-flex flex-start'>
+                                                        <div>
+                                                            <h6 class='fw-bold mb-1'>$username</h6>
+                                                            <p class='mb-0'>
+                                                            $comment 
+                                                            </p>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <p class='mb-0'>
-                                                    It uses a dictionary of over 200 Latin words, combined with a handful of
-                                                    model sentence structures, to generate Lorem Ipsum which looks
-                                                    reasonable. The generated Lorem Ipsum is therefore always free from
-                                                    repetition, injected humour, or non-characteristic words etc.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class = 'row'>
-                                    <div class= 'card p-4 review'>
-                                        <div class='d-flex flex-start'>
-                                            <div>
-                                                <h6 class='fw-bold mb-1'>Betty Walker</h6>
-                                                <div class='d-flex align-items-center mb-3'>
-                                                    <p class='mb-0'>
-                                                        March 30, 2021
-                                                    </p>
-                                                </div>
-                                                <p class='mb-0'>
-                                                    It uses a dictionary of over 200 Latin words, combined with a handful of
-                                                    model sentence structures, to generate Lorem Ipsum which looks
-                                                    reasonable. The generated Lorem Ipsum is therefore always free from
-                                                    repetition, injected humour, or non-characteristic words etc.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                            </div>";
+                                }
+                            }
+                            echo "</div>
                         </div>
                         <div class='col-md-auto ml-custom special-card'>
                             <div class='row'>
