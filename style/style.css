@@ -216,6 +216,8 @@ a.sidebar-custom:hover{
     font-size: 1.3em;
     text-decoration: none;
     color: var(--primary-color);
+    margin-right: 0.8em;
+    margin-left: 0;
 }
 
 .notif:hover{

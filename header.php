@@ -33,21 +33,26 @@
           <input class="form-control me-2" name="k" value="<?php echo isset($_GET['k']) ? $_GET['k'] : ''; ?>" type="search" placeholder="Título, autor, ISBN..." aria-label="Search">
           <button class="btn custom-color-button" type="submit"><b>Buscar</b></button>
         </form>
-
-        <button class='icon-btn'><a href='includes/notif_inc.php' class='fa-solid fa-bell notif'></a></button>
         
         <?php
         if (isset($_SESSION["useruid"])){
-            echo"<div class='dropdown text-end'>
+            $nickname = $_SESSION['useruid'];
+            echo "
+            <button class='icon-btn'><a href='includes/notif_inc.php' class='fa-solid fa-bell notif'></a></button>
+            <div class='dropdown text-end'>
             <a href='#' class='d-block link-dark text-decoration-none dropdown-toggle' data-bs-toggle='dropdown' aria-expanded='false'>
+              <b>$nickname</b>
               <img src='style/img/color-beige.png' alt='mdo' width='32' height='32' class='rounded-circle'>
             </a>
             <ul class='dropdown-menu text-small'>
               <li><a class='dropdown-item' href='profile.php'>Mi perfil</a></li>
+              <li><a class='dropdown-item' href='library.php'>Mi biblioteca</a></li>
+              <li><a class='dropdown-item' href='clubs.php'>Mis clubes</a></li>
+              <li><hr class='dropdown-divider'></li>
+              <li><a class='dropdown-item' href='addbook.php'>Añadir libro</a></li>
+              <li><a class='dropdown-item' href='addclub.php'>Crear club</a></li>
+              <li><hr class='dropdown-divider'></li>
               <li><a class='dropdown-item' href='settings.php'>Ajustes</a></li>
-              <li><hr class='dropdown-divider'></li>
-              <li><a class='dropdown-item' href='add-book.php'>Añadir libro</a></li>
-              <li><hr class='dropdown-divider'></li>
               <li><a class='dropdown-item' href='includes/logout_inc.php'>Cerrar sesión</a></li>
             </ul>
           </div>";
