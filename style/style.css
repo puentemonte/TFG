@@ -212,6 +212,16 @@ a.sidebar-custom:hover{
     text-decoration: none;
 }
 
+.notif {
+    font-size: 1.3em;
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.notif:hover{
+    color:var(--tertiary-color);
+}
+
 .text-icon{
     font-size: 0.8em;
     color: white;

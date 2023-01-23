@@ -33,6 +33,8 @@
           <input class="form-control me-2" name="k" value="<?php echo isset($_GET['k']) ? $_GET['k'] : ''; ?>" type="search" placeholder="Título, autor, ISBN..." aria-label="Search">
           <button class="btn custom-color-button" type="submit"><b>Buscar</b></button>
         </form>
+
+        <button class='icon-btn'><a href='includes/notif_inc.php' class='fa-solid fa-bell notif'></a></button>
         
         <?php
         if (isset($_SESSION["useruid"])){

@@ -26,7 +26,6 @@
                                         <p class='card-text'>$title</p>
                                         <small class='text-muted'>$author</small>
                                     </div>
-                                
                                 </div>
                             </a>
                         </div>
@@ -34,6 +33,31 @@
             }
         ?>
       </div>
+    </div>
+    <div class="container">
+        <?php
+            $all_clubs = get_all_clubs($conn);
+            foreach($all_clubs as $club_data) {
+                $name = $club_data['name'];
+                $creator = $book_data['creator'];
+                $desc = $book_data['description'];
+
+                echo "<div class ='row'>
+                        <div class= 'card p-4 review'>
+                            <div class='d-flex flex-start'>
+                                <div>
+                                    <h6 class='fw-bold mb-1'>$name</h6>
+                                    <p class='mb-0'>
+                                    <b>$creator</b>
+                                    <br>
+                                    $desc 
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>";
+            }
+        ?>
     </div>
 </div>
 
