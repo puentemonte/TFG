@@ -27,17 +27,9 @@
                         </div>
                 </div>";
         }
-        else if ($_GET["error"] == "stmtfailed"){
-            echo "<div class='mt-custom alert alert-danger d-flex align-items-center' role='alert'>
-                        <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='#exclamation-triangle-fill'/></svg>
-                        <div>
-                            Algo ha salido mal, inténtalo más tarde
-                        </div>
-                </div>";
-        }
     }
     ?>
-    <form action="includes/signup_inc.php" method="post" novalidate>
+    <form action="includes/addbook_inc.php" method="post" novalidate>
         <div class="mt-custom">
             <h2 class="h3 mb-3 fw-normal">Añadir libro</h2>
         </div>
@@ -64,6 +56,14 @@
         <div class="form-floating">
             <input type="text" class="form-control" name="pages" placeholder="Número de páginas">
             <label for="floatingInput" class='floating-input'>Número de páginas</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" name="releaseDate" placeholder="Año de publicación">
+            <label for="floatingInput" class='floating-input'>Año de publicación</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" name="genres" placeholder="Género/s">
+            <label for="floatingInput" class='floating-input'>Género/s</label>
         </div>
         <div class="form-floating">
             <input type="textarea" class="form-control synopsis" name="synopsis" placeholder="Sinopsis">

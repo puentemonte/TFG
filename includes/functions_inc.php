@@ -486,3 +486,27 @@ function add_review($isbn, $conn, $comment) {
         $insert = mysqli_query($conn, "INSERT INTO books_users (isbn, userId, review) VALUES ('$isbn', '$userid', '$comment');");
     return true;    
 }
+
+function emptyInputAddBook($title, $author, $isbn, $editorial, $pages, $releaseDate, $genres, $synopsis){
+    $result;
+    if(empty($title) | empty($author) | empty($isbn) | empty($editorial) | empty($pages) | empty($releaseDate) | empty($genres) | empty($synopsis)){
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+}
+
+function isbnExists($conn, $isbn){
+    $query = mysqli_query($conn, "SELECT * FROM books WHERE isbn = '$isbn';");
+    if (mysqli_num_rows($query) == 0)
+        return false;
+    else 
+        return true;
+}
+
+function addBook($conn, $title, $author, $isbn, $editorial, $translator, $pages, $releaseDate, $genres, $synopsis){
+    $cover_default = "https://drive.google.com/file/d/1st4B4XoGTskNZtOcYvgYfFJt-jk8TFub/view?usp=sharing"; // the cover by default
+    mysqli_query($conn, "INSERT INTO books (isbn, title, author, editorial, translator, pages, releaseDate, genres, synopsis, cover) VALUES ('$isbn', '$title', '$author', '$editorial', '$translator', '$pages', '$releaseDate', '$genres', '$synopsis', '$cover_default');");
+}

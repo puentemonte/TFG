@@ -76,6 +76,14 @@ h5{
     margin-right: 10%;
 }
 
+.ml-club {
+    margin-left: 20%;
+}
+
+.mr-club{
+    margin-right: 20%;
+}
+
 .mb-custom {
     margin-bottom: 100px;
 }
@@ -275,4 +283,26 @@ input[type=number] {
 
 .mb-comment{
     margin-bottom: 3em;
+}
+
+.bg-progress{
+    background-color: var(--primary-color);
+}
+
+.book-cover-club{
+    border-radius: 2%;
+    height: 8.71em;
+    width: 5.80em;
+}
+
+.club-desc{
+    margin-bottom: 5em;
+}
+
+.club-author{
+    opacity: 75%;
+}
+
+.mt-progress-bar{
+    margin-top: 0.5em;
 }
