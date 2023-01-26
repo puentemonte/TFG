@@ -11,7 +11,7 @@
     $display_words = "";
                         
     // format each of search keywords into the db query to be run
-    $keywords = explode(' ', $k);			
+    $keywords = explode(' ', $k);
     foreach ($keywords as $word){
         $search_string .= "title LIKE '%".$word."%' OR ";
         $search_string .= "isbn LIKE '%".$word."%' OR ";

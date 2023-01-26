@@ -26,6 +26,7 @@
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="index.php" class="nav-link px-2 mr-custom"><b>Inicio</b></a></li>
           <li><a href="#" class="nav-link px-2 mr-custom"><b>Social</b></a></li>
+          <li><a href="clubs.php" class="nav-link px-2 mr-custom"><b>Clubs de Lectura</b></a></li>
           <li><a href="#" class="nav-link px-2 mr-custom"><b>Eventos</b></a></li>
         </ul>
 

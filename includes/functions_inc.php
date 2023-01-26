@@ -510,3 +510,26 @@ function addBook($conn, $title, $author, $isbn, $editorial, $translator, $pages,
     $cover_default = "https://drive.google.com/file/d/1st4B4XoGTskNZtOcYvgYfFJt-jk8TFub/view?usp=sharing"; // the cover by default
     mysqli_query($conn, "INSERT INTO books (isbn, title, author, editorial, translator, pages, releaseDate, genres, synopsis, cover) VALUES ('$isbn', '$title', '$author', '$editorial', '$translator', '$pages', '$releaseDate', '$genres', '$synopsis', '$cover_default');");
 }
+
+function get_discussion($conn, $did) {
+    $query = mysqli_query($conn, "SELECT * FROM discussions WHERE did = '$did'");
+    return mysqli_fetch_array($query); // there is only one discussion with that id
+}
+
+function get_all_answers($conn, $did) {
+    $query = mysqli_query($conn, "SELECT * FROM answers WHERE did = '$did'");
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+    return $rows;
+}
+
+function add_comment_discussion($did, $conn, $comment){
+    session_start();
+    $uid = $_SESSION["userid"];
+    if ($userid == 0)
+        return false; // no está iniciada la sesión
+    $date = date("YYYY-MM-DD HH:MM:SS");
+    $insert = mysqli_query($conn, "INSERT INTO answers (did, userUid, comment, answer, dateStamp) VALUES ('$did', '$userid', '$comment', NULL, $date);");
+    return true;    
+}

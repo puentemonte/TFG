@@ -306,3 +306,13 @@ input[type=number] {
 .mt-progress-bar{
     margin-top: 0.5em;
 }
+
+.ml-reply {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 85em;
+}
+
+.reply:hover{
+    color: var(--tertiary-color);
+}
