@@ -524,7 +524,7 @@ function get_all_answers($conn, $did) {
     return $rows;
 }
 
-function add_comment_discussion($did, $conn, $comment){
+function add_comment_discussion($did, $conn, $comment) {
     session_start();
     $uid = $_SESSION["userid"];
     if ($userid == 0)
@@ -532,4 +532,14 @@ function add_comment_discussion($did, $conn, $comment){
     $date = date("YYYY-MM-DD HH:MM:SS");
     $insert = mysqli_query($conn, "INSERT INTO answers (did, userUid, comment, answer, dateStamp) VALUES ('$did', '$userid', '$comment', NULL, $date);");
     return true;    
+}
+
+// TO DO
+function get_username_discussion($userid) {
+    return "elena";
+}
+
+// TO DO
+function get_last_update_discussion(){
+    return "23/01/2023";
 }

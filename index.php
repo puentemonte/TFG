@@ -39,8 +39,8 @@
             $all_clubs = get_all_clubs($conn);
             foreach($all_clubs as $club_data) {
                 $name = $club_data['name'];
-                $creator = $book_data['creator'];
-                $desc = $book_data['description'];
+                $creator = $club_data['creator'];
+                $desc = $club_data['description'];
 
                 echo "<div class ='row'>
                         <div class= 'card p-4 review'>
