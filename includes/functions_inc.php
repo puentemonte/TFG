@@ -535,13 +535,16 @@ function add_comment_discussion($conn, $did, $comment, $reply) {
     return true;
 }
 
-function get_members($conn, $did) {
-    $query = mysqli_query($conn, "SELECT * FROM discussions WHERE did = '$did';");
+function get_num_members($conn, $cid) {
+    $query = mysqli_query($conn, "SELECT * FROM discussions WHERE cid = '$cid';");
     return mysqli_num_rows($query);
 }
 
 function get_last_modification($conn, $did) {
-    $query = mysqli_query($conn, "SELECT * FROM answers WHERE did='$did' ORDER BY dateStamp DESC;");
+    $query = mysqli_query($conn, "SELECT * FROM answers WHERE did = '$did' ORDER BY dateStamp DESC;");
+    if (mysqli_num_rows($query) == 0)
+        return false;
+
     $answers_data = mysqli_fetch_array($query);
     return $answers_data["dateStamp"];
 }
@@ -566,12 +569,52 @@ function delete_comment($conn, $did, $aid) {
     return true;
 }
 
-// TO DO
-function get_username_discussion($userid) {
-    return "elena";
+function get_info_clubs($conn, $cid){
+    $query = mysqli_query($conn, "SELECT * FROM clubs WHERE cid='$cid';");
+    if (mysqli_num_rows($query) == 0) // does not exist
+        return false;
+
+    $row = mysqli_fetch_array($query);
+    return $row;
 }
 
-// TO DO
-function get_last_update_discussion(){
-    return "23/01/2023";
+function get_book_info($conn, $current_book){
+    $query = mysqli_query($conn, "SELECT * FROM books WHERE isbn='$current_book';");
+    if (mysqli_num_rows($query) == 0) // does not exist
+        return false;
+    
+    $row = mysqli_fetch_array($query);
+    return $row;
+}
+
+function get_discussions($conn, $cid){
+    $query = mysqli_query($conn, "SELECT * FROM discussions WHERE cid = '$cid'");
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+    return $rows;
+}
+
+function get_members($conn, $cid){
+    $query = mysqli_query($conn, "SELECT * FROM members WHERE cid = '$cid'");
+    if (mysqli_num_rows($query) == 0) // no reviews
+        return false;
+    
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+        
+    return $rows;
+}
+
+function get_admins($conn, $cid){
+    $query = mysqli_query($conn, "SELECT * FROM members WHERE cid = '$cid' AND typeMember = 'moderator'");
+    if (mysqli_num_rows($query) == 0) // no reviews
+        return false;
+    
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+
+    return $rows;
 }
