@@ -17,6 +17,32 @@
         $title = "Elantris";
         $author = "Brandon Sanderson";
         $next_date = "10/02/2023";
+        $discussions = array (
+            array(
+                "name" => "Capítulos 1-5",
+                "creatorId" => "1",
+                "did" => "1",
+                "open" => 0
+            ),
+            array(
+                "name" => "Capítulos 6-10",
+                "creatorId" => "1",
+                "did" => "2",
+                "open" => 0
+            ),
+            array(
+                "name" => "Capítulos 11-15",
+                "creatorId" => "1",
+                "did" => "3",
+                "open" => 1
+            ),
+            array(
+                "name" => "Capítulos 16-20",
+                "creatorId" => "1",
+                "did" => "4",
+                "open" => 1
+            )
+        );
 
         echo "<body>
                 <div class='mt-custom'>
@@ -34,7 +60,7 @@
                             <p class='club-desc'>$desc</p>
                         </div>
                     </div>
-                    <div class='row ml-club mr-club'>
+                    <div class='row ml-club mr-club club-desc'>
                         <h5 class='h5 fw-normal'>Lectura actual</h5>
                         <div class='card w-100'>
                             <div class='card-body'>
@@ -65,6 +91,36 @@
                             </div>
                         </div>
                     </div>
+                    <div class='row ml-club mr-club club-desc'>
+                        <div class='col'>
+                            <h5 class='h5 fw-normal'>Discusiones</h5>
+                            <table class='table'>
+                                <thead>
+                                    <tr>
+                                        <th scope='col'>Nombre</th>
+                                        <th scope='col'>Creador</th>
+                                        <th scope='col'>Última publicación</th>
+                                    </tr>
+                                </thead>
+                                <tbody>";
+
+                            foreach($discussions as $dis){
+                                $dis_name = $dis['name'];
+                                $dis_creator = get_username_discussion($dis['creatorId']);
+                                $last_update = get_last_update_discussion($dis['did']);
+                                
+                                echo "<tr>
+                                        <td>$dis_name</td>
+                                        <td>@$dis_creator</td>
+                                        <td>$last_update</td>
+                                    </tr>";
+                            }
+
+                            echo "</tbody>
+                            </table>
+
+                        </div>
+                    </div>
                 </div>
             </body>";
     }
@@ -73,8 +129,3 @@
         exit();
     }
 ?>
-
-
-<div class>
-    
-</div>

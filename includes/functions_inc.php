@@ -565,3 +565,13 @@ function is_moderator($conn, $cid, $userId) {
 function delete_comment($conn, $did, $aid) {
     return true;
 }
+
+// TO DO
+function get_username_discussion($userid) {
+    return "elena";
+}
+
+// TO DO
+function get_last_update_discussion(){
+    return "23/01/2023";
+}
