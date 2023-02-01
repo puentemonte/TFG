@@ -517,19 +517,51 @@ function get_discussion($conn, $did) {
 }
 
 function get_all_answers($conn, $did) {
-    $query = mysqli_query($conn, "SELECT * FROM answers WHERE did = '$did'");
+    $query = mysqli_query($conn, "SELECT * FROM answers WHERE did = '$did' ORDER BY dateStamp DESC");
     $rows = array();
     while($row = mysqli_fetch_array($query))
         $rows[] = $row;
     return $rows;
 }
 
-function add_comment_discussion($did, $conn, $comment){
+function add_comment_discussion($conn, $did, $comment, $reply) {
     session_start();
     $uid = $_SESSION["userid"];
-    if ($userid == 0)
+    if ($uid == 0)
         return false; // no está iniciada la sesión
-    $date = date("YYYY-MM-DD HH:MM:SS");
-    $insert = mysqli_query($conn, "INSERT INTO answers (did, userUid, comment, answer, dateStamp) VALUES ('$did', '$userid', '$comment', NULL, $date);");
-    return true;    
+    
+    $date = date("Y-m-d H:i:s");
+    $insert = mysqli_query($conn, "INSERT INTO answers (did, userUid, comment, answer, dateStamp) VALUES ('$did', '$uid', '$comment', '$reply', '$date');");
+    return true;
+}
+
+function get_members($conn, $did) {
+    $query = mysqli_query($conn, "SELECT * FROM discussions WHERE did = '$did';");
+    return mysqli_num_rows($query);
+}
+
+function get_last_modification($conn, $did) {
+    $query = mysqli_query($conn, "SELECT * FROM answers WHERE did='$did' ORDER BY dateStamp DESC;");
+    $answers_data = mysqli_fetch_array($query);
+    return $answers_data["dateStamp"];
+}
+
+function get_overview_info_discussion($conn, $did) {
+    $query = mysqli_query($conn, "SELECT * FROM discussions WHERE did='$did';");
+    $discussion_data = mysqli_fetch_array($query);
+
+    $ret = array("creatorId" => $book_data['creatorId'],
+                "name" => $book_data['name'], 
+                "members" => get_members($conn, $did),
+                "last_modification" => get_last_modification($conn, $did)
+            );
+    return $ret;
+}
+
+function is_moderator($conn, $cid, $userId) {
+    return true;
+}
+
+function delete_comment($conn, $did, $aid) {
+    return true;
 }

@@ -51,24 +51,3 @@ if(isset($_POST["pages"])) { // updating the pages read
     else    
         header("location: ../book.php?isbn=$isbn");
 }
-
-/* Two cases:
-    1. Post a comment
-    2. Reply
-if(isset($_POST["reply"])){
-    $comment = $_POST["comment"];
-    if(isset())
-}
-*/
-
-if(isset($_POST["reply"])){
-    $comment = $_POST["content"];
-    $did = $_GET["did"];
-
-    // insert the comment
-    $ret = add_comment_discussion($did, $conn, $comment);
-    if ($ret == false)
-        header("location: ../login.php"); 
-    else    
-        header("location: ../discussion.php?did=$did");
-}
