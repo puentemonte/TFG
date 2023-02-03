@@ -25,6 +25,13 @@
     $query = mysqli_query($conn, $search_string);
     $result_count = mysqli_num_rows($query);
 
+    echo "<div class='settings-btn'>
+            <div class='center'>
+                <a class='btn custom-color-sidebar mb-sidebar-custom' aria-current='page' href='search.php?k=$k'><b>Libros</b></a>  
+                <a class='btn sidebar-custom' href='search_club.php?k=$k'><b>Clubes</b></a>
+            </div>
+        </div>";
+        
     // check if the search query returned any results
     if ($result_count > 0){
         echo "<div class='text-center'>
