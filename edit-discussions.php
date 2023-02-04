@@ -10,12 +10,6 @@ if (isset($_GET["cid"])) { // add a member to a club
 
     // Get the discussions
     $discussions = get_discussions($conn, $cid);
-
-    // Get the members
-    $members = get_members($conn, $cid);
-
-    // Get the admins
-    $admins = get_admins($conn, $cid);
 }
 ?>
 
@@ -46,8 +40,9 @@ if (isset($_GET["cid"])) { // add a member to a club
                     <tbody>
                         <?php
                         foreach($discussions as $dis){
+                            $did = $dis['did'];
                             $dis_name = $dis['name'];
-                            $dis_open = $dis['open'];
+                            $dis_open = $dis['opendis'];
                             $dis_creator = get_username($conn, $dis['creatorId']);
                             $last_update = get_last_modification_discussion($conn, $dis['did']);
                             if ($last_update === false)
@@ -59,10 +54,10 @@ if (isset($_GET["cid"])) { // add a member to a club
                                     <td>$last_update</td>";
 
                             if($dis_open == 1){
-                                echo "<td><button class='icon-btn'><a href='includes/editclub_inc.php' class='fa-solid fa-square-check notif'></a></button></td>";
+                                echo "<td><button class='icon-btn'><a href='includes/editclub_inc.php?cid=$cid&did=$did&closediscussion=1' class='fa-solid fa-square-check notif'></a></button></td>";
                             }
                             else {
-                                echo "<td><button class='icon-btn'><a href='includes/editclub_inc.php' class='fa-regular fa-square-check notif'></a></button></td>";
+                                echo "<td><button class='icon-btn'><a href='includes/editclub_inc.php?cid=$cid&did=$did&opendiscussion=1' class='fa-regular fa-square-check notif'></a></button></td>";
                             }
 
                             echo "</tr>";

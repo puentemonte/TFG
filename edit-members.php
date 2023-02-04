@@ -8,14 +8,8 @@ require_once "includes/functions_inc.php";
 if (isset($_GET["cid"])) { // add a member to a club
     $cid = $_GET["cid"];
 
-    // Get the discussions
-    $discussions = get_discussions($conn, $cid);
-
     // Get the members
     $members = get_members($conn, $cid);
-
-    // Get the admins
-    $admins = get_admins($conn, $cid);
 }
 ?>
 
@@ -33,27 +27,40 @@ if (isset($_GET["cid"])) { // add a member to a club
             <div class="mt-custom-settings">
                 <h2 class="h3 mb-3 fw-normal">Miembros</h2>
             </div>
-            <div class="form-floating">
-                <datalist id="suggestions">
-                    <?php 
-                        $all_books = get_all_books($conn);
-                        foreach($all_books as $book_data) {
-                            $title = $book_data['title'];
-                            $author = $book_data['author'];
-                            $isbn= $book_data['isbn'];
+            <div class='row ml-club mr-club club-desc'>
+                <div class='col-md-auto'>
+                    <table class='table'>
+                        <thead>
+                            <tr>
+                                <th scope='col'>Nombre</th>
+                                <th scope='col'>Administrador</th>
+                                <th scope='col'>Borrar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach($members as $memb){
+                                $username = get_username($conn, $memb['userid']);
+                                $type = $memb['typeMember'];
+                                $mid = $memb['mid'];
+                                
+                                echo "<tr>
+                                        <td>@$username</td>";
 
-                            echo "<option value='$isbn'>$title, $author</option>";
-                        }
-                    ?>
-                </datalist>
-                <input autoComplete="on" list="suggestions" class="form-control" name="currBook" placeholder="Frankenstein" value="<?php echo $current_book;?>">
-                <label for="floatingInput" class='floating-input'>Lectura actual</label> 
+                                if($type == "moderator"){
+                                    echo "<td><button class='icon-btn'><a href='includes/editclub_inc.php?cid=$cid&mid=$mid&type=member' class='fa-solid fa-square-check notif'></a></button></td>";
+                                }
+                                else {
+                                    echo "<td><button class='icon-btn'><a href='includes/editclub_inc.php?cid=$cid&mid=$mid&type=moderator' class='fa-regular fa-square-check notif'></a></button></td>";
+                                }
+                                echo "<td><button class='icon-btn'><a href='includes/editclub_inc.php?cid=$cid&mid=$mid&deletemember=1' class='fa-regular fa-trash-can notif'></a></button></td>";
+
+                                echo "</tr>";
+                            } ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="form-floating">
-                <input type="date" class="form-control" name="nextDate" value="<?php echo $next_date;?>">
-                <label for="floatingInput" class='floating-input'>Próxima fecha</label>
-            </div>
-            <button class="w-100 btn btn-lg custom-color-button" name="submit" type="submit">Actualizar</button>
         </form>
     </main>
 </body>

@@ -8,9 +8,9 @@
         // Get the club's info
         $cid = $_GET['id'];
         $club_info = get_info_clubs($conn, $cid);
-        $name = $club_info['name'];
+        $name = $club_info['cname'];
         $creator = get_username($conn, $club_info['uidCreator']);
-        $desc = $club_info['description'];
+        $desc = $club_info['descrip'];
         $current_book = $club_info['currBook'];
 
         // Get the discussions
@@ -46,7 +46,7 @@
                         </div>
                     </div>";
 
-                    if ($current_book != NULL) {
+                    if ($current_book != 0) {
                         $ret = get_book_info($conn, $current_book);
 
                         // Get the book info
@@ -71,11 +71,18 @@
                                             <div class='col'>
                                                 <div class='row'>
                                                     <p><b>$title</b><br/>
-                                                    $author</p>
-                                                    <p class='club-author'>
-                                                    ¡La próxima actualización de progreso tendrá lugar el día $next_date!
-                                                    </p>
-                                                    <div class='row'>
+                                                    $author</p>";
+                                                    if ($next_date == '0000-00-00'){
+                                                        echo "<p class='club-author'>
+                                                            ¡No hay actualizaciones de progreso proximamente!
+                                                        </p>";
+                                                    }
+                                                    else{
+                                                        echo "<p class='club-author'>
+                                                            ¡La próxima actualización de progreso tendrá lugar el día $next_date!
+                                                        </p>";
+                                                    }
+                                                    echo "<div class='row'>
                                                         <div class='col mt-progress-bar'>
                                                             <div class='progress'>
                                                                 <div class='progress-bar bg-progress' role='progressbar' style='width: $progress%'' aria-valuenow='$progress' aria-valuemin='0' aria-valuemax='100'></div>

@@ -647,3 +647,38 @@ function join_club($conn, $cid) {
         
     return true;
 }
+
+function emptyInputNameDesc($name, $desc){
+    $result; 
+    if (empty($name) | empty($desc)){
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+}
+
+function update_name_desc($conn, $cid, $name, $desc){
+    mysqli_query($conn, "UPDATE clubs SET cname = '$name', descrip = '$desc' WHERE cid = '$cid';");
+}
+
+function update_current_book($conn, $cid, $currBook, $nextDate, $pages){
+    mysqli_query($conn, "UPDATE clubs SET currBook = '$currBook', nextDate = '$nextDate', currPages = '$pages' WHERE cid = '$cid';");
+}
+
+function open_discussion($conn, $did){
+    mysqli_query($conn, "UPDATE discussions SET opendis = '1' WHERE did = '$did';");
+}
+
+function close_discussion($conn, $did){
+    mysqli_query($conn, "UPDATE discussions SET opendis = '0' WHERE did = '$did';");
+}
+
+function update_member_type($conn, $mid, $type){
+    mysqli_query($conn, "UPDATE members SET typeMember = '$type' WHERE mid = '$mid';");
+}
+
+function delete_member($conn, $mid){
+    mysqli_query($conn, "DELETE FROM members WHERE mid = '$mid';");
+}
