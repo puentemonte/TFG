@@ -13,7 +13,7 @@
     // format each of search keywords into the db query to be run
     $keywords = explode(' ', $k);
     foreach ($keywords as $word){
-        $search_string .= "name LIKE '%".$word."%' OR ";
+        $search_string .= "cname LIKE '%".$word."%' OR ";
         $display_words .= $word.' ';
     }
     $search_string = substr($search_string, 0, strlen($search_string)-4);
@@ -35,67 +35,46 @@
                         <a class='btn custom-color-sidebar' aria-current='page'  href='search-club.php?k=$k'><b>Buscar clubes</b></a>
                     </div>
                 </div>
-                <div class='container'>
-                 <div class='row row-cols-1 g-1'>
-                 <div class='col'>
-                    <div class='card-group'>
-                        <div class='card shadow-sm'>
-                            <div class='card-body'>
-                                <h5 class='card-title'>Club</h5>
-                            </div>
-                        </div>
-                        <div class='card shadow-sm'>
-                            <div class='card-body'>
-                                <h5 class='card-title'>Número de miembros</h5>
-                            </div>
-                        </div>
-                        <div class='card shadow-sm'>
-                            <div class='card-body'>
-                                <h5 class='card-title'>Última modificación</h5>
-                            </div>
-                        </div>
+                <div class='row ml-club mr-club club-desc'>
+                    <div class='col'>
+                        <table class='table'>
+                            <thead>
+                                <tr>
+                                    <th scope='col'>Nombre</th>
+                                    <th scope='col'>Creador</th>
+                                    <th scope='col'>Número de miembros</th>
+                                    <th scope='col'>Última publicación</th>
+                                </tr>
+                            </thead>
+                            <tbody>";
+
+                            $rows= array();
+                            while ($row = mysqli_fetch_assoc($query)){
+                                $rows[] = $row;
+                            }
+                    
+                            foreach($rows as $club_data) {
+                                $cid = $club_data['cid'];
+                                $name = $club_data['cname'];
+                                $creator = get_username($conn, $club_data['uidCreator']);
+                                $num_members= get_num_members($conn, $cid);
+                                $last_modification = get_last_modification_club($conn, $cid);
+                                if ($last_modification == NULL)
+                                    $last_modification = "-";
+
+                                echo "<tr>
+                                    <td><a href='club.php?id=$cid'>$name</a></td>
+                                    <td>@$creator</td>
+                                    <td>$num_members</td>
+                                    <td>$last_modification</td>
+                                </tr>";
+                            }
+
+                        echo "</tbody>
+                        </table>
                     </div>
-                 </div>";
-        
-        // loop though each of the results from the database and display them to the user
-        $rows= array();
-        while ($row = mysqli_fetch_assoc($query)){
-            $rows[] = $row;
-        }
-
-        foreach($rows as $club_data) {
-            $cid = $club_data['cid'];
-            $name = $club_data['name'];
-            $creator = $club_data['creator'];
-            $num_members= get_num_members($conn, $cid);
-            $last_modification = get_last_modification_club($conn, $cid);
-
-            echo "<a class='dropdown-item' href='club.php?id=$cid'>
-                            <div class='card-group'>
-                                <div class='card shadow-sm'>
-                                    <div class='card-body'>
-                                        <p class='card-text'>$name</p>
-                                        <small class='text-muted'>Creado por $creator</small>
-                                    </div>
-                                </div>
-                                <div class='card shadow-sm'>
-                                    <div class='card-body'>
-                                        
-                                        <p class='card-text'>$num_members</p>
-                                    </div>
-                                </div>
-                                <div class='card shadow-sm'>
-                                    <div class='card-body'>
-                                        <p class='card-text'>$last_modification</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>";
-        }
-        echo "      </div>
                 </div>
-            </div>
-        </div>";
+            </div>";
     }
     else
     echo "<div class='text-center'>

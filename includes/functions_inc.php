@@ -568,10 +568,6 @@ function get_last_modification_discussion($conn, $did) {
     return $answers_data["dateStamp"];
 }
 
-function is_moderator($conn, $cid, $userId) {
-    return true;
-}
-
 function delete_comment($conn, $aid) {
     mysqli_query($conn, "DELETE FROM answers WHERE aid = '$aid';");
 }

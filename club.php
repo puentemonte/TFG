@@ -99,37 +99,38 @@
                                 </div>
                             </div>";
                     }
-                    echo "<div class='row ml-club mr-club club-desc'>
-                        <div class='col'>
-                            <h5 class='h5 fw-normal'>Discusiones</h5>
-                            <table class='table'>
-                                <thead>
-                                    <tr>
-                                        <th scope='col'>Nombre</th>
-                                        <th scope='col'>Creador</th>
-                                        <th scope='col'>Última publicación</th>
-                                    </tr>
-                                </thead>
-                                <tbody>";
+                    echo    "<div class='row ml-club mr-club club-desc'>
+                                <div class='col'>
+                                    <h5 class='h5 fw-normal'>Discusiones</h5>
+                                    <table class='table'>
+                                        <thead>
+                                            <tr>
+                                                <th scope='col'>Nombre</th>
+                                                <th scope='col'>Creador</th>
+                                                <th scope='col'>Última publicación</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>";
 
-                            foreach($discussions as $dis){
-                                $dis_name = $dis['name'];
-                                $dis_creator = get_username($conn, $dis['creatorId']);
-                                $last_update = get_last_modification_discussion($conn, $dis['did']);
-                                if ($last_update === false)
-                                    $last_update = "-";
-                                
-                                echo "<tr>
-                                        <td>$dis_name</td>
-                                        <td>@$dis_creator</td>
-                                        <td>$last_update</td>
-                                    </tr>";
-                            }
+                                    foreach($discussions as $dis){
+                                        $dis_name = $dis['name'];
+                                        $dis_creator = get_username($conn, $dis['creatorId']);
+                                        $last_update = get_last_modification_discussion($conn, $dis['did']);
+                                        $did = $dis['did'];
+                                        if ($last_update === false)
+                                            $last_update = "-";
+                                        
+                                        echo "<tr>
+                                                <td><a href='discussion.php?did=$did&cid=$cid'>$dis_name</a></td>
+                                                <td>@$dis_creator</td>
+                                                <td>$last_update</td>
+                                            </tr>";
+                                    }
 
-                            echo "</tbody>
-                            </table>
-                        </div>
-                    </div>
+                                    echo "</tbody>
+                                    </table>
+                                </div>
+                            </div>
                     <div class='row ml-club mr-club club-desc'>
                         <h5 class='h5 fw-normal'>Participantes</h5>
                         <div class='accordion' id='accordionExample'>

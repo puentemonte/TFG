@@ -13,6 +13,7 @@ require_once "functions_inc.php";
 if(isset($_POST["comment"])){
     $comment = $_POST["content"];
     $did = $_GET["did"];
+    $cid = $_GET["cid"];
     $ans = NULL;
 
     // insert the comment
@@ -23,11 +24,13 @@ if(isset($_POST["comment"])){
     if ($ret == false)
         header("location: ../login.php"); 
     else    
-        header("location: ../discussion.php?did=$did");
+        header("location: ../discussion.php?cid=$cid&did=$did");
 }
 
 if(isset($_POST["delete"])){
     $aid = $_GET["msg"];
-    delete_comment($conn, $did, $aid);
-    header("location: ../discussion.php?did=$did");
+    $did = $_GET["did"];
+    $cid = $_GET["cid"];
+    delete_comment($conn, $aid);
+    header("location: ../discussion.php?did=$did&cid=$cid");
 }
