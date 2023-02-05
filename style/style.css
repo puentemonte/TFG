@@ -317,12 +317,9 @@ input[type=number] {
 }
 
 .ml-reply {
-    display: inline;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 340%;
+    margin-left: 220%;
 }
 
-.reply:hover{
+.reply:hover {
     color: var(--tertiary-color);
 }

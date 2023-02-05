@@ -544,11 +544,7 @@ function add_comment_discussion($conn, $did, $comment, $reply) {
 }
 
 function get_num_members($conn, $cid) {
-<<<<<<< HEAD
     $query = mysqli_query($conn, "SELECT * FROM members WHERE cid = '$cid';");
-=======
-    $query = mysqli_query($conn, "SELECT * FROM discussions WHERE cid = '$cid';");
->>>>>>> 06683405ec483340b4d43672fa1bd65ec82cdda8
     return mysqli_num_rows($query);
 }
 
@@ -557,9 +553,10 @@ function get_last_modification_club($conn, $cid) {
     if (mysqli_num_rows($query) == 0)
         return false;
 
-    $answers_data = mysqli_fetch_array($query);
-    $date = $answers_data[0]["dateStamp"];
-    return $date;
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+    return $rows[0]['dateStamp'];
 }
 
 function get_last_modification_discussion($conn, $did) {
@@ -575,8 +572,8 @@ function is_moderator($conn, $cid, $userId) {
     return true;
 }
 
-function delete_comment($conn, $did, $aid) {
-    return true;
+function delete_comment($conn, $aid) {
+    mysqli_query($conn, "DELETE FROM answers WHERE aid = '$aid';");
 }
 
 function get_info_clubs($conn, $cid){

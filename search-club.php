@@ -22,13 +22,6 @@
     // run the query in the db and search through each of the records returned
     $query = mysqli_query($conn, $search_string);
     $result_count = mysqli_num_rows($query);
-
-    echo "<div class='settings-btn'>
-            <div class='center'>
-                <a class='btn sidebar-custom' href='search.php?k=$k'><b>Libros</b></a>
-                <a class='btn custom-color-sidebar mb-sidebar-custom' aria-current='page' href='search_club.php?k=$k'><b>Clubes</b></a>
-            </div>
-        </div>";
         
     // check if the search query returned any results
     if ($result_count > 0){
@@ -36,8 +29,33 @@
                 <div class='mt-custom'>
                      <h2 class='h3 mb-3 fw-normal'>Resultados de la búsqueda '$display_words':</h2>
                 </div>
+                <div class='search-btn'>
+                    <div class='center-search'>
+                        <a class='btn sidebar-custom' href='search.php?k$k'><b>Buscar libros</b></a>  
+                        <a class='btn custom-color-sidebar' aria-current='page'  href='search-club.php?k=$k'><b>Buscar clubes</b></a>
+                    </div>
+                </div>
                 <div class='container'>
-                 <div class='row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4 row-cols-md-5 g-5'>";
+                 <div class='row row-cols-1 g-1'>
+                 <div class='col'>
+                    <div class='card-group'>
+                        <div class='card shadow-sm'>
+                            <div class='card-body'>
+                                <h5 class='card-title'>Club</h5>
+                            </div>
+                        </div>
+                        <div class='card shadow-sm'>
+                            <div class='card-body'>
+                                <h5 class='card-title'>Número de miembros</h5>
+                            </div>
+                        </div>
+                        <div class='card shadow-sm'>
+                            <div class='card-body'>
+                                <h5 class='card-title'>Última modificación</h5>
+                            </div>
+                        </div>
+                    </div>
+                 </div>";
         
         // loop though each of the results from the database and display them to the user
         $rows= array();
@@ -50,35 +68,32 @@
             $name = $club_data['name'];
             $creator = $club_data['creator'];
             $num_members= get_num_members($conn, $cid);
-            $last_modification = get_last_modification($conn, $cid);
+            $last_modification = get_last_modification_club($conn, $cid);
 
-            echo "<div class='col'>
-                        <a class='dropdown-item' href='club.php?id=$'>
+            echo "<a class='dropdown-item' href='club.php?id=$cid'>
                             <div class='card-group'>
                                 <div class='card shadow-sm'>
                                     <div class='card-body'>
-                                        <h5 class='card-title'>Club</h5>
                                         <p class='card-text'>$name</p>
                                         <small class='text-muted'>Creado por $creator</small>
                                     </div>
                                 </div>
                                 <div class='card shadow-sm'>
                                     <div class='card-body'>
-                                        <h5 class='card-title'>Número de miembros</h5>
+                                        
                                         <p class='card-text'>$num_members</p>
                                     </div>
                                 </div>
                                 <div class='card shadow-sm'>
                                     <div class='card-body'>
-                                        <h5 class='card-title'>Última modificación</h5>
                                         <p class='card-text'>$last_modification</p>
                                     </div>
                                 </div>
                             </div>
-                        </a>
-                    </div>";
+                        </a>";
         }
-        echo "</div>
+        echo "      </div>
+                </div>
             </div>
         </div>";
     }

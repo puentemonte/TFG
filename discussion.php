@@ -62,7 +62,7 @@
                                                             $comment 
                                                             </p>";
                                                             if(is_moderator($conn, $cid, $userId)){
-                                                                echo "<form action='reply_inc.php?did=$did&msg=$aid$' method='POST'>
+                                                                echo "<form action='reply_inc.php?did=$did&msg=$aid' method='POST'>
                                                                         <button type='submit' name='delete' class='icon-btn ml-reply'><i class='fa-solid fa-trash icon-filled reply'></i></button>
                                                                     </form>";
                                                             }

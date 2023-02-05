@@ -27,12 +27,7 @@ if(isset($_POST["comment"])){
 }
 
 if(isset($_POST["delete"])){
-    $did = $_GET["did"];
     $aid = $_GET["msg"];
-
-    $ret = delete_comment($conn, $did, $aid);
-    if($ret == false) 
-        header("location: ../discussion?did=$did.php"); // ha habido algún error PÁGINA DE ERROR?
-    else
-        header("location: ../discussion?did=$did.php");
+    delete_comment($conn, $did, $aid);
+    header("location: ../discussion.php?did=$did");
 }
