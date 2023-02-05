@@ -40,7 +40,7 @@
             foreach($all_clubs as $club_data) {
                 $name = $club_data['name'];
                 $creator = $club_data['creator'];
-                $desc = $club_data['description'];
+                //$desc = $club_data['description'];
 
                 echo "<div class ='row'>
                         <div class= 'card p-4 review'>
@@ -50,7 +50,7 @@
                                     <p class='mb-0'>
                                     <b>$creator</b>
                                     <br>
-                                    $desc 
+                                    Descripcion 
                                     </p>
                                 </div>
                             </div>

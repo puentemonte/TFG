@@ -107,11 +107,19 @@ form{
 }
 
 .floating-input {
-    color:var(--quaternary-color);
+    color: var(--quaternary-color);
 }
 
 .settings-btn {
-    display:flex;
+    display: flex;
+}
+
+.search-btn {
+    display: flex;
+}
+
+.center-search {
+    margin: 1em auto 1em auto;
 }
 
 .center{

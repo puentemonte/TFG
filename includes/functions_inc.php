@@ -448,6 +448,14 @@ function get_all_books($conn){
     return $rows;
 }
 
+function get_all_clubs($conn){
+    $query = mysqli_query($conn, "SELECT * FROM clubs");
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+    return $rows;
+}
+
 function update_rating($isbn, $conn, $rating){
     session_start();
     $userid = $_SESSION["userid"]; 
@@ -535,15 +543,16 @@ function add_comment_discussion($conn, $did, $comment, $reply) {
     return true;
 }
 
-function get_members($conn, $did) {
-    $query = mysqli_query($conn, "SELECT * FROM discussions WHERE did = '$did';");
+function get_num_members($conn, $cid) {
+    $query = mysqli_query($conn, "SELECT * FROM members WHERE cid = '$cid';");
     return mysqli_num_rows($query);
 }
 
 function get_last_modification($conn, $did) {
     $query = mysqli_query($conn, "SELECT * FROM answers WHERE did='$did' ORDER BY dateStamp DESC;");
     $answers_data = mysqli_fetch_array($query);
-    return $answers_data["dateStamp"];
+    $date = $answers_data[0]["dateStamp"];
+    return $date;
 }
 
 function get_overview_info_discussion($conn, $did) {
