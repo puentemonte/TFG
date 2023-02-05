@@ -544,27 +544,31 @@ function add_comment_discussion($conn, $did, $comment, $reply) {
 }
 
 function get_num_members($conn, $cid) {
+<<<<<<< HEAD
     $query = mysqli_query($conn, "SELECT * FROM members WHERE cid = '$cid';");
+=======
+    $query = mysqli_query($conn, "SELECT * FROM discussions WHERE cid = '$cid';");
+>>>>>>> 06683405ec483340b4d43672fa1bd65ec82cdda8
     return mysqli_num_rows($query);
 }
 
-function get_last_modification($conn, $did) {
-    $query = mysqli_query($conn, "SELECT * FROM answers WHERE did='$did' ORDER BY dateStamp DESC;");
+function get_last_modification_club($conn, $cid) {
+    $query = mysqli_query($conn, "SELECT * FROM answers WHERE cid = '$cid' ORDER BY dateStamp DESC;");
+    if (mysqli_num_rows($query) == 0)
+        return false;
+
     $answers_data = mysqli_fetch_array($query);
     $date = $answers_data[0]["dateStamp"];
     return $date;
 }
 
-function get_overview_info_discussion($conn, $did) {
-    $query = mysqli_query($conn, "SELECT * FROM discussions WHERE did='$did';");
-    $discussion_data = mysqli_fetch_array($query);
+function get_last_modification_discussion($conn, $did) {
+    $query = mysqli_query($conn, "SELECT * FROM answers WHERE did = '$did' ORDER BY dateStamp DESC;");
+    if (mysqli_num_rows($query) == 0)
+        return false;
 
-    $ret = array("creatorId" => $book_data['creatorId'],
-                "name" => $book_data['name'], 
-                "members" => get_members($conn, $did),
-                "last_modification" => get_last_modification($conn, $did)
-            );
-    return $ret;
+    $answers_data = mysqli_fetch_array($query);
+    return $answers_data["dateStamp"];
 }
 
 function is_moderator($conn, $cid, $userId) {
@@ -575,12 +579,119 @@ function delete_comment($conn, $did, $aid) {
     return true;
 }
 
-// TO DO
-function get_username_discussion($userid) {
-    return "elena";
+function get_info_clubs($conn, $cid){
+    $query = mysqli_query($conn, "SELECT * FROM clubs WHERE cid='$cid';");
+    if (mysqli_num_rows($query) == 0) // does not exist
+        return false;
+
+    $row = mysqli_fetch_array($query);
+    return $row;
 }
 
-// TO DO
-function get_last_update_discussion(){
-    return "23/01/2023";
+function get_book_info($conn, $current_book){
+    $query = mysqli_query($conn, "SELECT * FROM books WHERE isbn='$current_book';");
+    if (mysqli_num_rows($query) == 0) // does not exist
+        return false;
+    
+    $row = mysqli_fetch_array($query);
+    return $row;
+}
+
+function get_discussions($conn, $cid){
+    $query = mysqli_query($conn, "SELECT * FROM discussions WHERE cid = '$cid';");
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+    return $rows;
+}
+
+function get_members($conn, $cid){
+    $query = mysqli_query($conn, "SELECT * FROM members WHERE cid = '$cid';");
+    if (mysqli_num_rows($query) == 0) // no reviews
+        return false;
+    
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+        
+    return $rows;
+}
+
+function get_admins($conn, $cid){
+    $query = mysqli_query($conn, "SELECT * FROM members WHERE cid = '$cid' AND typeMember = 'moderator';");
+    if (mysqli_num_rows($query) == 0) // no reviews
+        return false;
+    
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+
+    return $rows;
+}
+
+function is_club_mod($conn, $cid) {  
+    if (!session_id()) session_start();
+
+    if (!isset($_SESSION['userid'])) // not logged
+        return false; 
+        
+    $userid = $_SESSION['userid'];
+    $query = mysqli_query($conn, "SELECT * FROM members WHERE cid = '$cid' AND userid = '$userid' AND typeMember = 'moderator';");
+
+    if (mysqli_num_rows($query) > 0) // it's not a modetaror
+        return true;
+    else
+        return false;
+}
+
+function join_club($conn, $cid) {
+    if (!session_id()) session_start();
+
+    if (!isset($_SESSION['userid'])) // not logged
+        return false; 
+    
+    $userid = $_SESSION['userid'];
+    $member_type = 'member'; // common member
+
+    $exist = mysqli_query($conn, "SELECT * FROM members WHERE cid = '$cid' AND userid = '$userid';");
+
+    if (mysqli_num_rows($exist) <= 0) // does not exist 
+        $query = mysqli_query($conn, "INSERT INTO members (cid, userid, typeMember) VALUES ('$cid', '$userid', '$member_type');");
+        
+    return true;
+}
+
+function emptyInputNameDesc($name, $desc){
+    $result; 
+    if (empty($name) | empty($desc)){
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+}
+
+function update_name_desc($conn, $cid, $name, $desc){
+    mysqli_query($conn, "UPDATE clubs SET cname = '$name', descrip = '$desc' WHERE cid = '$cid';");
+}
+
+function update_current_book($conn, $cid, $currBook, $nextDate, $pages){
+    mysqli_query($conn, "UPDATE clubs SET currBook = '$currBook', nextDate = '$nextDate', currPages = '$pages' WHERE cid = '$cid';");
+}
+
+function open_discussion($conn, $did){
+    mysqli_query($conn, "UPDATE discussions SET opendis = '1' WHERE did = '$did';");
+}
+
+function close_discussion($conn, $did){
+    mysqli_query($conn, "UPDATE discussions SET opendis = '0' WHERE did = '$did';");
+}
+
+function update_member_type($conn, $mid, $type){
+    mysqli_query($conn, "UPDATE members SET typeMember = '$type' WHERE mid = '$mid';");
+}
+
+function delete_member($conn, $mid){
+    mysqli_query($conn, "DELETE FROM members WHERE mid = '$mid';");
 }

@@ -212,6 +212,7 @@ a.sidebar-custom:hover{
     margin-bottom: 0.25em;
     margin-right: 0;
     margin-left: 0;
+    text-decoration: none;
     color: var(--primary-color);
 }
 
