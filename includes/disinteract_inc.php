@@ -20,7 +20,7 @@ if(isset($_POST["comment"])){
     if(isset($_GET["reply"])){ 
         $ans = $_GET["reply"];
     }
-    $ret = add_comment_discussion($conn, $did, $comment, $ans);
+    $ret = add_comment_discussion($conn, $did, $comment, $ans, $cid);
     if ($ret == false)
         header("location: ../login.php"); 
     else    

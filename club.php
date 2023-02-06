@@ -32,12 +32,24 @@
                         if (is_club_mod($conn, $cid) == true) {
                             echo "<div class = 'col'>
                                     <a href='edit-club.php?cid=$cid' class='icon-btn notif fa-solid fa-pen-to-square'></a>
+                                </div>
+                                <div class = 'col'>
+                                    <a href='add-discussion.php?cid=$cid' class='btn custom-color-button'><b>Añadir discusion</b></a>
                                 </div>";
                         }
 
-                    echo "<div class='col-md-auto'>
-                                <a href='./includes/joinclub_inc.php?cid=$cid' class='btn custom-color-button'><b>Unirse</b></a>
-                        </div>
+                        if (is_club_member($conn, $cid) != true){
+                            echo "<div class='col-md-auto'>
+                                        <a href='./includes/joinclub_inc.php?cid=$cid' class='btn custom-color-button'><b>Unirse</b></a>
+                                </div>";
+                        }
+                        else {
+                            echo "<div class='col-md-auto'>
+                                        <a href='./includes/quitclub_inc.php?cid=$cid' class='btn custom-color-button'><b>Abandonar club</b></a>
+                                </div>";
+                        }
+
+                    echo "
                     </div>
                     <div class='row ml-club mr-club'>
                         <div class='col'>                        
@@ -113,7 +125,7 @@
                                         <tbody>";
 
                                     foreach($discussions as $dis){
-                                        $dis_name = $dis['name'];
+                                        $dis_name = $dis['topic'];
                                         $dis_creator = get_username($conn, $dis['creatorId']);
                                         $last_update = get_last_modification_discussion($conn, $dis['did']);
                                         $did = $dis['did'];

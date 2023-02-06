@@ -9,7 +9,7 @@
         $did = $_GET['did'];
         $cid = $_GET['cid'];
         $ret = get_discussion($conn, $_GET['did']);
-        $name = $ret['name'];
+        $name = $ret['topic'];
         $creator_name = get_username($conn, $ret['creatorId']);
         $ans = NULL;
 

@@ -532,14 +532,14 @@ function get_all_answers($conn, $did) {
     return $rows;
 }
 
-function add_comment_discussion($conn, $did, $comment, $reply) {
+function add_comment_discussion($conn, $did, $comment, $reply, $cid) {
     session_start();
     $uid = $_SESSION["userid"];
     if ($uid == 0)
         return false; // no está iniciada la sesión
     
     $date = date("Y-m-d H:i:s");
-    $insert = mysqli_query($conn, "INSERT INTO answers (did, userUid, comment, answer, dateStamp) VALUES ('$did', '$uid', '$comment', '$reply', '$date');");
+    $insert = mysqli_query($conn, "INSERT INTO answers (did, userUid, comment, answer, dateStamp, cid) VALUES ('$did', '$uid', '$comment', '$reply', '$date', '$cid');");
     return true;
 }
 
@@ -687,4 +687,47 @@ function update_member_type($conn, $mid, $type){
 
 function delete_member($conn, $mid){
     mysqli_query($conn, "DELETE FROM members WHERE mid = '$mid';");
+}
+
+function quit_club($conn, $cid){
+    if (!session_id()) session_start();
+
+    if (!isset($_SESSION['userid'])) // not logged
+        return false; 
+    
+    $userid = $_SESSION['userid'];
+    $member_type = 'member'; // common member
+
+    $exist = mysqli_query($conn, "SELECT * FROM members WHERE cid = '$cid' AND userid = '$userid';");
+
+    if (mysqli_num_rows($exist) > 0) // does not exist 
+        $query = mysqli_query($conn, "DELETE FROM members WHERE cid = '$cid' AND userid = '$userid';");
+        
+    return true;
+}
+
+function is_club_member($conn, $cid){
+    if (!session_id()) session_start();
+
+    if (!isset($_SESSION['userid'])) // not logged
+        return false; 
+        
+    $userid = $_SESSION['userid'];
+    $query = mysqli_query($conn, "SELECT * FROM members WHERE cid = '$cid' AND userid = '$userid';");
+
+    if (mysqli_num_rows($query) > 0) // it's not a member
+        return true;
+    else
+        return false;
+}
+
+function add_discussion($conn, $cid, $topic){
+    if (!session_id()) session_start();
+
+    if (!isset($_SESSION['userid'])) // not logged
+        return false; 
+    
+    $userid = $_SESSION['userid'];
+
+    mysqli_query($conn, "INSERT INTO discussions (cid, creatorId, opendis, topic) VALUES ('$cid', '$userid', 0, '$topic');");
 }

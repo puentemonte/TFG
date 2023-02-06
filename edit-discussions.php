@@ -41,7 +41,7 @@ if (isset($_GET["cid"])) { // add a member to a club
                         <?php
                         foreach($discussions as $dis){
                             $did = $dis['did'];
-                            $dis_name = $dis['name'];
+                            $dis_name = $dis['topic'];
                             $dis_open = $dis['opendis'];
                             $dis_creator = get_username($conn, $dis['creatorId']);
                             $last_update = get_last_modification_discussion($conn, $dis['did']);
