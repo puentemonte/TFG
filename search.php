@@ -35,6 +35,7 @@
                     <div class='center-search'>
                         <a class='btn custom-color-sidebar' aria-current='page' href='search.php?k$k'><b>Buscar libros</b></a>  
                         <a class='btn sidebar-custom' href='search-club.php?k=$k'><b>Buscar clubes</b></a>
+                        <a class='btn sidebar-custom' href='search-user.php?k=$k'><b>Buscar usuarios</b></a>
                     </div>
                 </div>
                 <div class='container'>

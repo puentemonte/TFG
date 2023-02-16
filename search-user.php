@@ -7,13 +7,13 @@
     $k = isset($_GET['k']) ? $_GET['k'] : '';
 
     // create the base variables for building the search query
-    $search_string = "SELECT * FROM clubs WHERE ";
+    $search_string = "SELECT * FROM users WHERE ";
     $display_words = "";
                         
     // format each of search keywords into the db query to be run
     $keywords = explode(' ', $k);
     foreach ($keywords as $word){
-        $search_string .= "cname LIKE '%".$word."%' OR ";
+        $search_string .= "uid LIKE '%".$word."%' OR ";
         $display_words .= $word.' ';
     }
     $search_string = substr($search_string, 0, strlen($search_string)-4);
@@ -32,8 +32,8 @@
                 <div class='search-btn'>
                     <div class='center-search'>
                         <a class='btn sidebar-custom' href='search.php?k$k'><b>Buscar libros</b></a>  
-                        <a class='btn custom-color-sidebar' aria-current='page'  href='search-club.php?k=$k'><b>Buscar clubes</b></a>
-                        <a class='btn sidebar-custom' href='search-user.php?k=$k'><b>Buscar usuarios</b></a>
+                        <a class='btn custom-color' href='search-club.php?k=$k'><b>Buscar clubes</b></a>
+                        <a class='btn sidebar-custom-sidebar' aria-current='page' href='search-user.php?k=$k'><b>Buscar usuarios</b></a>
                     </div>
                 </div>
                 <div class='row ml-club mr-club club-desc'>
