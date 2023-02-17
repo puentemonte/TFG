@@ -45,13 +45,7 @@ small{
     white-space: normal;
 }
 
-h2{
-    font-family: Montserrat-Bold;
-    color: var(--tertiary-color);
-}
-
-
-h5{
+h2, h5 {
     font-family: Montserrat-Bold;
     color: var(--tertiary-color);
 }
@@ -322,4 +316,15 @@ input[type=number] {
 
 .reply:hover {
     color: var(--tertiary-color);
+}
+
+.search-picture {
+    margin: 15px auto 0 auto;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+}
+
+.mt-custom-search {
+    margin-top: 50px;
 }

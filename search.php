@@ -25,20 +25,20 @@
     $query = mysqli_query($conn, $search_string);
     $result_count = mysqli_num_rows($query);
     
+    echo "<div class='text-center'>
+            <div class='search-btn mt-custom'>
+                <div class='center-search'>
+                    <a class='btn custom-color-sidebar' aria-current='page' href='search.php?k$k'><b>Buscar libros</b></a>  
+                    <a class='btn sidebar-custom' href='search-club.php?k=$k'><b>Buscar clubes</b></a>
+                    <a class='btn sidebar-custom' href='search-user.php?k=$k'><b>Buscar usuarios</b></a>
+                </div>
+            </div>";
+
     // check if the search query returned any results
     if ($result_count > 0){
         echo "<div class='text-center'>
-                <div class='mt-custom'>
-                     <h2 class='h3 mb-3 fw-normal'>Resultados de la búsqueda '$display_words':</h2>
-                </div>
-                <div class='search-btn'>
-                    <div class='center-search'>
-                        <a class='btn custom-color-sidebar' aria-current='page' href='search.php?k$k'><b>Buscar libros</b></a>  
-                        <a class='btn sidebar-custom' href='search-club.php?k=$k'><b>Buscar clubes</b></a>
-                        <a class='btn sidebar-custom' href='search-user.php?k=$k'><b>Buscar usuarios</b></a>
-                    </div>
-                </div>
-                <div class='container'>
+                <h2 class='h3 mb-3 fw-normal'>Resultados de la búsqueda '$display_words':</h2>
+                <div class='container mt-custom-search'>
                     <div class='row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4 row-cols-md-5 g-5'>";
         
         // loop though each of the results from the database and display them to the user
@@ -72,9 +72,7 @@
     }
     else
     echo "<div class='text-center'>
-            <div class='mt-custom'>
-                <h2 class='h3 mb-3 fw-normal'>No hay resultados para '$display_words'</h2>
-            </div>
+            <h2 class='h3 mb-3 fw-normal'>No hay resultados para '$display_words'</h2>
         </div>";
 
     include_once 'footer.php';

@@ -13,7 +13,7 @@
     // format each of search keywords into the db query to be run
     $keywords = explode(' ', $k);
     foreach ($keywords as $word){
-        $search_string .= "uid LIKE '%".$word."%' OR ";
+        $search_string .= "userUid LIKE '%".$word."%' OR ";
         $display_words .= $word.' ';
     }
     $search_string = substr($search_string, 0, strlen($search_string)-4);
@@ -22,66 +22,52 @@
     // run the query in the db and search through each of the records returned
     $query = mysqli_query($conn, $search_string);
     $result_count = mysqli_num_rows($query);
+
+    echo "<div class='search-btn mt-custom'>
+            <div class='center-search'>
+                <a class='btn sidebar-custom' href='search.php?k$k'><b>Buscar libros</b></a>  
+                <a class='btn custom-color' href='search-club.php?k=$k'><b>Buscar clubes</b></a>
+                <a class='btn custom-color-sidebar' aria-current='page' href='search-user.php?k=$k'><b>Buscar usuarios</b></a>
+            </div>
+        </div>";
         
     // check if the search query returned any results
     if ($result_count > 0){
         echo "<div class='text-center'>
-                <div class='mt-custom'>
-                     <h2 class='h3 mb-3 fw-normal'>Resultados de la búsqueda '$display_words':</h2>
-                </div>
-                <div class='search-btn'>
-                    <div class='center-search'>
-                        <a class='btn sidebar-custom' href='search.php?k$k'><b>Buscar libros</b></a>  
-                        <a class='btn custom-color' href='search-club.php?k=$k'><b>Buscar clubes</b></a>
-                        <a class='btn sidebar-custom-sidebar' aria-current='page' href='search-user.php?k=$k'><b>Buscar usuarios</b></a>
-                    </div>
-                </div>
-                <div class='row ml-club mr-club club-desc'>
-                    <div class='col'>
-                        <table class='table'>
-                            <thead>
-                                <tr>
-                                    <th scope='col'>Nombre</th>
-                                    <th scope='col'>Creador</th>
-                                    <th scope='col'>Número de miembros</th>
-                                    <th scope='col'>Última publicación</th>
-                                </tr>
-                            </thead>
-                            <tbody>";
+                <h2 class='h3 mb-3 fw-normal'>Resultados de la búsqueda '$display_words':</h2>
+                <div class='container mt-custom-search'>
+                    <div class='row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4 row-cols-md-5 g-5'>";
+        
+        // loop though each of the results from the database and display them to the user
+        $rows= array();
+        while ($row = mysqli_fetch_assoc($query)){
+            $rows[] = $row;
+        }
 
-                            $rows= array();
-                            while ($row = mysqli_fetch_assoc($query)){
-                                $rows[] = $row;
-                            }
-                    
-                            foreach($rows as $club_data) {
-                                $cid = $club_data['cid'];
-                                $name = $club_data['cname'];
-                                $creator = get_username($conn, $club_data['uidCreator']);
-                                $num_members= get_num_members($conn, $cid);
-                                $last_modification = get_last_modification_club($conn, $cid);
-                                if ($last_modification == NULL)
-                                    $last_modification = "-";
+        foreach($rows as $user_data) {
+            $uid = $user_data['userId'];
+            $username = $user_data['userUid'];
 
-                                echo "<tr>
-                                    <td><a href='club.php?id=$cid'>$name</a></td>
-                                    <td>@$creator</td>
-                                    <td>$num_members</td>
-                                    <td>$last_modification</td>
-                                </tr>";
-                            }
 
-                        echo "</tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>";
+            echo "<div class='col'>
+                        <a class='dropdown-item' href='user.php?uid=$uid'>
+                            <div class='card shadow-sm'>
+                                <img class='search-picture' src='style/img/color-beige.png' alt ='picture'</svg>
+                                <div class='card-body'>
+                                    <p class='card-text'><b>$username</b></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>";
+        }
+
+        echo "</div>
+            </div>
+        </div>";
     }
     else
     echo "<div class='text-center'>
-            <div class='mt-custom'>
-                <h2 class='h3 mb-3 fw-normal'>No hay resultados para '$display_words'</h2>
-            </div>
+            <h2 class='h3 mb-3 fw-normal'>No hay resultados para '$display_words'</h2>
         </div>";
 
     include_once 'footer.php';
