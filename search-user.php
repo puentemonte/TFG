@@ -35,8 +35,7 @@
     if ($result_count > 0){
         echo "<div class='text-center'>
                 <h2 class='h3 mb-3 fw-normal'>Resultados de la búsqueda '$display_words':</h2>
-                <div class='container mt-custom-search'>
-                    <div class='row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4 row-cols-md-5 g-5'>";
+                <div class='container mt-custom-search'>";
         
         // loop though each of the results from the database and display them to the user
         $rows= array();
@@ -49,20 +48,21 @@
             $username = $user_data['userUid'];
 
 
-            echo "<div class='col'>
-                        <a class='dropdown-item' href='user.php?uid=$uid'>
-                            <div class='card shadow-sm'>
+            echo "<div class='card shadow-sm user-overview'>
+                    <a class='dropdown-item' href='user.php?uid=$uid'>
+                        <div class='row'>
+                            <div class='col-4'>
                                 <img class='search-picture' src='style/img/color-beige.png' alt ='picture'</svg>
-                                <div class='card-body'>
-                                    <p class='card-text'><b>$username</b></p>
-                                </div>
                             </div>
-                        </a>
-                    </div>";
+                            <div class='col-4 username-overview'>
+                                <p class='card-text'><b>$username</b></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>";
         }
 
         echo "</div>
-            </div>
         </div>";
     }
     else

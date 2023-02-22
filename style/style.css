@@ -28,19 +28,19 @@ body {
     color: white;
 }
 
-.custom-color-button:hover{
+.custom-color-button:hover {
     background-color: var(--tertiary-color);
     color: white;
 }
 
-p{
+p {
     color: var(--quaternary-color);
     font-family: Montserrat-Regular;
     word-break: normal;
     white-space: normal;
 }
 
-small{
+small {
     word-break: normal;
     white-space: normal;
 }
@@ -319,12 +319,28 @@ input[type=number] {
 }
 
 .search-picture {
-    margin: 15px auto 0 auto;
-    height: 70px;
-    width: 70px;
+    margin: 15px;
+    height: 60px;
+    width: 60px;
     border-radius: 50%;
 }
 
 .mt-custom-search {
     margin-top: 50px;
+}
+
+.user-overview {
+    height: auto;
+    width: 300px;
+    margin: 20px auto;
+}
+
+.username-overview {
+    margin: auto 0;
+    
+}
+
+.username-overview p {
+    word-break: keep-all;
+    white-space: nowrap;
 }

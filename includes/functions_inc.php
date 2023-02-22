@@ -731,3 +731,27 @@ function add_discussion($conn, $cid, $topic){
 
     mysqli_query($conn, "INSERT INTO discussions (cid, creatorId, opendis, topic) VALUES ('$cid', '$userid', 0, '$topic');");
 }
+
+function get_profile_info($uid) {
+    // Info básica del pefil: img, nombre
+    // Info de books_users: listas
+    // Info seguidores: siguiendo y seguidores
+
+    $query = mysqli_query($conn, "SELECT * FROM users WHERE userId = '$uid';");
+
+    $info_usr = array();
+    while($row = mysqli_fetch_array($query))
+        $info_usr[] = $row;
+    
+    $query = mysqli_query($conn, "SELECT * FROM books_users WHERE userId = '$uid' AND list = 'reading';");
+    $info_reading = array();
+    while($row = mysqli_fetch_array($query))
+        $info_reading[] = $row;
+
+    $query = mysqli_query($conn, ";");
+
+    $ret = array("picture" => $info_usr["picture"],
+                 "username" => $info_usr["userUid"],
+                "reading" => $info_reading);
+    return $ret;
+}
