@@ -344,3 +344,10 @@ input[type=number] {
     word-break: keep-all;
     white-space: nowrap;
 }
+
+.social-picture {
+    margin: 15px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}

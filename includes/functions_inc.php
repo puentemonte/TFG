@@ -732,16 +732,14 @@ function add_discussion($conn, $cid, $topic){
     mysqli_query($conn, "INSERT INTO discussions (cid, creatorId, opendis, topic) VALUES ('$cid', '$userid', 0, '$topic');");
 }
 
-function get_profile_info($uid) {
+function get_profile_info($conn, $uid) {
     // Info básica del pefil: img, nombre
     // Info de books_users: listas
     // Info seguidores: siguiendo y seguidores
 
     $query = mysqli_query($conn, "SELECT * FROM users WHERE userId = '$uid';");
 
-    $info_usr = array();
-    while($row = mysqli_fetch_array($query))
-        $info_usr[] = $row;
+    $info_usr = mysqli_fetch_array($query);
     
     $query = mysqli_query($conn, "SELECT * FROM books_users WHERE userId = '$uid' AND list = 'reading';");
     $info_reading = array();
@@ -754,4 +752,88 @@ function get_profile_info($uid) {
                  "username" => $info_usr["userUid"],
                 "reading" => $info_reading);
     return $ret;
+}
+
+function get_popular_books_friends($conn, $uid){
+    $query = mysqli_query($conn, "SELECT * FROM followers WHERE follower = '$uid';");
+
+    if(mysqli_num_rows($query) == 0){ // if the user doesnt have any friends
+        return false;
+    }
+
+    $followed = array(); // ids of all the followed acc
+    while($user = mysqli_fetch_array($query))
+        $followed[] = $user;
+
+    $data = array();
+    foreach($followed as $user) { // loop though all the followed acc fav book
+        $uid = $user['followed'];
+        $query = mysqli_query($conn, "SELECT * FROM books_users WHERE userId = '$uid' AND list = 'read' ORDER BY rating DESC LIMIT 1;");
+        if(mysqli_num_rows($query) > 0) // has read books 
+            $data[] = mysqli_fetch_array($query);
+    }
+    if(count($data) == 0){ // none of their friends have read any book
+        return false;
+    }
+
+    $isbn = array();
+    $user = array();
+    foreach($data as $item){
+        array_push($isbn, $item['isbn']);
+        array_push($user, $item['userId']);
+    }
+    $ret = array("isbn" => $isbn, "user" => $user);
+    return $ret;
+}
+
+function get_user_info($conn, $uid){
+    $query = mysqli_query($conn, "SELECT * FROM users WHERE userId = '$uid';");
+
+    $info_usr = mysqli_fetch_array($query);
+    
+    $ret = array("picture" => $info_usr["picture"], "username" => $info_usr["userUid"]);
+    return $ret;
+}
+
+function get_popular_clubs_friends($conn, $uid){
+    $query = mysqli_query($conn, "SELECT * FROM followers WHERE follower = '$uid';");
+
+    if(mysqli_num_rows($query) == 0){ // if the user doesnt have any friends
+        return false;
+    }
+
+    $followed = array(); // ids of all the followed acc
+    while($user = mysqli_fetch_array($query))
+        $followed[] = $user;
+
+    $data = array();
+    foreach($followed as $user) { // loop though all the followed acc clubs
+        $uid = $user['followed'];
+        $query = mysqli_query($conn, "SELECT * FROM members WHERE userid = '$uid' ORDER BY joinDate DESC LIMIT 1;");
+        if(mysqli_num_rows($query) > 0) // has read books 
+            $data[] = mysqli_fetch_array($query);
+    }
+    if(count($data) == 0){ // none of their friends have read any book
+        return false;
+    }
+
+    return $data;
+}
+
+function get_popular_books($conn){
+    $query = mysqli_query($conn, "SELECT * FROM books_users WHERE list = 'read' ORDER BY rating DESC LIMIT 10;");
+    $books = array();
+    while($book = mysqli_fetch_array($query))
+        $books[] = $book;
+
+    return $books;
+}
+
+function get_popular_clubs($conn) {
+    $query = mysqli_query($conn, "SELECT * FROM clubs ORDER BY numMembers DESC LIMIT 10;");
+    $clubs = array();
+    while($club = mysqli_fetch_array($query))
+        $clubs[] = $club;
+
+    return $clubs;
 }

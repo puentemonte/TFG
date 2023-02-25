@@ -56,7 +56,7 @@
             echo "<div class='col'>
                         <a class='dropdown-item' href='book.php?isbn=$isbn'>
                             <div class='card shadow-sm'>
-                                <img class='bd-placeholder-img card-img-top' src='$cover' alt ='$title'</svg>
+                                <img class='bd-placeholder-img card-img-top' src='$cover' alt ='$title'>
                                 <div class='card-body'>
                                     <p class='card-text'>$title</p>
                                     <small class='text-muted'>$author</small>

@@ -52,7 +52,7 @@
                     <a class='dropdown-item' href='user.php?uid=$uid'>
                         <div class='row'>
                             <div class='col-4'>
-                                <img class='search-picture' src='style/img/color-beige.png' alt ='picture'</svg>
+                                <img class='search-picture' src='style/img/color-beige.png' alt ='picture'>
                             </div>
                             <div class='col-4 username-overview'>
                                 <p class='card-text'><b>$username</b></p>
