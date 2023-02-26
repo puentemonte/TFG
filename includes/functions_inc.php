@@ -328,6 +328,7 @@ function get_overview_partial_info($conn, $isbn){
 
     
     $ret = array("title" => $book_data['title'],
+                "author" => $book_data['author'],
                 "image" => $book_data['cover']);
     return $ret;
 }
@@ -733,24 +734,42 @@ function add_discussion($conn, $cid, $topic){
 }
 
 function get_profile_info($conn, $uid) {
-    // Info básica del pefil: img, nombre
-    // Info de books_users: listas
-    // Info seguidores: siguiendo y seguidores
-
+    // The user's info
     $query = mysqli_query($conn, "SELECT * FROM users WHERE userId = '$uid';");
-
     $info_usr = mysqli_fetch_array($query);
     
+    // The reading list
     $query = mysqli_query($conn, "SELECT * FROM books_users WHERE userId = '$uid' AND list = 'reading';");
     $info_reading = array();
     while($row = mysqli_fetch_array($query))
         $info_reading[] = $row;
 
-    $query = mysqli_query($conn, ";");
+    // The read list
+    $query = mysqli_query($conn, "SELECT * FROM books_users WHERE userId = '$uid' AND list = 'read';");
+    $info_read = array();
+    while($row = mysqli_fetch_array($query))
+        $info_read[] = $row;
 
-    $ret = array("picture" => $info_usr["picture"],
+    // The pending list
+    $query = mysqli_query($conn, "SELECT * FROM books_users WHERE userId = '$uid' AND list = 'pending';");
+    $info_pending = array();
+    while($row = mysqli_fetch_array($query))
+        $info_pending[] = $row;
+
+    // The number of followers and followed
+    $query = mysqli_query($conn, "SELECT * FROM followers WHERE follower = '$uid';");
+    $num_followed = mysqli_num_rows($query);
+
+    $query = mysqli_query($conn, "SELECT * FROM followers WHERE followed = '$uid';");
+    $num_followers = mysqli_num_rows($query); 
+
+    $ret = array(//"picture" => $info_usr["picture"], --> TO DO
                  "username" => $info_usr["userUid"],
-                "reading" => $info_reading);
+                "reading" => $info_reading,
+                "read" => $info_read,
+                "pending" => $info_pending,
+                "followers" => $num_followers,
+                "followed" => $num_followed);
     return $ret;
 }
 
@@ -836,4 +855,52 @@ function get_popular_clubs($conn) {
         $clubs[] = $club;
 
     return $clubs;
+}
+
+function same_user($uid){
+    if (!session_id()) session_start();
+
+    if (!isset($_SESSION['userid'])) // not logged
+        return true;
+    
+    $userid = $_SESSION['userid'];
+    return $userid == $uid;
+}
+
+function is_following($conn, $uid, $fuid){
+    $query = mysqli_query($conn, "SELECT * FROM followers WHERE follower= '$fuid' AND followed = '$uid';");
+
+    if (mysqli_num_rows($query) > 0) // following
+        return true;
+    else
+        return false;
+}
+
+function follow_user($conn, $follower, $followed){
+    mysqli_query($conn, "INSERT INTO followers (follower, followed) VALUES ('$follower', '$followed');");
+    mysqli_query($conn, "INSERT INTO notifications (userDest, userSrc, topic, alrdyRead) VALUES ('$followed', '$follower', 'users', '0');");
+}
+
+function unfollow_user($conn, $follower, $followed){
+    mysqli_query($conn, "DELETE FROM followers WHERE follower = '$follower' AND followed = '$followed';");
+}
+
+function get_notifications($conn, $uid) {
+    $query = mysqli_query($conn, "SELECT * FROM notifications WHERE userDest = '$uid' ORDER BY nid DESC;");
+
+    $notifications = array();
+    while($row = mysqli_fetch_array($query))
+        $notifications[] = $row;
+
+    $alrdyRead = 1;
+    mysqli_query($conn, "UPDATE notifications SET alrdyRead = '$alrdyRead' WHERE userDest = '$uid';"); // The notifications are already read
+    return $notifications;
+}
+
+function get_club_name($conn, $cid) {
+    $query = mysqli_query($conn, "SELECT * FROM clubs WHERE cid = '$cid';");
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+    return $rows[0]['cname'];
 }

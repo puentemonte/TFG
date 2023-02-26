@@ -45,14 +45,14 @@
             $nickname = $_SESSION['useruid'];
             $uid = $_SESSION['userid'];
             echo "
-            <button class='icon-btn'><a href='includes/notif_inc.php' class='fa-solid fa-bell notif'></a></button>
+            <button class='icon-btn'><a href='notifications.php' class='fa-solid fa-bell notif'></a></button>
             <div class='dropdown text-end'>
             <a href='#' class='d-block link-dark text-decoration-none dropdown-toggle' data-bs-toggle='dropdown' aria-expanded='false'>
               <b>$nickname</b>
               <img src='style/img/color-beige.png' alt='mdo' width='32' height='32' class='rounded-circle'>
             </a>
             <ul class='dropdown-menu text-small'>
-              <li><a class='dropdown-item' href='user.php?uid=$uid'>Mi perfil</a></li>
+              <li><a class='dropdown-item' href='profile.php?uid=$uid'>Mi perfil</a></li>
               <li><a class='dropdown-item' href='library.php'>Mi biblioteca</a></li>
               <li><a class='dropdown-item' href='clubs.php'>Mis clubes</a></li>
               <li><hr class='dropdown-divider'></li>

@@ -49,7 +49,7 @@
 
 
             echo "<div class='card shadow-sm user-overview'>
-                    <a class='dropdown-item' href='user.php?uid=$uid'>
+                    <a class='dropdown-item' href='profile.php?uid=$uid'>
                         <div class='row'>
                             <div class='col-4'>
                                 <img class='search-picture' src='style/img/color-beige.png' alt ='picture'>

@@ -351,3 +351,51 @@ input[type=number] {
     width: 40px;
     border-radius: 50%;
 }
+
+.profile-username {
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.profile-follow {
+    margin: 0;
+}
+
+.profile-user-info {
+    margin: 20px;
+}
+
+.profile-icon{
+    margin-right: 20px;
+    font-size: x-large;
+    color: var(--primary-color);
+}
+
+.profile-left-column{
+    margin-right: 40px;
+}
+
+.ml-profile{
+    margin-left: 40px;
+}
+
+.mr-profile{
+    margin-right: 40px;
+}
+
+.notification{
+    color: var(--quaternary-color);
+    width: 500px;
+    height: 50px;
+    text-decoration: none;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.text-notification {
+    margin: 0;
+}
+
+.read-notification{
+    background-color: #e4e4e4;
+}
