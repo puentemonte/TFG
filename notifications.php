@@ -31,7 +31,7 @@
                                     </a>";
                             }
                             else {
-                                echo "<a class='card shadow-sm notification read-notification' href='profile.php?uid=$userSrc'>
+                                echo "<a class='card shadow-sm notification' href='profile.php?uid=$userSrc'>
                                         <div class = 'card-text'>
                                             ¡@$username ha comenzado a seguirte!
                                         </div>
@@ -54,7 +54,7 @@
                                     </a>";
                             }
                             else {
-                                echo "<a class='card shadow-sm notification read-notification' href='profile.php?uid=$userSrc'>       
+                                echo "<a class='card shadow-sm notification' href='profile.php?uid=$userSrc'>       
                                         <div class = 'card-text'>
                                             ¡@$username se ha unido al club $clubname!
                                         </div>
