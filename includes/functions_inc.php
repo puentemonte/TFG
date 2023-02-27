@@ -845,19 +845,19 @@ function get_popular_clubs_friends($conn, $uid){
 }
 
 function get_popular_books($conn){
-    $query = mysqli_query($conn, "SELECT * FROM books_users WHERE list = 'read' ORDER BY rating DESC LIMIT 10;");
+    $query = mysqli_query($conn, "SELECT DISTINCT isbn FROM books_users WHERE list = 'read' ORDER BY rating DESC LIMIT 10;");
     $books = array();
     while($book = mysqli_fetch_array($query))
-        $books[] = $book;
+        $books[] = $book['isbn'];
 
     return $books;
 }
 
 function get_popular_clubs($conn) {
-    $query = mysqli_query($conn, "SELECT * FROM clubs ORDER BY numMembers DESC LIMIT 10;");
+    $query = mysqli_query($conn, "SELECT DISTINCT cid FROM clubs ORDER BY numMembers DESC LIMIT 10;");
     $clubs = array();
     while($club = mysqli_fetch_array($query))
-        $clubs[] = $club;
+        $clubs[] = $club['cid'];
 
     return $clubs;
 }
