@@ -16,12 +16,12 @@ if(isset($_POST["submit"])) {
     require_once "functions_inc.php";
 
     // errors for the necessary inputs
-    if(emptyInputAddBook($title, $author, $isbn, $editorial, $pages, $releaseDate, $genres, $synopsis) !== false) {
-        header("location: ../add-book.php?error=emptyinput");
+    if(emptyInputAddBook($title, $author, $isbn, $editorial, $pages, $releaseDate, $genres, $synopsis)) {
+        header("location: ../addbook.php?error=emptyinput");
         exit();
     }
-    if(isbnExists($conn, $isbn) !== false){
-        header("location: ../add-book.php?error=isbnexists");
+    if(isbnExists($conn, $isbn)){
+        header("location: ../addbook.php?error=isbnexists");
         exit();
     }
     
@@ -30,6 +30,6 @@ if(isset($_POST["submit"])) {
     header("location: ../book.php?isbn=$isbn");
 }
 else {
-    header("location: ../add-book.php");
+    header("location: ../addbook.php");
     exit();
 }

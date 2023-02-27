@@ -37,7 +37,7 @@
         }
     }
     ?>
-    <form action="includes/signup_inc.php" method="post" novalidate>
+    <form action="includes/addbook_inc.php" method="post" novalidate>
         <div class="mt-custom">
             <h2 class="h3 mb-3 fw-normal">Añadir libro</h2>
         </div>
@@ -64,6 +64,14 @@
         <div class="form-floating">
             <input type="text" class="form-control" name="pages" placeholder="Número de páginas">
             <label for="floatingInput" class='floating-input'>Número de páginas</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" name="releaseDate" placeholder="Fecha de publicación">
+            <label for="floatingInput" class='floating-input'>Fecha de publicación</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" name="genres" placeholder="Género/s">
+            <label for="floatingInput" class='floating-input'>Género/s</label>
         </div>
         <div class="form-floating">
             <input type="textarea" class="form-control synopsis" name="synopsis" placeholder="Sinopsis">
