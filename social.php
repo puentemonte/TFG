@@ -31,8 +31,10 @@
 		$popular_books_friends = get_popular_books_friends($conn, $uid);
 		
 		if($popular_books_friends !== false){
-			echo "<h4 class='h4 mb-3 fw-normal'>Tus amigos han leído...</h4>
-					<div class='row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4 row-cols-md-5 g-5 text-center'>";
+			echo "<div class='row'>
+					<div class='col'>
+						<h4 class='h4 mb-3 fw-normal'>Tus amigos han leído...</h4>
+						<div class='row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4 row-cols-md-5 g-5 text-center'>";
 			$books = $popular_books_friends['isbn'];
 			$users = $popular_books_friends['user'];
 			foreach($books as $index => $book) {
@@ -41,12 +43,13 @@
 				$title = $book_info['title'];
 				$author = $book_info['author'];
 				$cover = $book_info['cover'];
+				$cover_url = get_url_export($cover);
 
 				$user = $users[$index];
 				$user_info = get_user_info($conn, $user);
 				$username = $user_info['username'];
 
-				echo "<div class='col '>
+				echo "<div class='col'>
 						<div class='row'>
 							<div class='col-4'>
 								<img class='social-picture' src='style/img/color-beige.png' alt ='picture'>
@@ -58,7 +61,7 @@
 						<div class='row'>
 							<a class='dropdown-item' href='book.php?isbn=$isbn'>
 								<div class='card shadow-sm'>
-									<img class='bd-placeholder-img card-img-top' src='$cover' alt ='$title'>
+									<img class='bd-placeholder-img card-img-top' src='$cover_url' alt ='$title'>
 									<div class='card-body'>
 										<p class='card-text'>$title</p>
 										<small class='text-muted'>$author</small>
@@ -68,29 +71,34 @@
 						</div>
 					</div>";
 			}
+			echo "</div>
+				</div>
+			</div>";
 		}
 
 		// Clubes
 		$popular_clubs_friends = get_popular_clubs_friends($conn, $uid);
 
 		if($popular_clubs_friends !== false){
-			echo "<h4 class='h4 mb-3 fw-normal'>Tus amigos pertenecen a...</h4>
-					<div class='row ml-club mr-club club-desc'>
-						<div class='col'>
-							<table class='table'>
-								<thead>
-									<tr>
-										<th scope='col'>Nombre</th>
-										<th scope='col'>Creador</th>
-										<th scope='col'>Número de miembros</th>
-										<th scope='col'>Última publicación</th>
-									</tr>
-								</thead>
-								<tbody>";
-			$clubs = $popular_clubs_friends['cid'];
+			echo "<div class='row'>
+					<div class='col'>
+						<h4 class='h4 mb-3 fw-normal mt-custom'>Tus amigos pertenecen a...</h4>
+								<div class='row ml-club mr-club club-desc'>
+									<div class='col'>
+										<table class='table'>
+											<thead>
+												<tr>
+													<th scope='col'>Nombre</th>
+													<th scope='col'>Creador</th>
+													<th scope='col'>Número de miembros</th>
+													<th scope='col'>Última publicación</th>
+												</tr>
+											</thead>
+											<tbody>";
+			$clubs = $popular_clubs_friends['club'];
 
 			foreach($clubs as $index => $club) {
-				$club_data = get_info_clubs($conn, $cid);
+				$club_data = get_info_clubs($conn, $club);
 				$cid = $club;
 				$name = $club_data['cname'];
 				$creator = get_username($conn, $club_data['uidCreator']);
@@ -109,6 +117,9 @@
 
 		echo "</tbody>
 			</table>
+			</div>
+		</div>
+		</div>
 		</div>";
 		}
 

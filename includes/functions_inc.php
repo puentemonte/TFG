@@ -829,14 +829,19 @@ function get_popular_clubs_friends($conn, $uid){
     foreach($followed as $user) { // loop though all the followed acc clubs
         $uid = $user['followed'];
         $query = mysqli_query($conn, "SELECT * FROM members WHERE userid = '$uid' ORDER BY joinDate DESC LIMIT 1;");
-        if(mysqli_num_rows($query) > 0) // has read books 
+        if(mysqli_num_rows($query) > 0) // is in club 
             $data[] = mysqli_fetch_array($query);
     }
-    if(count($data) == 0){ // none of their friends have read any book
+    if(count($data) == 0){ // none of their friends are in clubs
         return false;
     }
 
-    return $data;
+    $club = array();
+    foreach($data as $item){
+        array_push($club, $item['cid']);
+    }
+    $ret = array("club" => $club);
+    return $ret;
 }
 
 function get_popular_books($conn){
