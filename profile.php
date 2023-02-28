@@ -57,7 +57,7 @@
                             <div class='container'>
                                 <h5 class='h5 fw-normal'>Leyendo</h5>";
                                 
-                                if ($n_pending === 0){
+                                if ($n_reading === 0){
                                     echo "<p>¡Vaya! Todo está muy tranquilo por aquí</p>";
                                 }
 
@@ -85,7 +85,7 @@
                           echo "</div>
                                 <h5 class='h5 fw-normal mt-5'>Leídos</h5>";
                                 
-                                if ($n_pending === 0){
+                                if ($n_read === 0){
                                     echo "<p>¡Vaya! Todo está muy tranquilo por aquí</p>";
                                 }
 
