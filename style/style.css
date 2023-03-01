@@ -1,13 +1,15 @@
 :root{
-    --primary-color: #8FD2E6;
+    --primary-color: #9dc0e9;
     --secondary-color: #EBCDA7;
-    --tertiary-color: #DFABCF;
+    --tertiary-color: #DA7F8F;
     --quaternary-color: #313131;
-    --quinary-color: #949494;
+    --quinary-color: #ccdaec;
+    --background-color: #FAF3F3;
+    --navbar-color: #FAF3F3;
 }
 
 .custom-color-header {
-    background-color: white;
+    background-color: var(--navbar-color);
 }
 
 .custom-color-sidebar {
@@ -20,7 +22,7 @@
 }
 
 body {
-    background-color: white;
+    background-color: var(--background-color);
 }
 
 .custom-color-button {
