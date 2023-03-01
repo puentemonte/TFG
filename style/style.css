@@ -3,7 +3,7 @@
     --secondary-color: #EBCDA7;
     --tertiary-color: #DA7F8F;
     --quaternary-color: #313131;
-    --quinary-color: #ccdaec;
+    --quinary-color: #b3cef1;
     --background-color: #FAF3F3;
     --navbar-color: #FAF3F3;
 }
@@ -209,15 +209,15 @@ a.sidebar-custom:hover{
     margin-right: 0;
     margin-left: 0;
     text-decoration: none;
-    color: var(--primary-color);
+    color: var(--tertiary-color);
 }
 
 .icon-filled:hover{
-    color: var(--primary-color);
+    color: var(--tertiary-color);
 }
 
 .icon:hover, .icon:hover i{
-    color: var(--primary-color);
+    color: var(--tertiary-color);
 }
 
 .rating {
