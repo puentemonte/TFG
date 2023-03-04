@@ -1,7 +1,7 @@
 ### TFG
 
 1) **[  ]** Crear club de lectura (ELENA)
-2) **[  ]** Crear eventos --> verificaos (ERIK)
+2) **[ X ]** Crear eventos --> verificaos (ERIK)
 3) **[  ]** Página de eventos (JUNTOS)
 	- Evento: Título, fecha y hora, ubicación y botón de suscripción
 4) **[  ]** Eliminar eventos --> verificaos (ERIK)
