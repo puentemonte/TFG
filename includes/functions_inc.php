@@ -922,10 +922,21 @@ function emptyInputAddEvent($title, $date, $hour, $place){
 }
 
 function addEvent($conn, $title, $date, $hour, $place){
-    $date_tmp = $date . $hour . ":00";
-    mysqli_query($conn, "INSERT INTO events (title, dateStamp, place) VALUES ('$title', '$date_tmp', '$place');");
+    $date_aux = date('Y-m-d H:i:s', strtotime("$date $hour"));
+    mysqli_query($conn, "INSERT INTO events (title, dateStamp, place) VALUES ('$title', '$date_aux', '$place');");
 }
 
 function invalidDate($conn, $date, $hour) {
+    return false;
+}
+
+function isVerified($conn, $uid) {
+    $query = mysqli_query($conn, "SELECT * FROM users WHERE userId = '$uid';");
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+    if($rows[0]['verified']){
+        return true;
+    }
     return false;
 }

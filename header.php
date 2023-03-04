@@ -1,5 +1,8 @@
 <?php
     session_start();
+
+    require_once "./includes/dbh_inc.php";
+    require_once "./includes/functions_inc.php";
 ?>
 
 <!DOCTYPE html>
@@ -55,11 +58,14 @@
               <li><a class='dropdown-item' href='profile.php?uid=$uid'>Mi perfil</a></li>
               <li><a class='dropdown-item' href='library.php'>Mi biblioteca</a></li>
               <li><a class='dropdown-item' href='clubs.php'>Mis clubes</a></li>
-              <li><hr class='dropdown-divider'></li>
-              <li><a class='dropdown-item' href='addbook.php'>Añadir libro</a></li>
-              <li><a class='dropdown-item' href='addclub.php'>Crear club</a></li>
-              <li><hr class='dropdown-divider'></li>
-              <li><a class='dropdown-item' href='settings.php'>Ajustes</a></li>
+              <li><hr class='dropdown-divider'></li>";
+              if(isVerified($conn, $uid)) {
+                echo "<li><a class='dropdown-item' href='addbook.php'>Añadir libro</a></li>
+                <li><a class='dropdown-item' href='addclub.php'>Crear club</a></li>
+                <li><a class='dropdown-item' href='addevent.php'>Crear evento</a></li>
+                <li><hr class='dropdown-divider'></li>";
+              }
+              echo "<li><a class='dropdown-item' href='settings.php'>Ajustes</a></li>
               <li><a class='dropdown-item' href='includes/logout_inc.php'>Cerrar sesión</a></li>
             </ul>
           </div>";
