@@ -196,7 +196,7 @@ function createUser($conn, $fname, $surname, $username, $email, $pwd, $pronouns,
 
 function emptyInputUpdate($username, $email){
     $result;
-    if(empty($username) || empty($email)){
+    if(empty($username) | empty($email)){
         $result = true;
     }
     else {
@@ -908,4 +908,24 @@ function get_club_name($conn, $cid) {
     while($row = mysqli_fetch_array($query))
         $rows[] = $row;
     return $rows[0]['cname'];
+}
+
+function emptyInputAddEvent($title, $date, $hour, $place){
+    $result;
+    if(empty($title) | empty($date) | empty($hour) | empty($place)){
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+}
+
+function addEvent($conn, $title, $date, $hour, $place){
+    $date_tmp = $date . $hour . ":00";
+    mysqli_query($conn, "INSERT INTO events (title, dateStamp, place) VALUES ('$title', '$date_tmp', '$place');");
+}
+
+function invalidDate($conn, $date, $hour) {
+    return false;
 }
