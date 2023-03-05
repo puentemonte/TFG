@@ -58,6 +58,7 @@
               <li><a class='dropdown-item' href='profile.php?uid=$uid'>Mi perfil</a></li>
               <li><a class='dropdown-item' href='library.php'>Mi biblioteca</a></li>
               <li><a class='dropdown-item' href='clubs.php'>Mis clubes</a></li>
+              <li><a class='dropdown-item' href='myevents.php'>Mis eventos</a></li>
               <li><hr class='dropdown-divider'></li>";
               if(isVerified($conn, $uid)) {
                 echo "<li><a class='dropdown-item' href='addbook.php'>Añadir libro</a></li>

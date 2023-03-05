@@ -940,3 +940,12 @@ function isVerified($conn, $uid) {
     }
     return false;
 }
+
+function get_my_events($conn, $uidCreator) {
+    $query = mysqli_query($conn, "SELECT * FROM events WHERE uidCreator = '$uidCreator';");
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+
+    return $rows;
+}
