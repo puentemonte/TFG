@@ -24,6 +24,7 @@
                         $uidCreator = $_SESSION['userid'];
                         $my_events = get_my_events($conn, $uidCreator);
                         foreach($my_events as $event_data) {
+                            $eid = $event_data['eid'];
                             $title = $event_data['title'];
                             $date = $event_data['dateStamp'];
                             $place = $event_data['place'];
@@ -32,7 +33,11 @@
                                 <td>$title</td>
                                 <td>$date</td>
                                 <td>$place</td>
-                                <td><a class='btn custom-color-sidebar' aria-current='page'  href='deleteevent_inc.php'>Borrar</a></td>
+                                <td>
+                                    <form action='includes/deleteevent_inc.php?eid=$eid' method='POST' novalidate>
+                                        <button class='btn custom-color-sidebar' aria-current='page' name='submit' type='submit'>Borrar</button>
+                                    </form>
+                                </td>
                             </tr>"; // ESTO DEBERÍA SER UN FORM CON POST
                         }
                     ?>

@@ -1,6 +1,7 @@
 <?php
 
 if(isset($_POST["submit"])) {
+    $uid = $_SESSION["userid"];
     $title = $_POST["title"];
     $date = $_POST["date"];
     $hour = $_POST["hour"];
@@ -20,7 +21,7 @@ if(isset($_POST["submit"])) {
         exit();
     }
     
-    addEvent($conn, $title, $date, $hour, $place);
+    addEvent($conn, $title, $date, $hour, $place, $uid);
 
     header("location: ../events.php");
 }

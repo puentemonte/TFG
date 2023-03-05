@@ -24,3 +24,4 @@ else {
     header("location: ../settings.php");
     exit();
 }
+?>

@@ -921,9 +921,9 @@ function emptyInputAddEvent($title, $date, $hour, $place){
     return $result;
 }
 
-function addEvent($conn, $title, $date, $hour, $place){
+function addEvent($conn, $title, $date, $hour, $place, $uid){
     $date_aux = date('Y-m-d H:i:s', strtotime("$date $hour"));
-    mysqli_query($conn, "INSERT INTO events (title, dateStamp, place) VALUES ('$title', '$date_aux', '$place');");
+    mysqli_query($conn, "INSERT INTO events (title, dateStamp, place, uidCreator) VALUES ('$title', '$date_aux', '$place', '$uid');");
 }
 
 function invalidDate($conn, $date, $hour) {
@@ -948,4 +948,8 @@ function get_my_events($conn, $uidCreator) {
         $rows[] = $row;
 
     return $rows;
+}
+
+function deleteEvent($conn, $eid) {
+    mysqli_query($conn, "DELETE FROM events WHERE eid = '$eid';");
 }
