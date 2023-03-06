@@ -47,8 +47,18 @@
         if (isset($_SESSION["useruid"])){
             $nickname = $_SESSION['useruid'];
             $uid = $_SESSION['userid'];
+            $num_notis = get_unread_notifications($conn, $uid);
+
             echo "
-            <button class='icon-btn'><a href='notifications.php' class='fa-solid fa-bell notif'></a></button>
+            <div class='icon-btn'>
+              <a href='notifications.php' class = 'notif'>
+                <i class='fa-solid fa-bell'>";
+              if ($num_notis > 0)
+                echo "<span class='badge rounded-pill badge-notification notif-badge'>$num_notis</span>";
+            echo "
+                </i>
+              </a>
+            </div>
             <div class='dropdown text-end'>
             <a href='#' class='d-block link-dark text-decoration-none dropdown-toggle' data-bs-toggle='dropdown' aria-expanded='false'>
               <b>$nickname</b>

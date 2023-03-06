@@ -13,13 +13,14 @@
 10) **[  ]** Recomendación de clubes (por prioridad) (ERIK)
 11) **[  ]** Subir imágenes (perfil y portada libro) (JUNTOS)
 12) **[  ]** Añadir botón borrar notis (ELENA)
-13) **[  ]** Icono que muestre el numero de notis (ELENA)
+13) **[ X ]** Icono que muestre el numero de notis (ELENA)
 14) **[  ]** Links a perfiles desde clubes y comentario (ERIK)
-15) **[  ]** Links a libros desde clubes (ELENA)
+15) **[ X ]** Links a libros desde clubes (ELENA)
 16) **[  ]** Actualización de las páginas (al máximo numero de páginas) cuando se lee un libro (ELENA)
 17) **[  ]** Añadir libros, clubes, usuarios y eventos (JUNTOS)
 18) **[  ]** Modificar css
 	- **[  ]** Social: poner espacio y formato de titulos
 	- **[  ]** Nav bar como menu hamburguesa
 	- **[  ]** Cambiar paleta
-19) **[  ]** Organizar las carpetas ------> MUCHAS FUERZAS
+19) **[  ]** Organizar las carpetas ------> MUCHA FUERZA
+20) **[  ]** Poner un '*' en los campos obligatorios en TODOS los form (ELENA)

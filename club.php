@@ -78,7 +78,7 @@
                                     <div class='card-body'>
                                         <div class='row'>
                                             <div class='col-md-auto'>
-                                                <img class='book-cover-club' src='$url_export' alt='$title'>
+                                                <a href = 'book.php?isbn=$current_book'><img class='book-cover-club' src='$url_export' alt='$title'></a>
                                             </div>
                                             <div class='col'>
                                                 <div class='row'>

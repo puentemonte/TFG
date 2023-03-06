@@ -649,6 +649,14 @@ function join_club($conn, $cid) {
 
     $exist = mysqli_query($conn, "SELECT * FROM members WHERE cid = '$cid' AND userid = '$userid';");
 
+    // Get the previous number of members
+    mysqli_query($conn, "SELECT * FROM clubs WHERE cid = '$cid';");
+    $club_info = mysqli_fetch_array($query);
+    $numMembers = $club_info['numMembers'] + 1;
+
+    // Update the number of members
+    mysqli_query($conn, "UPDATE clubs SET numMembers = '$numMembers' WHERE cid = '$cid'");
+
     if (mysqli_num_rows($exist) <= 0) // does not exist 
         $query = mysqli_query($conn, "INSERT INTO members (cid, userid, typeMember) VALUES ('$cid', '$userid', '$member_type');");
         
@@ -952,4 +960,29 @@ function get_my_events($conn, $uidCreator) {
 
 function deleteEvent($conn, $eid) {
     mysqli_query($conn, "DELETE FROM events WHERE eid = '$eid';");
+}
+
+function get_unread_notifications($conn, $uid){
+    $query = mysqli_query($conn, "SELECT * FROM notifications WHERE userDest = '$uid' AND alrdyRead = '0';");
+    return mysqli_num_rows($query);
+}
+
+function addClub($conn, $name, $desc, $currBook, $nextDate, $currPages){
+    // 1) Add the club to the DB
+    if (!session_id()) session_start();
+    $uid = $_SESSION['userid']; // the creator
+
+    $members = 1;
+    mysqli_query($conn, "INSERT INTO clubs (cname, uidCreator, currBook, currPages, nextDate, descrip, numMembers) VALUES ('$name', '$uid', '$currBook', '$currPages', '$nextDate', '$desc', '$members');");
+
+    // 2) Get the selected cid
+    mysqli_query($conn, "SELECT * FROM clubs WHERE cname = '$name' AND uidCreator = '$uid' AND descrip = $desc;");
+    $row = mysqli_fetch_array($query)
+    $cid = $row['cid'];
+
+    // 3) Add the user as an admin of the club 
+    $member_type = 'moderator'
+    mysqli_query($conn, "INSERT INTO members (cid, userid, typeMember) VALUES ('$cid', '$uid', '$member_type');");
+
+    return $cid;
 }

@@ -401,3 +401,8 @@ input[type=number] {
 .read-notification{
     background-color: #e4e4e4;
 }
+
+.notif-badge{
+    background-color: var(--tertiary-color);
+    font-size: xx-small;
+}
