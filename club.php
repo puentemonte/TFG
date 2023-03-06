@@ -10,6 +10,7 @@
         $club_info = get_info_clubs($conn, $cid);
         $name = $club_info['cname'];
         $creator = get_username($conn, $club_info['uidCreator']);
+        $creator_uid = $club_info['uidCreator'];
         $desc = $club_info['descrip'];
         $current_book = $club_info['currBook'];
 
@@ -53,7 +54,7 @@
                     </div>
                     <div class='row ml-club mr-club'>
                         <div class='col'>                        
-                            <p class='details'>Creado por @$creator</p>
+                            <p class='details'>Creado por <a class='profile-link' href='profile.php?uid=$creator_uid'>@$creator</a></p>
                             <p class='club-desc'>$desc</p>
                         </div>
                     </div>";
@@ -127,14 +128,15 @@
                                     foreach($discussions as $dis){
                                         $dis_name = $dis['topic'];
                                         $dis_creator = get_username($conn, $dis['creatorId']);
+                                        $creator_uid = $dis['creatorId'];
                                         $last_update = get_last_modification_discussion($conn, $dis['did']);
                                         $did = $dis['did'];
                                         if ($last_update === false)
                                             $last_update = "-";
                                         
                                         echo "<tr>
-                                                <td><a href='discussion.php?did=$did&cid=$cid'>$dis_name</a></td>
-                                                <td>@$dis_creator</td>
+                                                <td><a class='profile-link' href='discussion.php?did=$did&cid=$cid'>$dis_name</a></td>
+                                                <td><a class='profile-link' href=profile.php?uid=$creator_uid>@$dis_creator</a></td>
                                                 <td>$last_update</td>
                                             </tr>";
                                     }
@@ -157,7 +159,8 @@
 
                                     foreach($members as $memb){
                                         $username = get_username($conn, $memb['userid']);
-                                        echo "@$username ";
+                                        $uid = $memb['userid'];
+                                        echo "<a class='profile-link' href='profile.php?uid=$uid'>@$username </a>";
                                     }
                             echo "</div>
                                 </div>
@@ -172,7 +175,7 @@
                                 <div class='accordion-body'>";
                                     foreach($admins as $adm){
                                         $username = get_username($conn, $adm['userid']);
-                                        echo "@$username ";
+                                        echo "<a class='profile-link' href='profile.php?uid=$uid'>@$username </a>";
                                     }
                             echo "</div>
                                 </div>

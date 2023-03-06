@@ -11,6 +11,7 @@
         $ret = get_discussion($conn, $_GET['did']);
         $name = $ret['topic'];
         $creator_name = get_username($conn, $ret['creatorId']);
+        $creator_uid = $ret['creatorId'];
         $ans = NULL;
 
         if(isset($_GET['reply'])){
@@ -22,7 +23,7 @@
                     <div class='row ml-book mr-book'>
                         <div class='col ml-custom'>
                             <h2 class='h2 fw-normal'>$name</h2>
-                            <p class='details'>Creado por <b>$creator_name</b></p>
+                            <p class='details'>Creado por <a class='profile-link' href='profile.php?uid=$creator_uid'><b>@$creator_name</b></a></p>
                             <div class='answers'>";
                             if(is_open_discussion($conn, $did)){
                                 echo "<div class='row'>
@@ -65,22 +66,22 @@
                                         <div class= 'card p-4 review'>
                                             <div class='d-flex flex-start'>
                                                 <div>
-                                                    <h6 class='fw-bold mb-1'>$username</h6>";
+                                                    <h6 class='fw-bold mb-1'><a class='profile-link' href=profile.php?uid=$uid>@$username</a></h6>";
                                                     if($answer != NULL){
                                                         echo "<small class='text-muted'>En respuesta a <b>@$answer</b></small>";
                                                     }
                                                     echo "<p class='mb-0'>$comment </p>
                                                     <div class='row'>";
                                                     if(is_club_mod($conn, $cid)){
-                                                        echo " <div class='col-md-auto'>
+                                                        echo " <div class='col-1'>
                                                                     <form action='includes/disinteract_inc.php?did=$did&cid=$cid&msg=$aid' method='POST'>
-                                                                        <button type='submit' name='delete' class='icon-btn'><i class='fa-solid fa-trash icon-filled reply'></i></button>
+                                                                        <button type='submit' name='delete' class='icon-btn notif fa-solid fa-trash icon-filled margin-reply'></button>
                                                                     </form>
                                                                 </div>";
                                                     }
-                                                    echo "<div class='col-md-auto'>
+                                                    echo "<div class='col-1'>
                                                             <form action='discussion.php?did=$did&reply=$uid&cid=$cid' method='POST'>
-                                                                <button type='submit' name='reply' class='icon-btn'><i class='fa-solid fa-reply icon-filled reply'></i></button>
+                                                                <button type='submit' name='reply' class='icon-btn notif fa-solid fa-reply icon-filled margin-reply'></button>
                                                             </form>
                                                         </div>
                                                     </div>

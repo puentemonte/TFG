@@ -26,14 +26,15 @@
                             $cid = $club_data['cid'];
                             $name = $club_data['cname'];
                             $creator = get_username($conn, $club_data['uidCreator']);
+                            $creator_uid = $club_data['uidCreator'];
                             $num_members= get_num_members($conn, $cid);
                             $last_modification = get_last_modification_club($conn, $cid);
                             if ($last_modification == NULL)
                                 $last_modification = "-";
 
                             echo "<tr>
-                                <td><a href='club.php?id=$cid'>$name</a></td>
-                                <td>@$creator</td>
+                                <td><a class='profile-link' href='club.php?id=$cid'>$name</a></td>
+                                <td><a class='profile-link' href=profile.php?uid=$creator_uid>@$creator</a></td>
                                 <td>$num_members</td>
                                 <td>$last_modification</td>
                             </tr>";

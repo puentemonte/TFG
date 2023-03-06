@@ -312,12 +312,8 @@ input[type=number] {
     margin-top: 0.5em;
 }
 
-.ml-reply {
-    margin-left: 220%;
-}
-
-.reply:hover {
-    color: var(--tertiary-color);
+.margin-reply {
+    margin: 10px 0 10px 10px;
 }
 
 .search-picture {
@@ -405,4 +401,13 @@ input[type=number] {
 .notif-badge{
     background-color: var(--tertiary-color);
     font-size: xx-small;
+}
+
+.profile-link {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.profile-link:hover {
+    color: var(--tertiary-color);
 }

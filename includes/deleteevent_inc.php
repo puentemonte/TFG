@@ -8,8 +8,7 @@ if(isset($_POST["submit"])) {
     
     deleteEvent($conn, $eid);
 }
-else {
-    header("location: ../myevents.php");
-    exit();
-}
+header("location: ../myevents.php");
+exit();
+
 ?>
