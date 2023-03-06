@@ -23,22 +23,29 @@
                         <div class='col ml-custom'>
                             <h2 class='h2 fw-normal'>$name</h2>
                             <p class='details'>Creado por <b>$creator_name</b></p>
-
-                            <div class='answers'>
-                                <div class='row'>
-                                    <form action='includes/disinteract_inc.php?did=$did&reply=$ans&cid=$cid' method='POST'>
-                                        <div class='d-flex flex-start w-100'>
-                                            <div class='form-outline w-100'>
-                                                <textarea class='form-control' placeholder='Escribe tu comentario...' name='content' rows='4'style='background: #fff;'></textarea>
+                            <div class='answers'>";
+                            if(is_open_discussion($conn, $did)){
+                                echo "<div class='row'>
+                                        <form action='includes/disinteract_inc.php?did=$did&reply=$ans&cid=$cid' method='POST'>
+                                            <div class='d-flex flex-start w-100'>
+                                                <div class='form-outline w-100'>";
+                                                if(isset($_GET['reply'])){
+                                                    $ans_username = get_username($conn, $ans);
+                                                    echo "<textarea class='form-control' placeholder='Responder a @$ans_username' name='content' rows='4'style='background: #fff;'></textarea>";
+                                                }
+                                                else{
+                                                    echo "<textarea class='form-control' placeholder='Escribe tu comentario...' name='content' rows='4'style='background: #fff;'></textarea>";
+                                                }
+                                                    
+                                                echo "</div>
                                             </div>
-                                        </div>
-                                        <div class='float-end mt-2 pt-1 mb-comment'>
-                                            <button type='submit' name='comment' class='btn custom-color-button'><b>Publicar</b></button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <h5 class='h5 fw-normal'>Respuestas</h5>";
-
+                                            <div class='float-end mt-2 pt-1 mb-comment'>
+                                                <button type='submit' name='comment' class='btn custom-color-button'><b>Publicar</b></button>
+                                            </div>
+                                        </form>
+                                    </div>";
+                            }
+                            echo "<h5 class='h5 fw-normal'>Respuestas</h5>";
                             $all_answers = get_all_answers($conn, $_GET['did']);
                             // the discussions cannot be empty because a discussion starts with a commet with the user
                             foreach($all_answers as $answer_data){
@@ -55,38 +62,37 @@
                                 $date = $answer_data['dateStamp'];
 
                                 echo "<div class ='row'>
-                                                <div class= 'card p-4 review'>
-                                                    <div class='d-flex flex-start'>
-                                                        <div>
-                                                            <h6 class='fw-bold mb-1'>$username</h6>";
-                                                            if($answer != NULL){
-                                                                echo "<small class='text-muted'>En respuesta a <b>$answer</b></small>";
-                                                            }
-                                                            echo "<p class='mb-0'>$comment </p>
-                                                            <div class='row'>";
-                                                            if(is_club_mod($conn, $cid)){
-                                                                echo " <div class='col-md-auto'>
-                                                                            <form action='includes/disinteract_inc.php?did=$did&cid=$cid&msg=$aid' method='POST'>
-                                                                                <button type='submit' name='delete' class='icon-btn'><i class='fa-solid fa-trash icon-filled reply'></i></button>
-                                                                            </form>
-                                                                        </div>";
-                                                            }
-                                                            echo "<div class='col-md-auto'>
-                                                                    <form action='discussion.php?did=$did&reply=$uid&cid=$cid' method='POST'>
-                                                                        <button type='submit' name='reply' class='icon-btn'><i class='fa-solid fa-reply icon-filled reply'></i></button>
+                                        <div class= 'card p-4 review'>
+                                            <div class='d-flex flex-start'>
+                                                <div>
+                                                    <h6 class='fw-bold mb-1'>$username</h6>";
+                                                    if($answer != NULL){
+                                                        echo "<small class='text-muted'>En respuesta a <b>@$answer</b></small>";
+                                                    }
+                                                    echo "<p class='mb-0'>$comment </p>
+                                                    <div class='row'>";
+                                                    if(is_club_mod($conn, $cid)){
+                                                        echo " <div class='col-md-auto'>
+                                                                    <form action='includes/disinteract_inc.php?did=$did&cid=$cid&msg=$aid' method='POST'>
+                                                                        <button type='submit' name='delete' class='icon-btn'><i class='fa-solid fa-trash icon-filled reply'></i></button>
                                                                     </form>
-                                                                </div>
-                                                            </div>
+                                                                </div>";
+                                                    }
+                                                    echo "<div class='col-md-auto'>
+                                                            <form action='discussion.php?did=$did&reply=$uid&cid=$cid' method='POST'>
+                                                                <button type='submit' name='reply' class='icon-btn'><i class='fa-solid fa-reply icon-filled reply'></i></button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
-                                        </div>";
+                                            </div>
+                                        </div>
+                                    </div>";
                             }
                         echo "</div>
                     </div>
                 </div>
-            </div>
-        </body>";
+            </body>";
     }
     else {
         /*$cid = $_GET["cid"];

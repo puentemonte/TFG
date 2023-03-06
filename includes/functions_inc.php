@@ -650,7 +650,7 @@ function join_club($conn, $cid) {
     $exist = mysqli_query($conn, "SELECT * FROM members WHERE cid = '$cid' AND userid = '$userid';");
 
     // Get the previous number of members
-    mysqli_query($conn, "SELECT * FROM clubs WHERE cid = '$cid';");
+    $query = mysqli_query($conn, "SELECT * FROM clubs WHERE cid = '$cid';");
     $club_info = mysqli_fetch_array($query);
     $numMembers = $club_info['numMembers'] + 1;
 
@@ -738,7 +738,7 @@ function add_discussion($conn, $cid, $topic){
     
     $userid = $_SESSION['userid'];
 
-    mysqli_query($conn, "INSERT INTO discussions (cid, creatorId, opendis, topic) VALUES ('$cid', '$userid', 0, '$topic');");
+    mysqli_query($conn, "INSERT INTO discussions (cid, creatorId, opendis, topic) VALUES ('$cid', '$userid', 1, '$topic');");
 }
 
 function get_profile_info($conn, $uid) {
@@ -990,4 +990,17 @@ function addClub($conn, $name, $desc, $currBook, $nextDate, $currPages){
     mysqli_query($conn, "INSERT INTO members (cid, userid, typeMember) VALUES ('$cid', '$uid', '$member_type');");
 
     return $cid;
+}
+
+function is_open_discussion($conn, $did) {
+    $query = mysqli_query($conn, "SELECT * FROM discussions WHERE did = '$did';");
+
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+
+    if($rows[0]['opendis']){
+        return true;
+    }
+    return false;
 }

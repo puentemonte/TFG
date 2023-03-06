@@ -34,3 +34,5 @@ if(isset($_POST["delete"])){
     delete_comment($conn, $aid);
     header("location: ../discussion.php?did=$did&cid=$cid");
 }
+
+?>
