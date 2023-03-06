@@ -937,6 +937,9 @@ function addEvent($conn, $title, $date, $hour, $place){
 }
 
 function invalidDate($conn, $date, $hour) {
+    $current_date = strtotime(date("Y-m-d H:i:s"));
+    $event_date = strtotime("$date $hour");
+    if($event_date < $current_date) return true;
     return false;
 }
 
