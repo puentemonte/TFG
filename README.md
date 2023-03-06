@@ -14,7 +14,7 @@
 11) **[  ]** Subir imágenes (perfil y portada libro) (JUNTOS)
 12) **[  ]** Añadir botón borrar notis (ELENA)
 13) **[ X ]** Icono que muestre el numero de notis (ELENA)
-14) **[  ]** Links a perfiles desde clubes y comentario (ERIK)
+14) **[ X ]** Links a perfiles desde clubes y comentario (ERIK)
 15) **[ X ]** Links a libros desde clubes (ELENA)
 16) **[  ]** Actualización de las páginas (al máximo numero de páginas) cuando se lee un libro (ELENA)
 17) **[  ]** Añadir libros, clubes, usuarios y eventos (JUNTOS)
