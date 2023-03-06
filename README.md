@@ -4,7 +4,7 @@
 2) **[ X ]** Crear eventos --> verificaos (ERIK)
 3) **[  ]** Página de eventos (JUNTOS)
 	- Evento: Título, fecha y hora, ubicación y botón de suscripción
-4) **[  ]** Eliminar eventos --> verificaos (ERIK)
+4) **[ X ]** Eliminar eventos --> verificaos (ERIK)
 5) **[  ]** Notificación de eventos --> verificaos (ELENA)
 6) **[  ]** Gestión de usuarios verificados (ELENA)
 7) **[  ]** Discusiones cerradas que impidan hablar + respuestas (ERIK)
