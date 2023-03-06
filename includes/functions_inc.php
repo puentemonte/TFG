@@ -929,9 +929,11 @@ function emptyInputAddEvent($title, $date, $hour, $place){
     return $result;
 }
 
-function addEvent($conn, $title, $date, $hour, $place, $uid){
+function addEvent($conn, $title, $date, $hour, $place){
+    if (!session_id()) session_start();
+    $creatorUid = $_SESSION['userid'];
     $date_aux = date('Y-m-d H:i:s', strtotime("$date $hour"));
-    mysqli_query($conn, "INSERT INTO events (title, dateStamp, place, uidCreator) VALUES ('$title', '$date_aux', '$place', '$uid');");
+    mysqli_query($conn, "INSERT INTO events (title, dateStamp, place, uidCreator) VALUES ('$title', '$date_aux', '$place', '$creatorUid');");
 }
 
 function invalidDate($conn, $date, $hour) {
@@ -977,11 +979,11 @@ function addClub($conn, $name, $desc, $currBook, $nextDate, $currPages){
 
     // 2) Get the selected cid
     mysqli_query($conn, "SELECT * FROM clubs WHERE cname = '$name' AND uidCreator = '$uid' AND descrip = $desc;");
-    $row = mysqli_fetch_array($query)
+    $row = mysqli_fetch_array($query);
     $cid = $row['cid'];
 
     // 3) Add the user as an admin of the club 
-    $member_type = 'moderator'
+    $member_type = 'moderator';
     mysqli_query($conn, "INSERT INTO members (cid, userid, typeMember) VALUES ('$cid', '$uid', '$member_type');");
 
     return $cid;
