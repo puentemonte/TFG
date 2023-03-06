@@ -7,7 +7,7 @@
 4) **[ X ]** Eliminar eventos --> verificaos (ERIK)
 5) **[  ]** Notificación de eventos --> verificaos (ELENA)
 6) **[  ]** Gestión de usuarios verificados (ELENA)
-7) **[  ]** Discusiones cerradas que impidan hablar + respuestas (ERIK)
+7) **[ X ]** Discusiones cerradas que impidan hablar + respuestas (ERIK)
 8) **[  ]** Ver distribución del rating (JUNTOS)
 9) **[  ]** Recomendación de libros (por gente que los ha leído) (ERIK)
 10) **[  ]** Recomendación de clubes (por prioridad) (ERIK)
