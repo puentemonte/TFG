@@ -43,19 +43,19 @@
         </div>
         <div class="form-floating">
             <input type="text" class="form-control" name="title" placeholder="Título">
-            <label for="floatingInput" class='floating-input'>Título</label>
+            <label for="floatingInput" class='floating-input'>Título*</label>
         </div>
         <div class="form-floating">
             <input type="date" class="form-control" name="date" placeholder="Autor">
-            <label for="floatingInput" class='floating-input'>Fecha</label>
+            <label for="floatingInput" class='floating-input'>Fecha*</label>
         </div>
         <div class="form-floating">
             <input type="time" class="form-control" name="hour" placeholder="ISBN">
-            <label for="floatingInput" class='floating-input'>Hora</label>
+            <label for="floatingInput" class='floating-input'>Hora*</label>
         </div>
         <div class="form-floating">
             <input type="text" class="form-control" name="place" placeholder="Editorial">
-            <label for="floatingInput" class='floating-input'>Ubicación</label>
+            <label for="floatingInput" class='floating-input'>Ubicación*</label>
         </div>
         <button class="w-100 btn btn-lg custom-color-button mb-custom" name="submit" type="submit">Añadir evento</button>
   </form>

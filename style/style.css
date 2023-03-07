@@ -405,7 +405,6 @@ input[type=number] {
 
 .profile-link {
     text-decoration: none;
-    color: var(--primary-color);
 }
 
 .profile-link:hover {

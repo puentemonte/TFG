@@ -43,19 +43,19 @@
         </div>
         <div class="form-floating">
             <input type="text" class="form-control" name="title" placeholder="Título">
-            <label for="floatingInput" class='floating-input'>Título</label>
+            <label for="floatingInput" class='floating-input'>Título*</label>
         </div>
         <div class="form-floating">
             <input type="text" class="form-control" name="author" placeholder="Autor">
-            <label for="floatingInput" class='floating-input'>Autor</label>
+            <label for="floatingInput" class='floating-input'>Autor*</label>
         </div>
         <div class="form-floating">
             <input type="text" class="form-control" name="isbn" placeholder="ISBN">
-            <label for="floatingInput" class='floating-input'>ISBN</label>
+            <label for="floatingInput" class='floating-input'>ISBN*</label>
         </div>
         <div class="form-floating">
             <input type="text" class="form-control" name="editorial" placeholder="Editorial">
-            <label for="floatingInput" class='floating-input'>Editorial</label>
+            <label for="floatingInput" class='floating-input'>Editorial*</label>
         </div>
         <div class="form-floating">
             <input type="text" class="form-control" name="translator" placeholder="Traductor">
@@ -63,19 +63,19 @@
         </div>
         <div class="form-floating">
             <input type="text" class="form-control" name="pages" placeholder="Número de páginas">
-            <label for="floatingInput" class='floating-input'>Número de páginas</label>
+            <label for="floatingInput" class='floating-input'>Número de páginas*</label>
         </div>
         <div class="form-floating">
             <input type="text" class="form-control" name="releaseDate" placeholder="Fecha de publicación">
-            <label for="floatingInput" class='floating-input'>Fecha de publicación</label>
+            <label for="floatingInput" class='floating-input'>Fecha de publicación*</label>
         </div>
         <div class="form-floating">
             <input type="text" class="form-control" name="genres" placeholder="Género/s">
-            <label for="floatingInput" class='floating-input'>Género/s</label>
+            <label for="floatingInput" class='floating-input'>Género/s*</label>
         </div>
         <div class="form-floating">
             <input type="textarea" class="form-control synopsis" name="synopsis" placeholder="Sinopsis">
-            <label for="floatingInput" class='floating-input'>Sinopsis</label>
+            <label for="floatingInput" class='floating-input'>Sinopsis*</label>
         </div>
         <button class="w-100 btn btn-lg custom-color-button mb-custom" name="submit" type="submit">Añadir libro</button>
   </form>

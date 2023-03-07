@@ -1,6 +1,6 @@
 ### TFG
 
-1) **[  ]** Crear club de lectura (ELENA)
+1) **[ X ]** Crear club de lectura (ELENA)
 2) **[ X ]** Crear eventos --> verificaos (ERIK)
 3) **[  ]** Página de eventos (JUNTOS)
 	- Evento: Título, fecha y hora, ubicación y botón de suscripción
@@ -23,4 +23,8 @@
 	- **[  ]** Nav bar como menu hamburguesa
 	- **[  ]** Cambiar paleta
 19) **[  ]** Organizar las carpetas ------> MUCHA FUERZA
-20) **[  ]** Poner un '*' en los campos obligatorios en TODOS los form (ELENA)
+20) **[ X ]** Poner un '*' en los campos obligatorios en TODOS los form (ELENA)
+21) **[  ]** Permitir que los creadores de un club puedan eliminar el club en lugar de abandonarlo
+22) **[  ]** Añadir en el libro la información relativa a los géneros
+23) **[  ]** Poder borrar tus reseñas desde la página de libros
+

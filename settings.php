@@ -81,11 +81,11 @@
         </div>
         <div class="form-floating">
             <input type="text" class="form-control" name="uid" placeholder="Nombre de usuario" value="<?php echo $username ?>">
-            <label for="floatingInput" class='floating-input'>Nombre de usuario</label>
+            <label for="floatingInput" class='floating-input'>Nombre de usuario*</label>
         </div>
         <div class="form-floating">
             <input class="form-control" name="email" placeholder="nombre@ejemplo.es" value="<?php echo $email?>">
-            <label for="floatingInput" class='floating-input'>Correo electrónico</label>
+            <label for="floatingInput" class='floating-input'>Correo electrónico*</label>
         </div>
         <div class="form-floating">
             <select class="custom-select my-1 mr-sm-2 form-control" name = "pronouns" selected="<?php echo $pronouns?>">
@@ -94,7 +94,7 @@
                 <option value="Ella" <?php if ($pronouns === "Ella"){ echo "selected";}?>>Ella</option>
                 <option value="Elle"<?php if ($pronouns === "Elle"){ echo "selected";}?>>Elle</option>
             </select>
-            <label for="floatingInput">Pronombres</label>
+            <label for="floatingInput" class='floating-input'>Pronombres</label>
         </div>
         <button class="w-100 btn btn-lg custom-color-button mb-custom" name="submit" type="submit">Actualizar</button>
     </form>

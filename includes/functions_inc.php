@@ -417,7 +417,7 @@ function update_list($isbn, $conn, $list) {
         return false; // no está iniciada la sesión
 
     $query = mysqli_query($conn, "SELECT * FROM books_users WHERE userId = '$userid' AND isbn = '$isbn';");
-    
+
     if (mysqli_num_rows($query) > 0) // already exists -> update
         $update = mysqli_query($conn, "UPDATE books_users SET list = '$list' WHERE userId = '$userid' AND isbn = '$isbn';");
     else // doesn't exist -> insert
@@ -709,9 +709,15 @@ function quit_club($conn, $cid){
 
     $exist = mysqli_query($conn, "SELECT * FROM members WHERE cid = '$cid' AND userid = '$userid';");
 
-    if (mysqli_num_rows($exist) > 0) // does not exist 
+    if (mysqli_num_rows($exist) > 0) { // exists 
         $query = mysqli_query($conn, "DELETE FROM members WHERE cid = '$cid' AND userid = '$userid';");
-        
+
+        $query = mysqli_query($conn, "SELECT * FROM clubs WHERE cid = '$cid';");
+        $club_info = mysqli_fetch_array($query);
+        $numMembers = $club_info['numMembers'] + 1;
+
+        mysqli_query($conn, "UPDATE clubs SET numMembers = '$numMembers' WHERE cid = '$cid';");
+    }
     return true;
 }
 
@@ -981,9 +987,9 @@ function addClub($conn, $name, $desc, $currBook, $nextDate, $currPages){
     mysqli_query($conn, "INSERT INTO clubs (cname, uidCreator, currBook, currPages, nextDate, descrip, numMembers) VALUES ('$name', '$uid', '$currBook', '$currPages', '$nextDate', '$desc', '$members');");
 
     // 2) Get the selected cid
-    mysqli_query($conn, "SELECT * FROM clubs WHERE cname = '$name' AND uidCreator = '$uid' AND descrip = $desc;");
+    $query = mysqli_query($conn, "SELECT * FROM clubs WHERE cname = '$name' AND uidCreator = '$uid';");
     $row = mysqli_fetch_array($query);
-    $cid = $row['cid'];
+    $cid = $row[0]['cid'];
 
     // 3) Add the user as an admin of the club 
     $member_type = 'moderator';

@@ -42,7 +42,7 @@
         
         <div class="form-floating">
             <input type="password" class="form-control" name="pwd" placeholder="Contraseña actual">
-            <label for="floatingPassword" class='floating-input'>Contraseña actual</label>
+            <label for="floatingPassword" class='floating-input'>Contraseña actual*</label>
         </div>
         <button type="submit" name="submit" class="w-100 btn btn-lg custom-color-button" onclick="clicked(event)">Eliminar</button>
     </form>

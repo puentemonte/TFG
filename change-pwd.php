@@ -67,15 +67,15 @@
         </div>
         <div class="form-floating">
             <input type="password" class="form-control" name="pwd" placeholder="Contraseña actual">
-            <label for="floatingPassword" class='floating-input'>Contraseña actual</label>
+            <label for="floatingPassword" class='floating-input'>Contraseña actual*</label>
         </div>
         <div class="form-floating">
             <input type="password" class="form-control" name="newpwd" placeholder="Contraseña nueva">
-            <label for="floatingPassword" class='floating-input'>Contraseña nueva</label>
+            <label for="floatingPassword" class='floating-input'>Contraseña nueva*</label>
         </div>
         <div class="form-floating">
             <input type="password" class="form-control" name="newpwdrepeat" placeholder="Repite tu contraseña nueva">
-            <label for="floatingPassword" class='floating-input'>Repite tu contraseña nueva</label>
+            <label for="floatingPassword" class='floating-input'>Repite tu contraseña nueva*</label>
         </div>
         <button class="w-100 btn btn-lg custom-color-button" name="submit" type="submit">Cambiar</button>
     </form>

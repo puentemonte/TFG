@@ -31,11 +31,11 @@ require_once "includes/functions_inc.php";
             </div>
             <div class="form-floating">
                 <input class="form-control" name="name" placeholder="Club de lectura">
-                <label for="floatingInput" class='floating-input'>Nombre</label>
+                <label for="floatingInput" class='floating-input'>Nombre*</label>
             </div>
             <div class="form-floating">
                 <input type="textarea" class="form-control" name="desc" placeholder="Descripción">
-                <label for="floatingInput" class='floating-input'>Descripción</label>
+                <label for="floatingInput" class='floating-input'>Descripción*</label>
             </div>
             <div class="form-floating">
                 <datalist id="suggestions">
@@ -61,7 +61,7 @@ require_once "includes/functions_inc.php";
                 <input type="number" class="form-control" name="currPages" placeholder="Páginas Leídas">
                 <label for="floatingInput" class='floating-input'>Páginas leídas</label>
             </div>
-            <button class="w-100 btn btn-lg custom-color-button" name="namedesc" type="submit">Crear</button>
+            <button class="w-100 btn btn-lg custom-color-button" name="submit" type="submit">Crear</button>
         </form>
     </main>
 </body>

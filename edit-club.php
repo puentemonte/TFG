@@ -47,11 +47,11 @@ if (isset($_GET["cid"])) { // add a member to a club
             </div>
             <div class="form-floating">
                 <input class="form-control" name="name" placeholder="Club de lectura" value="<?php echo $name;?>">
-                <label for="floatingInput" class='floating-input'>Nombre</label>
+                <label for="floatingInput" class='floating-input'>Nombre*</label>
             </div>
             <div class="form-floating">
                 <input type="textarea" class="form-control" name="desc" placeholder="Descripción" value="<?php echo $desc;?>">
-                <label for="floatingInput" class='floating-input'>Descripción</label>
+                <label for="floatingInput" class='floating-input'>Descripción*</label>
             </div>
             <button class="w-100 btn btn-lg custom-color-button" name="namedesc" type="submit">Actualizar</button>
         </form>

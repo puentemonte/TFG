@@ -10,7 +10,7 @@
         
         <div class="form-floating">
             <input type="text" class="form-control" name="topic" placeholder="Capítulos I y II">
-            <label for="floatingPassword" class='floating-input'>Nombre del tema</label>
+            <label for="floatingPassword" class='floating-input'>Nombre del tema*</label>
         </div>
         <button type="submit" name="submit" class="w-100 btn btn-lg custom-color-button">Crear</button>
     </form>
