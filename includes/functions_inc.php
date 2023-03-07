@@ -422,6 +422,10 @@ function update_list($isbn, $conn, $list) {
         $update = mysqli_query($conn, "UPDATE books_users SET list = '$list' WHERE userId = '$userid' AND isbn = '$isbn';");
     else // doesn't exist -> insert
         $insert = mysqli_query($conn, "INSERT INTO books_users (isbn, userId, list) VALUES ('$isbn', '$userid', '$list');");
+    
+    $update = date("Y-m-d H:i:s");
+    mysqli_query($conn, "UPDATE books_users SET dateStamp = '$update' WHERE userId = '$userid' AND isbn = '$isbn'");
+    
     return true;
 }
 
@@ -801,7 +805,7 @@ function get_popular_books_friends($conn, $uid){
     $data = array();
     foreach($followed as $user) { // loop though all the followed acc fav book
         $uid = $user['followed'];
-        $query = mysqli_query($conn, "SELECT * FROM books_users WHERE userId = '$uid' AND list = 'read' ORDER BY rating DESC LIMIT 1;");
+        $query = mysqli_query($conn, "SELECT * FROM books_users WHERE userId = '$uid' AND list = 'read' ORDER BY dateStamp DESC LIMIT 1;");
         if(mysqli_num_rows($query) > 0) // has read books 
             $data[] = mysqli_fetch_array($query);
     }
