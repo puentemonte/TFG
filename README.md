@@ -10,7 +10,7 @@
 7) **[ X ]** Discusiones cerradas que impidan hablar + respuestas (ERIK)
 8) **[  ]** Ver distribución del rating (JUNTOS)
 9) **[  ]** Recomendación de libros (por gente que los ha leído) (ERIK)
-10) **[  ]** Recomendación de clubes (por prioridad) (ERIK)
+10) **[  ]** Modificar Inicio para que contenga Social y quitar de Social el general y clubes (ERIK)
 11) **[  ]** Subir imágenes (perfil y portada libro) (JUNTOS)
 12) **[  ]** Añadir botón borrar notis (ELENA)
 13) **[ X ]** Icono que muestre el numero de notis (ELENA)
@@ -27,4 +27,3 @@
 21) **[  ]** Permitir que los creadores de un club puedan eliminar el club en lugar de abandonarlo
 22) **[  ]** Añadir en el libro la información relativa a los géneros
 23) **[  ]** Poder borrar tus reseñas desde la página de libros
-
