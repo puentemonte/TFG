@@ -34,11 +34,11 @@
                                 <td>$date</td>
                                 <td>$place</td>
                                 <td>
-                                    <form action='includes/deleteevent_inc.php?eid=$eid' method='POST' novalidate>
+                                    <form class='delete-event' action='includes/deleteevent_inc.php?eid=$eid' method='POST' novalidate>
                                         <button class='btn custom-color-sidebar' aria-current='page' name='submit' type='submit'>Borrar</button>
                                     </form>
                                 </td>
-                            </tr>"; // ESTO DEBERÍA SER UN FORM CON POST
+                            </tr>";
                         }
                     ?>
                 </tbody>

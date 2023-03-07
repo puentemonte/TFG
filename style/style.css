@@ -47,7 +47,7 @@ small {
     white-space: normal;
 }
 
-h2, h5 {
+h2, h3, h4, h5 {
     font-family: Montserrat-Bold;
     color: var(--tertiary-color);
 }
@@ -327,26 +327,20 @@ input[type=number] {
     margin-top: 50px;
 }
 
-.user-overview {
-    height: auto;
-    width: 300px;
-    margin: 20px auto;
-}
-
 .username-overview {
-    margin: auto 0;
-    
+    margin: auto 5px;
 }
 
 .username-overview p {
     word-break: keep-all;
     white-space: nowrap;
+    font-size: small;
 }
 
 .social-picture {
-    margin: 15px;
-    height: 40px;
-    width: 40px;
+    margin: 10px 0;
+    height: 32px;
+    width: 32px;
     border-radius: 50%;
 }
 
@@ -409,4 +403,15 @@ input[type=number] {
 
 .profile-link:hover {
     color: var(--tertiary-color);
+}
+
+.delete-event {
+    margin: 0 auto;
+    width: 60px;
+}
+
+.search-user {
+    margin: 10px auto;
+    width: 350px;
+    height: auto;
 }

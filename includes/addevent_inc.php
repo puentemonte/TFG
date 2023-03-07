@@ -22,7 +22,7 @@ if(isset($_POST["submit"])) {
     
     addEvent($conn, $title, $date, $hour, $place);
 
-    header("location: ../events.php");
+    header("location: ../myevents.php");
 }
 else {
     header("location: ../addevent.php");

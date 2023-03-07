@@ -48,7 +48,7 @@
             $username = $user_data['userUid'];
 
 
-            echo "<div class='card shadow-sm user-overview'>
+            echo "<div class='card shadow-sm search-user'>
                     <a class='dropdown-item' href='profile.php?uid=$uid'>
                         <div class='row'>
                             <div class='col-4'>

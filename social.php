@@ -51,11 +51,11 @@
 
 				echo "<div class='col'>
 						<div class='row'>
-							<div class='col-4'>
+							<div class='col-2'>
 								<img class='social-picture' src='style/img/color-beige.png' alt ='picture'>
 							</div>
 							<div class='col-4 username-overview'>
-								<p class='card-text'><b>$username ha leído:</b></p>
+								<p class='card-text'><a class='profile-link' href=profile.php?uid=$user><b>@$username</b></a> ha leído:</p>
 							</div>
 						</div>
 						<div class='row'>
@@ -84,7 +84,7 @@
 					<div class='col'>
 						<h4 class='h4 mb-3 fw-normal mt-custom'>Tus amigos pertenecen a...</h4>
 								<div class='row ml-club mr-club club-desc'>
-									<div class='col'>
+									<div class='col text-center'>
 										<table class='table'>
 											<thead>
 												<tr>
@@ -102,14 +102,15 @@
 				$cid = $club;
 				$name = $club_data['cname'];
 				$creator = get_username($conn, $club_data['uidCreator']);
+				$creator_uid = $club_data['uidCreator'];
 				$num_members= get_num_members($conn, $cid);
 				$last_modification = get_last_modification_club($conn, $cid);
 				if ($last_modification == NULL)
 					$last_modification = "-";
 
 				echo "<tr>
-					<td><a href='club.php?id=$cid'>$name</a></td>
-					<td>@$creator</td>
+					<td><a class='profile-link' href='club.php?id=$cid'>$name</a></td>
+					<td><a class='profile-link' href='profile.php?uid=$creator_uid'>@$creator</a></td>
 					<td>$num_members</td>
 					<td>$last_modification</td>
 				</tr>";
@@ -162,7 +163,7 @@
 			<div class='col'>
 				<h4 class='h4 mb-3 fw-normal mt-custom'>Clubes populares</h4>
 					<div class='row ml-club mr-club club-desc'>
-						<div class='col'>
+						<div class='col text-center'>
 							<table class='table'>
 								<thead>
 									<tr>
@@ -180,14 +181,15 @@
 				$cid = $club;
 				$name = $club_data['cname'];
 				$creator = get_username($conn, $club_data['uidCreator']);
+				$creator_uid = $club_data['uidCreator'];
 				$num_members= get_num_members($conn, $cid);
 				$last_modification = get_last_modification_club($conn, $cid);
 				if ($last_modification == NULL)
 					$last_modification = "-";
 
 				echo "<tr>
-					<td><a href='club.php?id=$cid'>$name</a></td>
-					<td>@$creator</td>
+					<td><a class='profile-link' href='club.php?id=$cid'>$name</a></td>
+					<td><a class='profile-link' href='profile.php?uid=$creator_uid'>@$creator</a></td>
 					<td>$num_members</td>
 					<td>$last_modification</td>
 				</tr>";
