@@ -59,7 +59,7 @@
                                 $name = $club_data['cname'];
                                 $creator = get_username($conn, $club_data['uidCreator']);
                                 $creator_uid = $club_data['uidCreator'];
-                                $num_members= get_num_members($conn, $cid);
+                                $num_members= $club_data['numMembers'];
                                 $last_modification = get_last_modification_club($conn, $cid);
                                 if ($last_modification == NULL)
                                     $last_modification = "-";
