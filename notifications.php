@@ -24,18 +24,32 @@
                             $nid = $notification['nid'];
 
                             if ($alrdyRead == '1'){
-                                echo "<a class='card shadow-sm notification read-notification' href='profile.php?uid=$userSrc'>
-                                        <div class = 'card-text'>
-                                            ¡@$username ha comenzado a seguirte!
+                                echo "<div class='d-flex row-notif'>
+                                        <div class = 'col-md-auto'>
+                                            <a class='card shadow-sm notification read-notification' href='profile.php?uid=$userSrc'>
+                                                <div class = 'card-text'>
+                                                    ¡@$username ha comenzado a seguirte!
+                                                </div>
+                                            </a>
                                         </div>
-                                    </a>";
+                                        <div class = 'col-md-auto'>
+                                            <a href='./includes/del-notification_inc.php?nid=$nid' class='icon-btn fa-solid fa-trash icon-filled trash-notification'></a>
+                                        </div>
+                                     </div>";
                             }
                             else {
-                                echo "<a class='card shadow-sm notification' href='profile.php?uid=$userSrc'>
-                                        <div class = 'card-text'>
-                                            ¡@$username ha comenzado a seguirte!
+                                echo "<div class='d-flex row-notif'>
+                                        <div class = 'col-md-auto'>
+                                            <a class='card shadow-sm notification' href='profile.php?uid=$userSrc'>
+                                                <div class = 'card-text'>
+                                                    ¡@$username ha comenzado a seguirte!
+                                                </div>
+                                            </a>
                                         </div>
-                                    </a>";
+                                        <div class = 'col-md-auto'>
+                                            <a href='./includes/del-notification_inc.php?nid=$nid' class='icon-btn fa-solid fa-trash icon-filled trash-notification'></a>
+                                        </div>
+                                    </div>";
                             }
                           
                         }
@@ -47,18 +61,32 @@
                             $nid = $notification['nid'];
 
                             if ($alrdyRead == '1'){
-                                echo "<a class='card shadow-sm notification read-notification' href='profile.php?uid=$userSrc'>       
-                                        <div class = 'card-text'>
-                                            ¡@$username se ha unido al club $clubname!
-                                        </div>
-                                    </a>";
+                                  echo "<div class='d-flex row-notif'>
+                                            <div class = 'col-md-auto'>
+                                                <a class='card shadow-sm notification read-notification' href='profile.php?uid=$userSrc'>
+                                                    <div class = 'card-text'>
+                                                        ¡@$username se ha unido al club $clubname!
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class = 'col-md-auto'>
+                                                <a href='./includes/del-notification_inc.php?nid=$nid' class='icon-btn fa-solid fa-trash icon-filled trash-notification'></a>
+                                            </div>
+                                        </div>";
                             }
                             else {
-                                echo "<a class='card shadow-sm notification' href='profile.php?uid=$userSrc'>       
-                                        <div class = 'card-text'>
-                                            ¡@$username se ha unido al club $clubname!
+                                echo "<div class='d-flex row-notif'>
+                                        <div class = 'col-md-auto'>
+                                            <a class='card shadow-sm notification href='profile.php?uid=$userSrc'>
+                                                <div class = 'card-text'>
+                                                    ¡@$username se ha unido al club $clubname!
+                                                </div>
+                                            </a>
                                         </div>
-                                    </a>";
+                                        <div class = 'col-md-auto'>
+                                            <a href='./includes/del-notification_inc.php?nid=$nid' class='icon-btn fa-solid fa-trash icon-filled trash-notification'></a>
+                                        </div>
+                                    </div>";
                             }
                         }
                     }

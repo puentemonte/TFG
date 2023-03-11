@@ -414,18 +414,22 @@ function update_list($isbn, $conn, $list) {
     session_start();
     $userid = $_SESSION["userid"]; 
     if ($userid == 0)
-        return false; // no está iniciada la sesión
+        return false; // not logged
+
+    // to update the number of pages
+    $query = mysqli_query($conn, "SELECT * FROM books WHERE isbn = '$isbn';");
+    $book_info = mysqli_fetch_array($query);
+    $max_pages = $book_info['pages'];
 
     $query = mysqli_query($conn, "SELECT * FROM books_users WHERE userId = '$userid' AND isbn = '$isbn';");
 
     if (mysqli_num_rows($query) > 0) // already exists -> update
-        $update = mysqli_query($conn, "UPDATE books_users SET list = '$list' WHERE userId = '$userid' AND isbn = '$isbn';");
+        $update = mysqli_query($conn, "UPDATE books_users SET pages = '$max_pages', list = '$list' WHERE userId = '$userid' AND isbn = '$isbn';");
     else // doesn't exist -> insert
-        $insert = mysqli_query($conn, "INSERT INTO books_users (isbn, userId, list) VALUES ('$isbn', '$userid', '$list');");
+        $insert = mysqli_query($conn, "INSERT INTO books_users (isbn, userId, pages, list) VALUES ('$isbn', '$userid', '$max_pages', '$list');");
     
     $update = date("Y-m-d H:i:s");
     mysqli_query($conn, "UPDATE books_users SET dateStamp = '$update' WHERE userId = '$userid' AND isbn = '$isbn'");
-    
     return true;
 }
 
@@ -1013,4 +1017,8 @@ function is_open_discussion($conn, $did) {
         return true;
     }
     return false;
+}
+
+function delete_notification($conn, $nid){
+    mysqli_query($conn, "DELETE FROM notifications WHERE nid = '$nid';");
 }

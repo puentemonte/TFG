@@ -12,11 +12,11 @@
 9) **[ x ]** Recomendación de libros (por la fecha) (ERIK)
 10) **[ X ]** Modificar Inicio para que contenga Social y quitar de Social el general y clubes (ERIK)
 11) **[  ]** Subir imágenes (perfil y portada libro) (JUNTOS)
-12) **[  ]** Añadir botón borrar notis (ELENA)
+12) **[ X ]** Añadir botón borrar notis (ELENA)
 13) **[ X ]** Icono que muestre el numero de notis (ELENA)
 14) **[ X ]** Links a perfiles desde clubes y comentario (ERIK)
 15) **[ X ]** Links a libros desde clubes (ELENA)
-16) **[  ]** Actualización de las páginas (al máximo numero de páginas) cuando se lee un libro (ELENA)
+16) **[ X ]** Actualización de las páginas (al máximo numero de páginas) cuando se lee un libro (ELENA)
 17) **[  ]** Añadir libros, clubes, usuarios y eventos (JUNTOS)
 18) **[  ]** Modificar css
 	- **[  ]** Social: poner espacio y formato de titulos
@@ -27,3 +27,5 @@
 21) **[  ]** Permitir que los creadores de un club puedan eliminar el club en lugar de abandonarlo
 22) **[  ]** Añadir en el libro la información relativa a los géneros
 23) **[  ]** Poder borrar tus reseñas desde la página de libros
+24) **[  ]** Hacer un footer profesional
+

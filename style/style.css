@@ -415,3 +415,20 @@ input[type=number] {
     width: 350px;
     height: auto;
 }
+
+.row-notif{
+    height: auto;
+    width: 500px;
+    margin: 0 auto;
+}
+
+.trash-notification {
+    font-size: 1.3em;
+    text-decoration: none;
+    color: var(--primary-color);
+    margin: 13px 5px;
+}
+
+.trash-notification:hover{
+    color:var(--tertiary-color);
+}

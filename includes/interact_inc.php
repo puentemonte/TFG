@@ -7,9 +7,10 @@ require_once "functions_inc.php";
 if (isset($_GET["list"])) { // updating the list
     $list = $_GET["list"];
     $isbn = $_GET["isbn"];
-
+    
     // update the list
     $ret = update_list($isbn, $conn, $list);
+
     if ($ret == false)
         header("location: ../login.php"); // el usuario debe iniciar sesión 
     else    
