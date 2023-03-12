@@ -1022,3 +1022,52 @@ function is_open_discussion($conn, $did) {
 function delete_notification($conn, $nid){
     mysqli_query($conn, "DELETE FROM notifications WHERE nid = '$nid';");
 }
+
+function emptyInputAskVerified($fullname){
+    $result; 
+    if (empty($fullname)){
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+}
+
+function ask_verified($conn, $fullname, $motivation){
+    if (!session_id()) session_start();
+    $uid = $_SESSION['userid']; 
+
+    mysqli_query($conn, "INSERT INTO requests (userid, fullname, motivation) VALUES ('$uid', '$fullname', '$motivation');");
+}
+
+function isAdmin($conn, $uid){
+    $query = mysqli_query($conn, "SELECT * FROM users WHERE userId = '$uid';");
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+    if($rows[0]['administrator']){
+        return true;
+    }
+    return false;
+}
+
+function get_all_requests($conn) {
+    $query = mysqli_query($conn, "SELECT * FROM requests");
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+    return $rows;
+}
+
+function accept_request($conn, $rid, $uid){
+    // First update the users table 
+    mysqli_query($conn, "UPDATE users SET verified = 1 WHERE userId = '$uid';");
+
+    // Second delete the request
+    delete_request($conn, $rid);
+}
+
+function delete_request($conn, $rid){
+    mysqli_query($conn, "DELETE FROM requests WHERE rid = '$rid';");
+}

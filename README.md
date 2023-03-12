@@ -6,7 +6,7 @@
 	- Evento: Título, fecha y hora, ubicación y botón de suscripción
 4) **[ X ]** Eliminar eventos --> verificaos (ERIK)
 5) **[  ]** Notificación de eventos --> verificaos (ELENA)
-6) **[  ]** Gestión de usuarios verificados (ELENA)
+6) **[ X ]** Gestión de usuarios verificados (ELENA)
 7) **[ X ]** Discusiones cerradas que impidan hablar + respuestas (ERIK)
 8) **[  ]** Ver distribución del rating (JUNTOS)
 9) **[ x ]** Recomendación de libros (por la fecha) (ERIK)
@@ -28,4 +28,7 @@
 22) **[  ]** Añadir en el libro la información relativa a los géneros
 23) **[  ]** Poder borrar tus reseñas desde la página de libros
 24) **[  ]** Hacer un footer profesional
+25) **[  ]** Visualizar los usuarios que son verificados y los que no (desde el perfil, desde la búsqueda y desde social)
+26) **[  ]** Poder eliminar reseñas desde el libro (administradores y el usuario que puso el comentario)
+
 

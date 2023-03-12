@@ -70,15 +70,27 @@
               <li><a class='dropdown-item' href='clubs.php'>Mis clubes</a></li>
               <li><a class='dropdown-item' href='myevents.php'>Mis eventos</a></li>
               <li><hr class='dropdown-divider'></li>";
+
               if(isVerified($conn, $uid)) {
                 echo "<li><a class='dropdown-item' href='addbook.php'>Añadir libro</a></li>
                 <li><a class='dropdown-item' href='addclub.php'>Crear club</a></li>
                 <li><a class='dropdown-item' href='addevent.php'>Crear evento</a></li>
                 <li><hr class='dropdown-divider'></li>";
               }
+              else {
+                echo "<li><a class='dropdown-item' href='askverified.php'>Solicitar verificado</a></li>
+                <li><hr class='dropdown-divider'></li>";
+              }
+
               echo "<li><a class='dropdown-item' href='settings.php'>Ajustes</a></li>
-              <li><a class='dropdown-item' href='includes/logout_inc.php'>Cerrar sesión</a></li>
-            </ul>
+              <li><a class='dropdown-item' href='includes/logout_inc.php'>Cerrar sesión</a></li>";
+
+              if(isAdmin($conn, $uid)){
+                echo "<li><hr class='dropdown-divider'></li>
+                <li><a class='dropdown-item' href='manage-requests.php'>Administrar verificados</a></li>";
+              }
+
+            echo "</ul>
           </div>";
         }
         else {
