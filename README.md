@@ -2,7 +2,7 @@
 
 1) **[ X ]** Crear club de lectura (ELENA)
 2) **[ X ]** Crear eventos --> verificaos (ERIK)
-3) **[  ]** Página de eventos (JUNTOS)
+3) **[ X ]** Página de eventos (JUNTOS)
 	- Evento: Título, fecha y hora, ubicación y botón de suscripción
 4) **[ X ]** Eliminar eventos --> verificaos (ERIK)
 5) **[  ]** Notificación de eventos --> verificaos (ELENA)

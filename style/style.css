@@ -432,3 +432,13 @@ input[type=number] {
 .trash-notification:hover{
     color:var(--tertiary-color);
 }
+
+.icon-event{
+    text-decoration: none;
+    margin-right: 0.25em;
+    color: var(--tertiary-color);
+}
+
+.mb-event{
+    margin-bottom: 1em;
+}

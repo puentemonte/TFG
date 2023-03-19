@@ -1071,3 +1071,30 @@ function accept_request($conn, $rid, $uid){
 function delete_request($conn, $rid){
     mysqli_query($conn, "DELETE FROM requests WHERE rid = '$rid';");
 }
+
+function get_all_events($conn){
+    $query = mysqli_query($conn, "SELECT * FROM events ORDER BY dateStamp ASC");
+
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+
+    return $rows;
+}
+
+function is_assistant($conn, $eid, $uid){
+    $query = mysqli_query($conn, "SELECT * FROM assistants WHERE eid = '$eid' AND userid = '$uid';");
+
+    if (mysqli_num_rows($query) > 0) // it's not an assistant yet
+        return true;
+    else
+        return false;
+}
+
+function asssit_event($conn, $eid, $uid) {
+    mysqli_query($conn, "INSERT INTO assistants (eid, userid) VALUES ('$eid', '$uid');");
+}
+
+function quit_event($conn, $eid, $uid) {
+    mysqli_query($conn, "DELETE FROM assistants WHERE eid = '$eid' AND userid = '$uid';");
+}

@@ -35,7 +35,7 @@
           <li><a href="index.php" class="nav-link px-2 mr-custom"><b>Inicio</b></a></li>
           <li><a href="social.php" class="nav-link px-2 mr-custom"><b>Social</b></a></li>
           <li><a href="clubs.php" class="nav-link px-2 mr-custom"><b>Clubs de Lectura</b></a></li>
-          <li><a href="#" class="nav-link px-2 mr-custom"><b>Eventos</b></a></li>
+          <li><a href="events.php" class="nav-link px-2 mr-custom"><b>Eventos</b></a></li>
         </ul>
 
         <form action = "search.php" class="d-flex" method="GET" role="search">
