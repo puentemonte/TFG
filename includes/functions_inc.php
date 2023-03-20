@@ -722,7 +722,7 @@ function quit_club($conn, $cid){
 
         $query = mysqli_query($conn, "SELECT * FROM clubs WHERE cid = '$cid';");
         $club_info = mysqli_fetch_array($query);
-        $numMembers = $club_info['numMembers'] + 1;
+        $numMembers = $club_info['numMembers'] - 1;
 
         mysqli_query($conn, "UPDATE clubs SET numMembers = '$numMembers' WHERE cid = '$cid';");
     }
