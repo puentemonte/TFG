@@ -442,3 +442,21 @@ input[type=number] {
 .mb-event{
     margin-bottom: 1em;
 }
+
+.rating-progress{
+    margin: 0.25em 0;
+}
+
+.icon-rating-dis{
+    font-size: 1.4em;
+    text-decoration: none;
+    color: var(--tertiary-color);
+}
+
+.no-m{
+    margin: 0;
+}
+
+.one-star {
+    margin-left: 0.15em;
+}

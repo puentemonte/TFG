@@ -18,6 +18,12 @@
         $list = $ret['list'];
         $rating = $ret['rating'];
         $reviews = $ret['reviews'];
+        $distribution_rating = $ret['distribution_ratings'];
+        $five_stars = $distribution_rating['5']; 
+        $four_stars = $distribution_rating['4'];
+        $three_stars = $distribution_rating['3'];
+        $two_stars = $distribution_rating['2'];
+        $one_stars = $distribution_rating['1'];
 
         echo "<body>
                 <div class='mt-custom'>
@@ -68,82 +74,147 @@
                             }
                             echo "</div>
                         </div>
-                        <div class='col-md-auto ml-custom special-card'>
-                            <div class='row'>
-                                <div class='col text-center'>";
-                                if($list == "reading")
-                                    echo "<button class='icon-btn'><a href='includes/interact_inc.php?list=reading&isbn=$isbn' class='fa-solid fa-book-open-reader icon-filled'></a></button>";
-                                else
-                                    echo "<button class='icon-btn'><a href='includes/interact_inc.php?list=reading&isbn=$isbn' class='fa-solid fa-book-open-reader icon'></a></button>"; 
-                                    
-                                echo "<p class='text-icon'>Leyendo</p>
+                        <div class='col-md-auto ml-custom'>
+                            <div class = 'special-card'>
+                                <div class='row'>
+                                    <div class='col text-center'>";
+                                    if($list == "reading")
+                                        echo "<button class='icon-btn'><a href='includes/interact_inc.php?list=reading&isbn=$isbn' class='fa-solid fa-book-open-reader icon-filled'></a></button>";
+                                    else
+                                        echo "<button class='icon-btn'><a href='includes/interact_inc.php?list=reading&isbn=$isbn' class='fa-solid fa-book-open-reader icon'></a></button>"; 
+                                        
+                                    echo "<p class='text-icon'>Leyendo</p>
+                                    </div>
+                                    <div class='col text-center'>";
+                                    if($list == "read")
+                                        echo "<button class='icon-btn'><a href='includes/interact_inc.php?list=read&isbn=$isbn' class='fa fa-book icon-filled'></a></button>";
+                                    else
+                                        echo "<button class='icon-btn'><a href='includes/interact_inc.php?list=read&isbn=$isbn' class='fa fa-book icon'></a></button>"; 
+                                    echo "<p class='text-icon'>Leído</p>
+                                    </div>
+                                    <div class='col text-center'>";
+                                    if($list == "pending")
+                                        echo "<button class='icon-btn'><a href='includes/interact_inc.php?list=pending&isbn=$isbn' class='fa-solid fa-bookmark icon-filled'></a></button>";
+                                    else
+                                        echo "<button class='icon-btn'><a href='includes/interact_inc.php?list=pending&isbn=$isbn' class='fa-solid fa-bookmark icon'></a></button>";
+                                    echo "<p class='text-icon'>Pendiente</p>
+                                    </div>                       
                                 </div>
-                                <div class='col text-center'>";
-                                if($list == "read")
-                                    echo "<button class='icon-btn'><a href='includes/interact_inc.php?list=read&isbn=$isbn' class='fa fa-book icon-filled'></a></button>";
-                                else
-                                    echo "<button class='icon-btn'><a href='includes/interact_inc.php?list=read&isbn=$isbn' class='fa fa-book icon'></a></button>"; 
-                                echo "<p class='text-icon'>Leído</p>
+                                <div class='row text-center'>
+                                    <form method='post' action='includes/interact_inc.php?isbn=$isbn'>
+                                        <input type='number' name='pages' id='pages' class='form-control txt-box' value=$pages>
+                                        <label>/ $total_pages</label>
+                                    </form>
                                 </div>
-                                <div class='col text-center'>";
-                                if($list == "pending")
-                                    echo "<button class='icon-btn'><a href='includes/interact_inc.php?list=pending&isbn=$isbn' class='fa-solid fa-bookmark icon-filled'></a></button>";
-                                else
-                                    echo "<button class='icon-btn'><a href='includes/interact_inc.php?list=pending&isbn=$isbn' class='fa-solid fa-bookmark icon'></a></button>";
-                                echo "<p class='text-icon'>Pendiente</p>
-                                </div>                       
+                                <div class='row text-center'>
+                                    <div class='col'>";
+                                        if($rating == NULL){
+                                            echo "<button class='icon-btn'><a href='includes/interact_inc.php?rating=1&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=2&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=3&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=4&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=5&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>";
+                                        }
+                                        else if ($rating == '1'){
+                                            echo "<button class='icon-btn'><a href='includes/interact_inc.php?rating=1&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=2&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=3&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=4&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=5&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>";
+                                        }
+                                        else if ($rating == '2'){
+                                            echo "<button class='icon-btn'><a href='includes/interact_inc.php?rating=1&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=2&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=3&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=4&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=5&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>";
+                                        }
+                                        else if ($rating == '3'){
+                                            echo "<button class='icon-btn'><a href='includes/interact_inc.php?rating=1&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=2&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=3&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=4&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=5&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>";
+                                        }
+                                        else if ($rating == '4'){
+                                            echo "<button class='icon-btn'><a href='includes/interact_inc.php?rating=1&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=2&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=3&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=4&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=5&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>";
+                                        }
+                                        else if ($rating == '5'){
+                                            echo "<button class='icon-btn'><a href='includes/interact_inc.php?rating=1&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=2&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=3&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=4&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
+                                            <button class='icon-btn'><a href='includes/interact_inc.php?rating=5&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>";
+                                        }
+                                    echo "</div>
+                                </div>
                             </div>
-                            <div class='row text-center'>
-                                <form method='post' action='includes/interact_inc.php?isbn=$isbn'>
-                                    <input type='number' name='pages' id='pages' class='form-control txt-box' value=$pages>
-                                    <label>/ $total_pages</label>
-                                </form>
-                            </div>
-                            <div class='row text-center'>
-                                <div class='col'>";
-                                    if($rating == NULL){
-                                        echo "<button class='icon-btn'><a href='includes/interact_inc.php?rating=1&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=2&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=3&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=4&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=5&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>";
-                                    }
-                                    else if ($rating == '1'){
-                                        echo "<button class='icon-btn'><a href='includes/interact_inc.php?rating=1&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=2&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=3&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=4&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=5&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>";
-                                    }
-                                    else if ($rating == '2'){
-                                        echo "<button class='icon-btn'><a href='includes/interact_inc.php?rating=1&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=2&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=3&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=4&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=5&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>";
-                                    }
-                                    else if ($rating == '3'){
-                                        echo "<button class='icon-btn'><a href='includes/interact_inc.php?rating=1&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=2&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=3&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=4&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=5&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>";
-                                    }
-                                    else if ($rating == '4'){
-                                        echo "<button class='icon-btn'><a href='includes/interact_inc.php?rating=1&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=2&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=3&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=4&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=5&isbn=$isbn' class='fa-solid fa-star icon rating'></a></button>";
-                                    }
-                                    else if ($rating == '5'){
-                                        echo "<button class='icon-btn'><a href='includes/interact_inc.php?rating=1&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=2&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=3&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=4&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>
-                                        <button class='icon-btn'><a href='includes/interact_inc.php?rating=5&isbn=$isbn' class='fa-solid fa-star icon-filled rating'></a></button>";
-                                    }
-                                echo "</div>
+                            <div class='mt-4'>
+                                <h5 class='h5 fw-normal'>Valoraciones</h5>
+                                <div class='col mt-progress-bar mt-3'>
+                                    <div class = 'row'>
+                                        <div class = 'col-md-auto'>
+                                            <p class = 'no-m'>5 <i class='fa-solid fa-star icon-rating-dis'></i></p>
+                                        </div>
+                                        <div class = 'col'>
+                                            <div class='progress rating-progress'>
+                                                <div class='progress-bar bg-progress' role='progressbar' style='width: $five_stars%' aria-valuenow='$five_stars' aria-valuemin='0' aria-valuemax='100'></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col mt-progress-bar'>
+                                    <div class = 'row'>
+                                        <div class = 'col-md-auto'>
+                                            <p class = 'no-m'>4 <i class='fa-solid fa-star icon-rating-dis'></i></p>
+                                        </div>
+                                        <div class = 'col'>
+                                            <div class='progress rating-progress'>
+                                                <div class='progress-bar bg-progress' role='progressbar' style='width: $four_stars%'' aria-valuenow='$four_stars' aria-valuemin='0' aria-valuemax='100'></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col mt-progress-bar'>
+                                    <div class = 'row'>
+                                        <div class = 'col-md-auto'>
+                                            <p class = 'no-m'>3 <i class='fa-solid fa-star icon-rating-dis'></i></p>
+                                        </div>
+                                        <div class = 'col'>
+                                            <div class='progress rating-progress'>
+                                                <div class='progress-bar bg-progress' role='progressbar' style='width: $three_stars%'' aria-valuenow='$three_stars' aria-valuemin='0' aria-valuemax='100'></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col mt-progress-bar'>
+                                    <div class = 'row'>
+                                        <div class = 'col-md-auto'>
+                                            <p class = 'no-m'>2 <i class='fa-solid fa-star icon-rating-dis'></i></p>
+                                        </div>
+                                        <div class = 'col'>
+                                            <div class='progress rating-progress'>
+                                                <div class='progress-bar bg-progress' role='progressbar' style='width: $two_stars%'' aria-valuenow='$two_stars' aria-valuemin='0' aria-valuemax='100'></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col mt-progress-bar'>
+                                    <div class = 'row'>
+                                        <div class = 'col-md-auto'>
+                                            <p class = 'no-m'>1 <i class='fa-solid fa-star icon-rating-dis one-star'></i></p>
+                                        </div>
+                                        <div class = 'col'>
+                                            <div class='progress rating-progress'>
+                                                <div class='progress-bar bg-progress' role='progressbar' style='width: $one_stars%'' aria-valuenow='$one_stars' aria-valuemin='0' aria-valuemax='100'></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

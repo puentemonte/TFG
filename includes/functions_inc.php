@@ -300,7 +300,7 @@ function get_full_info($conn, $isbn, $uid){
     //$avg_rating = get_avg_rating($reviews);       
 
     // get rating distribution
-    //$distribution_ratings = get_distribution_ratings($reviews);
+    $distribution_ratings = get_distribution_ratings($reviews);
 
     $ret = array("title" => $book_data['title'], 
                 "author" => $book_data['author'],
@@ -315,8 +315,8 @@ function get_full_info($conn, $isbn, $uid){
                 "rating" => $book_user_data == NULL ? NULL : $book_user_data['rating'],
                 "list" => $book_user_data == NULL ? 'none' : $book_user_data['list'],
                 "reviews" => $reviews, 
-                /*"avg_rating" => $avg_rating,
-"distribution_ratings" => $distribution_ratings*/);
+                /*"avg_rating" => $avg_rating,*/
+                "distribution_ratings" => $distribution_ratings);
     
     return $ret;
 }
@@ -372,25 +372,25 @@ function get_avg_rating($reviews){
 }
 
 function get_distribution_ratings($reviews){
-    // 0.5 -> 1, 1 -> 2, 1.5 -> 3...
-    $ret = array(1 => 0,
-                2 => 0,
-                3 => 0,
-                4 => 0,
-                5 => 0,
-                6 => 0,
-                7 => 0,
-                8 => 0,
-                9 => 0,
-                10 => 0);
-
-    foreach($reviews as $key => $value) {
-        if ($value['rating'] != NULL){
-            $rating_10 = round($value * 2, 0);
-            ++$ret[$rating_10];
+    $ret = array('1' => 0,
+                '2' => 0,
+                '3' => 0,
+                '4' => 0,
+                '5' => 0);
+    $count = 0;
+    foreach($reviews as $rev) {
+        if ($rev['rating'] != NULL){
+            $rating = $rev['rating']; 
+            $ret[$rating]++;  
+            $count++;
         }
     }
-    return ret;
+
+    foreach ($ret as $i => $r) {
+        $ret[$i] = round(($r * 100) / $count, 0);
+    }
+
+    return $ret;
 }
 
 function get_url_export($url){
