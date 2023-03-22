@@ -19,6 +19,7 @@
         $rating = $ret['rating'];
         $reviews = $ret['reviews'];
         $distribution_rating = $ret['distribution_ratings'];
+        $avg_rating = $ret['avg_rating'];
         $five_stars = $distribution_rating['5']; 
         $four_stars = $distribution_rating['4'];
         $three_stars = $distribution_rating['3'];
@@ -155,6 +156,9 @@
                             </div>
                             <div class='mt-4'>
                                 <h5 class='h5 fw-normal'>Valoraciones</h5>
+                                <div class = 'text-center'>
+                                    <p class = 'avg-rating'> $avg_rating / 5 </p>
+                                </div>
                                 <div class='col mt-progress-bar mt-3'>
                                     <div class = 'row'>
                                         <div class = 'col-md-auto'>

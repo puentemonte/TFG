@@ -460,3 +460,17 @@ input[type=number] {
 .one-star {
     margin-left: 0.15em;
 }
+
+.avg-rating{
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.icon-verified{
+    font-size: x-large;
+    color: var(--primary-color);
+}
+
+.icon-verified-search{
+    color: var(--primary-color);
+}

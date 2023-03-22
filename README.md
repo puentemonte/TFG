@@ -28,7 +28,7 @@
 22) **[  ]** Añadir en el libro la información relativa a los géneros
 23) **[  ]** Poder borrar tus reseñas desde la página de libros
 24) **[  ]** Hacer un footer profesional
-25) **[  ]** Visualizar los usuarios que son verificados y los que no (desde el perfil, desde la búsqueda y desde social)
+25) **[ X ]** Visualizar los usuarios que son verificados y los que no (desde el perfil, desde la búsqueda y desde social)
 26) **[  ]** Poder eliminar reseñas desde el libro (administradores y el usuario que puso el comentario)
 27) **[  ]** Modificar las respuestas para que tengan sentido (ELENA)
 

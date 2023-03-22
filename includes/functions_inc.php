@@ -297,7 +297,7 @@ function get_full_info($conn, $isbn, $uid){
     $reviews = get_reviews($conn, $isbn);
     
     // get average rating
-    //$avg_rating = get_avg_rating($reviews);       
+    $avg_rating = get_avg_rating($reviews);   
 
     // get rating distribution
     $distribution_ratings = get_distribution_ratings($reviews);
@@ -315,7 +315,7 @@ function get_full_info($conn, $isbn, $uid){
                 "rating" => $book_user_data == NULL ? NULL : $book_user_data['rating'],
                 "list" => $book_user_data == NULL ? 'none' : $book_user_data['list'],
                 "reviews" => $reviews, 
-                /*"avg_rating" => $avg_rating,*/
+                "avg_rating" => $avg_rating,
                 "distribution_ratings" => $distribution_ratings);
     
     return $ret;
@@ -367,7 +367,10 @@ function get_avg_rating($reviews){
     }
 
     // calculating the avg
-    $avg = acc / total;
+    if ($total == 0)
+        return 0;
+
+    $avg = $acc / $total;
     return round($avg, 1); // round to the first decimal 
 }
 
@@ -387,7 +390,10 @@ function get_distribution_ratings($reviews){
     }
 
     foreach ($ret as $i => $r) {
-        $ret[$i] = round(($r * 100) / $count, 0);
+        if ($count == 0)
+            $ret[$i] = 0;
+        else 
+            $ret[$i] = round(($r * 100) / $count, 0);
     }
 
     return $ret;
