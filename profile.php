@@ -25,10 +25,15 @@
                             <div class = 'text-center'>
                                 <img src='style/img/color-beige.png' alt='mdo' width='128' height='128' class='rounded-circle'>
                             </div>
-                            <div class = 'profile-user-info text-center'>
-                                <h2>$username <i class = 'fa-solid fa-circle-check icon-verified'></i></h2>
-                                <p class = 'profile-follow'>$followers seguidores</p>
-                                <p class = 'profile-follow'>$followed seguidos</p>
+                            <div class = 'profile-user-info text-center'>";
+                            if (isVerified($conn, $uid)){
+                                echo "<h2>$username <i class = 'fa-solid fa-circle-check icon-verified'></i></h2>";
+                            }
+                            else{
+                                echo "<h2>$username</h2>";
+                            }
+                                echo "<p class = 'profile-follow'>$followers seguidores</p>
+                                        <p class = 'profile-follow'>$followed seguidos</p>
                             </div>
                             ";
                             if (same_user($uid) === false){

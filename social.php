@@ -55,9 +55,15 @@
 							<div class='col-2'>
 								<img class='social-picture' src='style/img/color-beige.png' alt ='picture'>
 							</div>
-							<div class='col-4 username-overview'>
-								<p class='card-text'><a class='profile-link' href=profile.php?uid=$user><b>@$username</b> <i class = 'fa-solid fa-circle-check icon-verified-search'></i></a> ha leído:</p>
-							</div>
+							<div class='col-4 username-overview'>";
+								if (isVerified($conn, $user)){
+									echo "<p class='card-text'><a class='profile-link' href=profile.php?uid=$user><b>@$username</b> <i class = 'fa-solid fa-circle-check icon-verified-search'></i></a> ha leído:</p>";
+								}
+								else{
+									echo "<p class='card-text'><a class='profile-link' href=profile.php?uid=$user><b>@$username</b></a> ha leído:</p>";
+								}
+								
+						echo "</div>
 						</div>
 						<div class='row'>
 							<a class='dropdown-item' href='book.php?isbn=$isbn'>

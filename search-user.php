@@ -54,9 +54,15 @@
                             <div class='col-4'>
                                 <img class='search-picture' src='style/img/color-beige.png' alt ='picture'>
                             </div>
-                            <div class='col-4 username-overview'>
-                                <p class='card-text'><b>$username</b> <i class = 'fa-solid fa-circle-check icon-verified-search'></i></p>
-                            </div>
+                            <div class='col-4 username-overview'>";
+                            if (isVerified($conn, $uid)){
+                                echo "<p class='card-text'><b>$username</b> <i class = 'fa-solid fa-circle-check icon-verified-search'></i></p>";
+                            }
+                            else{
+                                echo "<p class='card-text'><b>$username</b></p>";
+                            }
+                                
+                        echo "</div>
                         </div>
                     </a>
                 </div>";
