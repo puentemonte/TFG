@@ -12,11 +12,6 @@
         $name = $ret['topic'];
         $creator_name = get_username($conn, $ret['creatorId']);
         $creator_uid = $ret['creatorId'];
-        $ans = NULL;
-
-        if(isset($_GET['reply'])){
-            $ans = $_GET['reply'];
-        }
 
         echo "<body>
                 <div class='mt-custom'>
@@ -27,18 +22,11 @@
                             <div class='answers'>";
                             if(is_open_discussion($conn, $did)){
                                 echo "<div class='row'>
-                                        <form action='includes/disinteract_inc.php?did=$did&reply=$ans&cid=$cid' method='POST'>
+                                        <form action='includes/disinteract_inc.php?did=$did&cid=$cid' method='POST'>
                                             <div class='d-flex flex-start w-100'>
-                                                <div class='form-outline w-100'>";
-                                                if(isset($_GET['reply'])){
-                                                    $ans_username = get_username($conn, $ans);
-                                                    echo "<textarea class='form-control' placeholder='Responder a @$ans_username' name='content' rows='4'style='background: #fff;'></textarea>";
-                                                }
-                                                else{
-                                                    echo "<textarea class='form-control' placeholder='Escribe tu comentario...' name='content' rows='4'style='background: #fff;'></textarea>";
-                                                }
-                                                    
-                                                echo "</div>
+                                                <div class='form-outline w-100'>
+                                                    <textarea class='form-control' placeholder='Escribe tu comentario...' name='content' rows='4'style='background: #fff;'></textarea>
+                                                </div>
                                             </div>
                                             <div class='float-end mt-2 pt-1 mb-comment'>
                                                 <button type='submit' name='comment' class='btn custom-color-button'><b>Publicar</b></button>
