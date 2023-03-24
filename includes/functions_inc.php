@@ -357,21 +357,25 @@ function get_reviews($conn, $isbn) {
 }
 
 function get_avg_rating($reviews){
-    $total = 0;
-    $acc = 0;
-    foreach($reviews as $value) {
-        if ($value['rating'] != NULL){
-            $acc += $value['rating'];
-            ++$total;
+    if (!empty($reviews)){
+        $total = 0;
+        $acc = 0;
+        foreach($reviews as $value) {
+            if ($value['rating'] != NULL){
+                $acc += $value['rating'];
+                ++$total;
+            }
         }
+
+        // calculating the avg
+        if ($total == 0)
+            return 0;
+
+        $avg = $acc / $total;
+        return round($avg, 1); // round to the first decimal 
     }
-
-    // calculating the avg
-    if ($total == 0)
+    else
         return 0;
-
-    $avg = $acc / $total;
-    return round($avg, 1); // round to the first decimal 
 }
 
 function get_distribution_ratings($reviews){
@@ -380,20 +384,23 @@ function get_distribution_ratings($reviews){
                 '3' => 0,
                 '4' => 0,
                 '5' => 0);
-    $count = 0;
-    foreach($reviews as $rev) {
-        if ($rev['rating'] != NULL){
-            $rating = $rev['rating']; 
-            $ret[$rating]++;  
-            $count++;
+    
+    if (!empty($reviews)){
+        $count = 0;
+        foreach($reviews as $rev) {
+            if ($rev['rating'] != NULL){
+                $rating = $rev['rating']; 
+                $ret[$rating]++;  
+                $count++;
+            }
         }
-    }
-
-    foreach ($ret as $i => $r) {
-        if ($count == 0)
-            $ret[$i] = 0;
-        else 
-            $ret[$i] = round(($r * 100) / $count, 0);
+    
+        foreach ($ret as $i => $r) {
+            if ($count == 0)
+                $ret[$i] = 0;
+            else 
+                $ret[$i] = round(($r * 100) / $count, 0);
+        }
     }
 
     return $ret;
@@ -540,7 +547,7 @@ function get_discussion($conn, $did) {
 }
 
 function get_all_answers($conn, $did) {
-    $query = mysqli_query($conn, "SELECT * FROM answers WHERE did = '$did' ORDER BY dateStamp DESC");
+    $query = mysqli_query($conn, "SELECT * FROM answers WHERE did = '$did' ORDER BY dateStamp ASC");
     $rows = array();
     while($row = mysqli_fetch_array($query))
         $rows[] = $row;

@@ -71,20 +71,27 @@
                                                         echo "<small class='text-muted'>En respuesta a <b>@$answer</b></small>";
                                                     }
                                                     echo "<p class='mb-0'>$comment </p>
-                                                    <div class='row'>";
+                                                    <div class='row reply-interaction-row'>
+                                                        <div class='col'>
+                                                            <form class='reply-form' action='includes/disinteract_inc.php?did=$did&reply=$uid&cid=$cid' method='POST'>
+                                                                <div class='row'>
+                                                                    <div class='col'>
+                                                                        <input name='content' class='form-control' placeholder='Responde a este comentario...'></input>
+                                                                    </div>
+                                                                    <div class='col-md-auto'>
+                                                                        <button type='submit' name='comment' class='btn custom-color-button'><b>Responder</b></button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>";
                                                     if(is_club_mod($conn, $cid)){
                                                         echo " <div class='col-1'>
                                                                     <form action='includes/disinteract_inc.php?did=$did&cid=$cid&msg=$aid' method='POST'>
                                                                         <button type='submit' name='delete' class='icon-btn notif fa-solid fa-trash icon-filled margin-reply'></button>
                                                                     </form>
                                                                 </div>";
-                                                    }
-                                                    echo "<div class='col-1'>
-                                                            <form action='discussion.php?did=$did&reply=$uid&cid=$cid' method='POST'>
-                                                                <button type='submit' name='reply' class='icon-btn notif fa-solid fa-reply icon-filled margin-reply'></button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
+                                                    }  
+                                                echo "</div>
                                                 </div>
                                             </div>
                                         </div>

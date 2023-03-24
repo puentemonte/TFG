@@ -287,7 +287,7 @@ input[type=number] {
 }
 
 .mb-comment{
-    margin-bottom: 3em;
+    margin-bottom: 1em;
 }
 
 .bg-progress{
@@ -473,4 +473,12 @@ input[type=number] {
 
 .icon-verified-search{
     color: var(--primary-color);
+}
+
+.reply-form {
+    width: auto;
+}
+
+.reply-interaction-row {
+    margin-top: 0.5em;
 }

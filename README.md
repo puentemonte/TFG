@@ -5,7 +5,7 @@
 3) **[ X ]** Página de eventos (JUNTOS)
 	- Evento: Título, fecha y hora, ubicación y botón de suscripción
 4) **[ X ]** Eliminar eventos --> verificaos (ERIK)
-5) **[  ]** Notificación de eventos --> verificaos (ELENA)
+5) **[  ]** Notificación de eventos (ELENA)
 6) **[ X ]** Gestión de usuarios verificados (ELENA)
 7) **[ X ]** Discusiones cerradas que impidan hablar (ERIK)
 8) **[ X ]** Ver distribución del rating (JUNTOS)
@@ -30,5 +30,6 @@
 24) **[  ]** Hacer un footer profesional
 25) **[ X ]** Visualizar los usuarios que son verificados y los que no (desde el perfil, desde la búsqueda y desde social)
 26) **[  ]** Poder eliminar reseñas desde el libro (administradores y el usuario que puso el comentario)
-27) **[  ]** Modificar las respuestas para que tengan sentido (ELENA)
+27) **[ X ]** Modificar las respuestas para que tengan sentido (ELENA)
+27) **[  ]** Añadir un estado a las discusiones para que se vea si están cerradas o no
 
