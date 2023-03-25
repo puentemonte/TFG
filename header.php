@@ -47,6 +47,7 @@
         if (isset($_SESSION["useruid"])){
             $nickname = $_SESSION['useruid'];
             $uid = $_SESSION['userid'];
+            set_event_notifications($conn, $uid);
             $num_notis = get_unread_notifications($conn, $uid);
 
             echo "

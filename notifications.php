@@ -89,6 +89,41 @@
                                     </div>";
                             }
                         }
+                        else if ($topic == "events"){
+                            $alrdyRead = $notification['alrdyRead'];
+                            $nid = $notification['nid'];
+                            $eid = $notification['eid'];
+                            $event_name = get_event_name($conn, $eid);
+
+                            if ($alrdyRead == '1') {
+                                  echo "<div class='d-flex row-notif'>
+                                            <div class = 'col-md-auto'>
+                                                <div class='card shadow-sm notification read-notification'>
+                                                    <div class = 'card-text'>
+                                                        ¡Quedan menos de 7 días para que empiece $event_name!
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class = 'col-md-auto'>
+                                                <a href='./includes/del-notification_inc.php?nid=$nid' class='icon-btn fa-solid fa-trash icon-filled trash-notification'></a>
+                                            </div>
+                                        </div>";
+                            }
+                            else {
+                                echo "<div class='d-flex row-notif'>
+                                        <div class = 'col-md-auto'>
+                                            <div class='card shadow-sm notification'>
+                                                <div class = 'card-text'>
+                                                    ¡Quedan menos de 7 días para que empiece $event_name!
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class = 'col-md-auto'>
+                                            <a href='./includes/del-notification_inc.php?nid=$nid' class='icon-btn fa-solid fa-trash icon-filled trash-notification'></a>
+                                        </div>
+                                    </div>";
+                            }
+                        }
                     }
               echo "</div>
                 </div>

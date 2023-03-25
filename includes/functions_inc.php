@@ -1086,6 +1086,10 @@ function delete_request($conn, $rid){
 }
 
 function get_all_events($conn){
+    // delete the passed events
+    $current_date = date("Y-m-d H:i:s");
+    mysqli_query($conn, "DELETE FROM events WHERE DATE(dateStamp) < DATE('$current_date');");
+
     $query = mysqli_query($conn, "SELECT * FROM events ORDER BY dateStamp ASC");
 
     $rows = array();
@@ -1110,4 +1114,59 @@ function asssit_event($conn, $eid, $uid) {
 
 function quit_event($conn, $eid, $uid) {
     mysqli_query($conn, "DELETE FROM assistants WHERE eid = '$eid' AND userid = '$uid';");
+}
+
+function is_creator($conn, $creator_uid){
+    if (!session_id()) session_start();
+
+    if (!isset($_SESSION['userid'])) // not logged
+        return false; 
+        
+    $userid = $_SESSION['userid'];
+
+    if ($userid == $creator_uid) // the same user id (uid)
+        return true;
+    else
+        return false;
+}
+
+function set_event_notifications($conn, $uid){
+    $current_date = date_create(date("Y-m-d H:i:s"));
+
+    $query = mysqli_query($conn, "SELECT * FROM assistants WHERE userid = '$uid'");
+
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+
+    foreach($rows as $event){
+        $eid = $event["eid"];
+        $aid = $event["aid"];
+        $date = get_event_date($conn, $eid);
+        $event_date = date_create($date);
+
+        $diff = date_diff($current_date, $event_date);
+
+        if($diff->format("%R%a") <= 7){
+            if ($diff->format("%R%a") > 0)
+                mysqli_query($conn, "INSERT INTO notifications (userDest, userSrc, topic, alrdyRead, eid) VALUES ('$uid', '0', 'events', '0', $eid);");
+            mysqli_query($conn, "DELETE FROM assistants WHERE aid = $aid;");
+        }
+    }   
+}
+
+function get_event_date($conn, $eid){
+    $query = mysqli_query($conn, "SELECT * FROM events WHERE eid = '$eid';");
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+    return $rows[0]['dateStamp'];
+}
+
+function get_event_name($conn, $eid){
+    $query = mysqli_query($conn, "SELECT * FROM events WHERE eid = '$eid';");
+    $rows = array();
+    while($row = mysqli_fetch_array($query))
+        $rows[] = $row;
+    return $rows[0]['title'];
 }

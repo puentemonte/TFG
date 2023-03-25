@@ -63,7 +63,7 @@
                                                         <div class='col'>
                                                             <form class='reply-form' action='includes/disinteract_inc.php?did=$did&reply=$uid&cid=$cid' method='POST'>
                                                                 <div class='row'>
-                                                                    <div class='col'>
+                                                                    <div class='col-md'>
                                                                         <input name='content' class='form-control' placeholder='Responde a este comentario...'></input>
                                                                     </div>
                                                                     <div class='col-md-auto'>
@@ -72,7 +72,7 @@
                                                                 </div>
                                                             </form>
                                                         </div>";
-                                                    if(is_club_mod($conn, $cid)){
+                                                    if(is_club_mod($conn, $cid) || is_creator($conn, $uid)){
                                                         echo " <div class='col-1'>
                                                                     <form action='includes/disinteract_inc.php?did=$did&cid=$cid&msg=$aid' method='POST'>
                                                                         <button type='submit' name='delete' class='icon-btn notif fa-solid fa-trash icon-filled margin-reply'></button>
