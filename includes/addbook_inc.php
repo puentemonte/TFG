@@ -34,6 +34,10 @@ if(isset($_POST["submit"])) {
         header("location: ../addbook.php?error=invalidtype");
         exit();
     }
+    if($image_size > 800000){
+        header("location: ../addbook.php?error=maximumsize");
+        exit();
+    }
     
     addBook($conn, $title, $author, $isbn, $editorial, $translator, $pages, $releaseDate, $genres, $synopsis, $cover);
 

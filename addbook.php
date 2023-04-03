@@ -35,6 +35,14 @@
                         </div>
                 </div>";
         }
+        else if($_GET["error"] == "maximumsize"){
+            echo "<div class='mt-custom alert alert-danger d-flex align-items-center' role='alert'>
+                        <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='#exclamation-triangle-fill'/></svg>
+                        <div>
+                            La imagen excede el tamaño máximo permitido (800KB)
+                        </div>
+                </div>";
+        }
         else if ($_GET["error"] == "stmtfailed"){
             echo "<div class='mt-custom alert alert-danger d-flex align-items-center' role='alert'>
                         <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='#exclamation-triangle-fill'/></svg>
