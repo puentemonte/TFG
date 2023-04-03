@@ -46,13 +46,14 @@
         foreach($rows as $user_data) {
             $uid = $user_data['userId'];
             $username = $user_data['userUid'];
+            $picture = $user_data['picture'];
 
 
             echo "<div class='card shadow-sm search-user'>
                     <a class='dropdown-item' href='profile.php?uid=$uid'>
                         <div class='row'>
                             <div class='col-4'>
-                                <img class='search-picture' src='style/img/color-beige.png' alt ='picture'>
+                                <img class='search-picture' alt='$username' src=data:image;base64,".$picture.">
                             </div>
                             <div class='col-4 username-overview'>";
                             if (isVerified($conn, $uid)){

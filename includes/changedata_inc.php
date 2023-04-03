@@ -1,4 +1,7 @@
 <?php
+require_once "dbh_inc.php";
+require_once "functions_inc.php";
+
 session_start();
 if(isset($_POST["submit"])){
     // data from form
@@ -8,8 +11,24 @@ if(isset($_POST["submit"])){
     $email = $_POST["email"];
     $pronouns = $_POST["pronouns"];
 
-    require_once "dbh_inc.php";
-    require_once "functions_inc.php";
+    if(isset($_FILES['picture'])) {
+        $image_name = $_FILES['picture']['name'];
+        $image_tmpname  = $_FILES['picture']['tmp_name'];
+        $image_size = $_FILES['picture']['size'];
+        $file_type = strtolower(end(explode('.', $image_name)));
+        $picture = base64_encode(file_get_contents(addslashes($image_tmpname)));
+        if(invalidTypeImage($file_type)){
+            header("location: ../settings.php?error=invalidtype");
+            exit();
+        }
+        if($image_size > 800000){
+            header("location: ../settings.php?error=maximumsize");
+            exit();
+        }
+    }
+    else {
+        $picture = 0;
+    }
 
     // errors (username or email)
     if(emptyInputUpdate($username, $email) !== false) {
@@ -28,8 +47,7 @@ if(isset($_POST["submit"])){
         header("location: ../settings.php?error=emailtaken");
         exit();
     }
-
-    updateUser($conn, $fname, $surname, $username, $email, $pronouns);
+    updateUser($conn, $fname, $surname, $username, $email, $pronouns, $picture);
 }
 else {
     header("location: ../settings.php");

@@ -174,7 +174,7 @@ function createUser($conn, $fname, $surname, $username, $email, $pwd, $pronouns,
     if(!mysqli_stmt_prepare($stmt, $sql)){
         header("location: ../signup.php?error=stmtfailed");
         exit();
-    }     
+    }
 
     // security
     $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
@@ -205,33 +205,20 @@ function emptyInputUpdate($username, $email){
     return $result;
 }
 
-function updateUser($conn, $fname, $surname, $username, $email, $pronouns) {
+function updateUser($conn, $fname, $surname, $username, $email, $pronouns, $picture) {
     session_start();
     $userid = $_SESSION["userid"];
-    $sql = "UPDATE users SET userEmail = ?, userUid = ?, userName = ?, userSurname = ?, userPronouns = ? WHERE userId = ?;";
+    if($picture !== 0)
+        $update = mysqli_query($conn, "UPDATE users SET userEmail = '$email', userUid = '$username', userName = '$fname', userSurname = '$surname', userPronouns = '$pronouns', picture = '$picture' WHERE userId = '$userid';");
+    else
+        $update = mysqli_query($conn, "UPDATE users SET userEmail = '$email', userUid = '$username', userName = '$fname', userSurname = '$surname', userPronouns = '$pronouns' WHERE userId = '$userid';");
+    
+    $_SESSION["useruid"] =  $username;
+    $_SESSION["fname"] = $fname;
+    $_SESSION["surname"] = $surname;
+    $_SESSION["email"] = $email;
+    $_SESSION["pronouns"] = $pronouns;
 
-    // preparing the stmt
-    $stmt = mysqli_stmt_init($conn);
-    // error
-    if(!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../settings.php?error=stmtfailed");
-        exit();
-    }
-    else { 
-        mysqli_stmt_bind_param($stmt, "sssssi", $email, $username, $fname, $surname, $pronouns, $userid);
-        //, $fname, $surname, $pronouns
-        mysqli_stmt_execute($stmt);
-
-        // update session data
-        session_start();
-        $_SESSION["useruid"] =  $username;
-        $_SESSION["fname"] = $fname;
-        $_SESSION["surname"] = $surname;
-        $_SESSION["email"] = $email;
-        $_SESSION["pronouns"] = $pronouns;
-    }
-
-    mysqli_stmt_close($stmt);
     header("location: ../settings.php?error=none");
     exit();
 }
@@ -784,7 +771,7 @@ function get_profile_info($conn, $uid) {
     $query = mysqli_query($conn, "SELECT * FROM followers WHERE followed = '$uid';");
     $num_followers = mysqli_num_rows($query); 
 
-    $ret = array(//"picture" => $info_usr["picture"], --> TO DO
+    $ret = array("picture" => $info_usr["picture"],
                  "username" => $info_usr["userUid"],
                 "reading" => $info_reading,
                 "read" => $info_read,

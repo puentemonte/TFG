@@ -48,11 +48,12 @@
 				$user = $users[$index];
 				$user_info = get_user_info($conn, $user);
 				$username = $user_info['username'];
+				$picture = $user_info['picture'];
 
 				echo "<div class='col'>
 						<div class='row'>
 							<div class='col-2'>
-								<img class='social-picture' src='style/img/color-beige.png' alt ='picture'>
+								<img class='social-picture' alt='$username' src=data:image;base64,".$picture.">
 							</div>
 							<div class='col-4 username-overview'>";
 								if (isVerified($conn, $user)){

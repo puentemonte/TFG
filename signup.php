@@ -91,7 +91,7 @@
             <label for="floatingPassword" class='floating-input'>Repite tu contraseña*</label>
         </div>
         <div class="form-floating">
-            <select class="custom-select my-1 mr-sm-2 form-control" name = "pronouns">
+            <select class="custom-select my-1 mr-sm-2 form-control" name="pronouns">
                 <option selected>No seleccionado</option>
                 <option value="Él">Él</option>
                 <option value="Ella">Ella</option>

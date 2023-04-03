@@ -47,6 +47,8 @@
         if (isset($_SESSION["useruid"])){
             $nickname = $_SESSION['useruid'];
             $uid = $_SESSION['userid'];
+            $full_info = get_profile_info($conn, $uid);
+            $picture = $full_info['picture'];
             set_event_notifications($conn, $uid);
             $num_notis = get_unread_notifications($conn, $uid);
 
@@ -63,7 +65,7 @@
             <div class='dropdown text-end'>
             <a href='#' class='d-block link-dark text-decoration-none dropdown-toggle' data-bs-toggle='dropdown' aria-expanded='false'>
               <b>$nickname</b>
-              <img src='style/img/color-beige.png' alt='mdo' width='32' height='32' class='rounded-circle'>
+              <img class='rounded-circle' width='32' height='32' alt='$nickname' src=data:image;base64,".$picture.">
             </a>
             <ul class='dropdown-menu text-small'>
               <li><a class='dropdown-item' href='profile.php?uid=$uid'>Mi perfil</a></li>

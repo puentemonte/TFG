@@ -55,6 +55,22 @@
                         </div>
                 </div>";
         }
+        else if($_GET["error"] == "invalidtype"){
+            echo "<div class='mt-custom alert alert-danger d-flex align-items-center' role='alert'>
+                        <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='#exclamation-triangle-fill'/></svg>
+                        <div>
+                            El formato de la imagen debe ser PNG, JPG o JPEG
+                        </div>
+                </div>";
+        }
+        else if($_GET["error"] == "maximumsize"){
+            echo "<div class='mt-custom alert alert-danger d-flex align-items-center' role='alert'>
+                        <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='#exclamation-triangle-fill'/></svg>
+                        <div>
+                            La imagen excede el tamaño máximo permitido (800KB)
+                        </div>
+                </div>";
+        }
         else if ($_GET["error"] == "stmtfailed"){
             echo "<div class='mt-custom alert alert-danger d-flex align-items-center' role='alert'>
                         <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='#exclamation-triangle-fill'/></svg>
@@ -65,7 +81,7 @@
         }
     }
     ?>
-    <form action="includes/changedata_inc.php" method="post" novalidate>
+    <form action="includes/changedata_inc.php" method="post" enctype="multipart/form-data" novalidate>
         <div class="mt-custom-settings">
             <h2 class="h3 mb-3 fw-normal">Actualizar perfil</h2>
         </div>
@@ -95,6 +111,9 @@
                 <option value="Elle"<?php if ($pronouns === "Elle"){ echo "selected";}?>>Elle</option>
             </select>
             <label for="floatingInput" class='floating-input'>Pronombres</label>
+        </div>
+        <div>
+            <input type="file" class="form-control upload" name="picture" accept="image/png, image/jpeg, image/jpg">
         </div>
         <button class="w-100 btn btn-lg custom-color-button mb-custom" name="submit" type="submit">Actualizar</button>
     </form>

@@ -17,13 +17,14 @@
         $n_pending = count($pending);
         $n_read = count($read);
         $n_reading = count($reading);  
+        $picture = $ret["picture"];
 
         echo "<body>
                 <div class='mt-custom'>
                     <div class='row ml-profile mr-profile'>
                         <div class = 'col-md-auto profile-left-column'>
                             <div class = 'text-center'>
-                                <img src='style/img/color-beige.png' alt='mdo' width='128' height='128' class='rounded-circle'>
+                            <img class='rounded-circle' width='128' height='128' alt='$nickname' src=data:image;base64,".$picture.">
                             </div>
                             <div class = 'profile-user-info text-center'>";
                             if (isVerified($conn, $uid)){
