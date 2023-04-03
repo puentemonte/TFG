@@ -11,7 +11,7 @@
 8) **[ X ]** Ver distribución del rating (JUNTOS)
 9) **[ X ]** Recomendación de libros (por la fecha) (ERIK)
 10) **[ X ]** Modificar Inicio para que contenga Social y quitar de Social el general y clubes (ERIK)
-11) **[  ]** Subir imágenes (perfil y portada libro) (JUNTOS)
+11) **[ X ]** Subir imágenes (perfil y portada libro) (JUNTOS)
 12) **[ X ]** Añadir botón borrar notis (ELENA)
 13) **[ X ]** Icono que muestre el numero de notis (ELENA)
 14) **[ X ]** Links a perfiles desde clubes y comentario (ERIK)
