@@ -406,23 +406,6 @@ function get_distribution_ratings($reviews){
     return $ret;
 }
 
-function get_url_export($url){
-    $pfx = "https://drive.google.com/uc?export=view&id=";
-    $start = 0; // position from which we take the id
-    $num = 0; // num of slashes
-    for($i = 0; $i < strlen($url); ++$i){
-        if($url[$i] === '/'){
-            ++$num;
-            if($num === 5){
-                $start = $i + 1;
-            }
-            else if($num === 6)
-                $pfx .= substr($url, $start, ($i - $start));
-        }
-    }
-    return $pfx;
-}
-
 function update_list($isbn, $conn, $list) {
     session_start();
     $userid = $_SESSION["userid"]; 
@@ -517,9 +500,9 @@ function add_review($isbn, $conn, $comment) {
     return true;    
 }
 
-function emptyInputAddBook($title, $author, $isbn, $editorial, $pages, $releaseDate, $genres, $synopsis){
+function emptyInputAddBook($title, $author, $isbn, $editorial, $pages, $releaseDate, $genres, $synopsis, $image_size){
     $result;
-    if(empty($title) | empty($author) | empty($isbn) | empty($editorial) | empty($pages) | empty($releaseDate) | empty($genres) | empty($synopsis)){
+    if(empty($title) | empty($author) | empty($isbn) | empty($editorial) | empty($pages) | empty($releaseDate) | empty($genres) | empty($synopsis) | ($image_size == 0)){
         $result = true;
     }
     else {
@@ -536,9 +519,12 @@ function isbnExists($conn, $isbn){
         return true;
 }
 
-function addBook($conn, $title, $author, $isbn, $editorial, $translator, $pages, $releaseDate, $genres, $synopsis){
-    $cover_default = "https://drive.google.com/file/d/1st4B4XoGTskNZtOcYvgYfFJt-jk8TFub/view?usp=sharing"; // the cover by default
-    mysqli_query($conn, "INSERT INTO books (isbn, title, author, editorial, translator, pages, releaseDate, genres, synopsis, cover) VALUES ('$isbn', '$title', '$author', '$editorial', '$translator', '$pages', '$releaseDate', '$genres', '$synopsis', '$cover_default');");
+function invalidTypeImage($file_type) {
+    return !in_array($file_type, ['jpeg','jpg','png']);
+}
+
+function addBook($conn, $title, $author, $isbn, $editorial, $translator, $pages, $releaseDate, $genres, $synopsis, $cover){
+    mysqli_query($conn, "INSERT INTO books (isbn, title, author, editorial, translator, pages, releaseDate, genres, synopsis, cover) VALUES ('$isbn', '$title', '$author', '$editorial', '$translator', '$pages', '$releaseDate', '$genres', '$synopsis', '$cover');");
 }
 
 function get_discussion($conn, $did) {

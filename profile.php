@@ -72,12 +72,12 @@
                                         $book_data = get_overview_partial_info($conn, $isbn);
                                         $title = $book_data['title'];
                                         $author = $book_data['author'];
-                                        $cover = get_url_export($book_data['image']);
+                                        $cover = $book_data['image'];
                         
                                         echo "<div class='col'>
                                                     <a class='dropdown-item' href='book.php?isbn=$isbn'>
                                                         <div class='card shadow-sm'>
-                                                            <img class='bd-placeholder-img card-img-top' src='$cover' alt ='$title'>
+                                                            <img class='bd-placeholder-img card-img-top' alt ='$title' src=data:image;base64,".$cover.">
                                                             <div class='card-body'>
                                                                 <p class='card-text'>$title</p>
                                                                 <small class='text-muted'>$author</small>
@@ -100,12 +100,12 @@
                                         $book_data = get_overview_partial_info($conn, $isbn);
                                         $title = $book_data['title'];
                                         $author = $book_data['author'];
-                                        $cover = get_url_export($book_data['image']);
+                                        $cover = $book_data['image'];
                         
                                         echo "<div class='col'>
                                                     <a class='dropdown-item' href='book.php?isbn=$isbn'>
                                                         <div class='card shadow-sm'>
-                                                            <img class='bd-placeholder-img card-img-top' src='$cover' alt ='$title'>
+                                                        <img class='bd-placeholder-img card-img-top' alt ='$title' src=data:image;base64,".$cover.">
                                                             <div class='card-body'>
                                                                 <p class='card-text'>$title</p>
                                                                 <small class='text-muted'>$author</small>
@@ -128,12 +128,12 @@
                                         $book_data = get_overview_partial_info($conn, $isbn);
                                         $title = $book_data['title'];
                                         $author = $book_data['author'];
-                                        $cover = get_url_export($book_data['image']);
+                                        $cover = $book_data['image'];
                         
                                         echo "<div class='col'>
                                                     <a class='dropdown-item' href='book.php?isbn=$isbn'>
                                                         <div class='card shadow-sm'>
-                                                            <img class='bd-placeholder-img card-img-top' src='$cover' alt ='$title'>
+                                                        <img class='bd-placeholder-img card-img-top' alt ='$title' src=data:image;base64,".$cover.">
                                                             <div class='card-body'>
                                                                 <p class='card-text'>$title</p>
                                                                 <small class='text-muted'>$author</small>

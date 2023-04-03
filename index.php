@@ -21,13 +21,12 @@
     $title = $book_info['title'];
     $author = $book_info['author'];
     $cover = $book_info['cover'];
-    $cover_url = get_url_export($cover);
 
     echo "<div class='col'>
             <div class='row'>
                 <a class='dropdown-item' href='book.php?isbn=$isbn'>
                     <div class='card shadow-sm'>
-                        <img class='bd-placeholder-img card-img-top' src='$cover_url' alt ='$title'>
+                        <img class='bd-placeholder-img card-img-top' alt ='$title' src=data:image;base64,".$cover.">
                         <div class='card-body'>
                             <p class='card-text'>$title</p>
                             <small class='text-muted'>$author</small>

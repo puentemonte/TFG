@@ -27,6 +27,14 @@
                         </div>
                 </div>";
         }
+        else if($_GET["error"] == "invalidtype"){
+            echo "<div class='mt-custom alert alert-danger d-flex align-items-center' role='alert'>
+                        <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='#exclamation-triangle-fill'/></svg>
+                        <div>
+                            El formato de la imagen debe ser PNG, JPG o JPEG
+                        </div>
+                </div>";
+        }
         else if ($_GET["error"] == "stmtfailed"){
             echo "<div class='mt-custom alert alert-danger d-flex align-items-center' role='alert'>
                         <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='#exclamation-triangle-fill'/></svg>
@@ -37,7 +45,7 @@
         }
     }
     ?>
-    <form action="includes/addbook_inc.php" method="post" novalidate>
+    <form action="includes/addbook_inc.php" method="post" enctype="multipart/form-data" novalidate>
         <div class="mt-custom">
             <h2 class="h3 mb-3 fw-normal">Añadir libro</h2>
         </div>
@@ -76,6 +84,9 @@
         <div class="form-floating">
             <input type="textarea" class="form-control synopsis" name="synopsis" placeholder="Sinopsis">
             <label for="floatingInput" class='floating-input'>Sinopsis*</label>
+        </div>
+        <div>
+            <input type="file" class="form-control upload" name="cover" accept="image/png, image/jpeg, image/jpg">
         </div>
         <button class="w-100 btn btn-lg custom-color-button mb-custom" name="submit" type="submit">Añadir libro</button>
   </form>

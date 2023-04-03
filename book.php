@@ -6,7 +6,7 @@
 
     if(isset($_GET['isbn'])){
         $ret = get_full_info($conn, $_GET['isbn'], $_SESSION['userid']);
-        $url_export = get_url_export($ret['image']);
+        $cover = $ret['image'];
 
         $title = $ret['title'];
         $release = $ret['releaseDate'];
@@ -30,7 +30,7 @@
                 <div class='mt-custom'>
                     <div class='row ml-book mr-book'>
                         <div class='col-md-auto'>
-                            <img class='book-cover' src='$url_export' alt='$title'>
+                            <img class='book-cover' alt='$title' src=data:image;base64,".$cover.">
                         </div>
                         <div class='col ml-custom'>
                             <h2 class='h2 fw-normal'>$title</h2>

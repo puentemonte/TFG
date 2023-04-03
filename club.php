@@ -63,7 +63,7 @@
                         $ret = get_book_info($conn, $current_book);
 
                         // Get the book info
-                        $url_export = get_url_export($ret['cover']);
+                        $cover = $ret['cover'];
                         $title = $ret['title'];
                         $author = $ret['author'];
                         $total_pages = $ret['pages'];
@@ -79,7 +79,7 @@
                                     <div class='card-body'>
                                         <div class='row'>
                                             <div class='col-md-auto'>
-                                                <a href = 'book.php?isbn=$current_book'><img class='book-cover-club' src='$url_export' alt='$title'></a>
+                                                <a href = 'book.php?isbn=$current_book'><img class='book-cover-club' alt ='$title' src=data:image;base64,".$cover."></a>
                                             </div>
                                             <div class='col'>
                                                 <div class='row'>
