@@ -67,7 +67,6 @@
             </a>
             <ul class='dropdown-menu text-small'>
               <li><a class='dropdown-item' href='profile.php?uid=$uid'>Mi perfil</a></li>
-              <li><a class='dropdown-item' href='library.php'>Mi biblioteca</a></li>
               <li><a class='dropdown-item' href='clubs.php'>Mis clubes</a></li>
               <li><a class='dropdown-item' href='myevents.php'>Mis eventos</a></li>
               <li><hr class='dropdown-divider'></li>";
@@ -79,7 +78,9 @@
                 <li><hr class='dropdown-divider'></li>";
               }
               else {
-                echo "<li><a class='dropdown-item' href='askverified.php'>Solicitar verificado</a></li>
+                echo "<li><a class='dropdown-item' href='addclub.php'>Crear club</a></li>
+                <li><hr class='dropdown-divider'></li>
+                <li><a class='dropdown-item' href='askverified.php'>Solicitar verificado</a></li>
                 <li><hr class='dropdown-divider'></li>";
               }
 
