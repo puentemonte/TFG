@@ -1,4 +1,5 @@
-:root{
+
+/*:root{
     --primary-color: #9dc0e9;
     --secondary-color: #EBCDA7;
     --tertiary-color: #DA7F8F;
@@ -6,6 +7,16 @@
     --quinary-color: #bbd0f0;
     --background-color: #FAF3F3;
     --navbar-color: #FAF3F3;
+}
+*/
+:root{
+    --primary-color: #56d1d7;
+    --secondary-color: #EBCDA7;
+    --tertiary-color: #3F8DBD;
+    --quaternary-color: #313131;
+    --quinary-color: #252238;
+    --background-color: #dde5e1;
+    --navbar-color: #dde5e1;
 }
 
 .custom-color-header {
@@ -170,7 +181,7 @@ a.sidebar-custom:hover{
 }
 
 .book-cover {
-    border-radius: 2%;
+    border-radius: 10px;
     height: 16.83em;
     width: 11.22em;
 }
@@ -188,7 +199,7 @@ a.sidebar-custom:hover{
 .special-card {
     background-color: var(--quinary-color);
     opacity: 80%;
-    border-radius: 2%;
+    border-radius: 10px;
     width: 17em;
     height: 12em;
 }
@@ -274,7 +285,7 @@ input[type=number] {
 }
 
 .review{
-    border-radius: 2%;
+    border-radius: 10px;
     margin: 0.4em auto;
 }
 
@@ -295,7 +306,7 @@ input[type=number] {
 }
 
 .book-cover-club{
-    border-radius: 2%;
+    border-radius: 10px;
     height: 8.71em;
     width: 5.80em;
 }
@@ -445,6 +456,7 @@ input[type=number] {
 
 .rating-progress{
     margin: 0.25em 0;
+    background-color: white;
 }
 
 .icon-rating-dis{
@@ -486,4 +498,25 @@ input[type=number] {
 
 .upload {
     margin-bottom: 10px;
+}
+
+.text-upld{
+    font-size: medium;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    font-weight:400;
+}
+
+.closed-dis{
+    font-size: 1.3em;
+    text-decoration: none;
+    color: var(--tertiary-color);
+    margin: 0 auto;
+}
+
+.open-dis{
+    font-size: 1.3em;
+    text-decoration: none;
+    color: var(--primary-color);
+    margin: 0 auto;
 }

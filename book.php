@@ -7,6 +7,7 @@
     if(isset($_GET['isbn'])){
         $ret = get_full_info($conn, $_GET['isbn'], $_SESSION['userid']);
         $cover = $ret['image'];
+        $session_uid = $_SESSION['userid'];
 
         $title = $ret['title'];
         $release = $ret['releaseDate'];
@@ -14,6 +15,9 @@
         $synopsis = $ret['synopsis'];
         $pages = $ret['pages_read'];
         $total_pages = $ret['pages'];
+        $editorial = $ret['editorial'];
+        $translator = $ret['translator'];
+        $genres = $ret['genres'];
         $isbn = $_GET['isbn'];
         $list = $ret['list'];
         $rating = $ret['rating'];
@@ -36,7 +40,13 @@
                             <h2 class='h2 fw-normal'>$title</h2>
                             <p class='details'>$release, $author</p>
                             <p class='synopsis'>$synopsis</p>
+                            <p><b>Editorial:</b> $editorial</p>";
 
+                            if ($translator != NULL)
+                                echo "<p><b>Traductor:</b> $translator</p>";
+
+                      echo "<p><b>Géneros:</b> $genres</p>
+                            
                             <div class = 'reviews'>
                                 <h5 class='h5 fw-normal'>Reseñas</h5>
                                 <div class = 'row'>
@@ -57,23 +67,32 @@
                                 foreach($reviews as $rev) {
                                     // conseguir el nombre del usuario utilizando su id
                                     $username = get_username($conn, $rev['userId']);
+                                    $uid = $rev['userId'];
                                     $comment = $rev['review'];
-                                    if ($comment != NULL)
+                                    if ($comment != NULL) {
                                         echo "<div class ='row'>
                                                 <div class= 'card p-4 review'>
                                                     <div class='d-flex flex-start'>
-                                                        <div>
-                                                            <h6 class='fw-bold mb-1'>$username</h6>
-                                                            <p class='mb-0'>
-                                                            $comment 
-                                                            </p>
-                                                        </div>
+                                                        <div class='row reply-interaction-row'>
+                                                            <div class = 'col'>
+                                                                <h6 class='fw-bold mb-1'><a class='profile-link' href=profile.php?uid=$session_uid>@$username</a></h6>
+                                                                <p class='mb-0'>$comment </p>
+                                                            </div>";
+                                                            if (isAdmin($conn, $session_uid) || $uid == $session_uid){
+                                                                echo "<div class='col-1'>
+                                                                        <form action='includes/interact_inc.php?isbn=$isbn&uid=$uid&deletecomment=1' method='POST'>
+                                                                            <button type='submit' name='delete' class='icon-btn notif fa-solid fa-trash icon-filled margin-reply'></button>
+                                                                        </form>
+                                                                    </div>";
+                                                            }
+                                                    echo "</div>
                                                     </div>
                                                 </div>
                                             </div>";
+                                    }
                                 }
                             }
-                            echo "</div>
+                        echo "</div>
                         </div>
                         <div class='col-md-auto ml-custom'>
                             <div class = 'special-card'>

@@ -37,7 +37,7 @@
                                         <p class = 'profile-follow'>$followed seguidos</p>
                             </div>
                             ";
-                            if (same_user($uid) === false){
+                            if (same_user($uid) === false){ // not the same user
                                 if (!session_id()) session_start();
 
                                 $fuid = $_SESSION['userid'];
@@ -52,6 +52,11 @@
                                             <a href='./includes/follow_inc.php?unfollow=1&follower=$fuid&followed=$uid' class='btn custom-color-button'><b>Dejar de seguir</b></a>
                                         </div>";
                                 }
+                            }
+                            else { // same user
+                                echo "<div class = 'text-center mt-3'>
+                                    <a href='settings.php' class='btn custom-color-button'><b>Editar perfil</b></a>
+                                </div>";
                             }
                         echo "<div class = 'mt-5'>
                                 <p><i class = 'fa-solid fa-book-open-reader profile-icon'></i>Está leyendo $n_reading libros</p>

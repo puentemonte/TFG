@@ -45,9 +45,16 @@
                                 </div>";
                         }
                         else {
-                            echo "<div class='col-md-auto'>
+                            if (is_creator($conn, $creator_uid)){
+                                echo "<div class='col-md-auto'>
+                                        <a href='./includes/quitclub_inc.php?cid=$cid&creator=1' class='btn custom-color-button'><b>Eliminar club</b></a>
+                                </div>";
+                            }
+                            else{
+                                echo "<div class='col-md-auto'>
                                         <a href='./includes/quitclub_inc.php?cid=$cid' class='btn custom-color-button'><b>Abandonar club</b></a>
                                 </div>";
+                            }
                         }
 
                     echo "
@@ -115,12 +122,13 @@
                     echo    "<div class='row ml-club mr-club club-desc'>
                                 <div class='col'>
                                     <h5 class='h5 fw-normal'>Discusiones</h5>
-                                    <table class='table'>
+                                    <table class='table text-center'>
                                         <thead>
                                             <tr>
                                                 <th scope='col'>Nombre</th>
                                                 <th scope='col'>Creador</th>
                                                 <th scope='col'>Última publicación</th>
+                                                <th scope='col'>Estado</th>
                                             </tr>
                                         </thead>
                                         <tbody>";
@@ -131,14 +139,20 @@
                                         $creator_uid = $dis['creatorId'];
                                         $last_update = get_last_modification_discussion($conn, $dis['did']);
                                         $did = $dis['did'];
+                                        $status = $dis['opendis'];
+
                                         if ($last_update === false)
                                             $last_update = "-";
                                         
                                         echo "<tr>
                                                 <td><a class='profile-link' href='discussion.php?did=$did&cid=$cid'>$dis_name</a></td>
                                                 <td><a class='profile-link' href=profile.php?uid=$creator_uid>@$dis_creator</a></td>
-                                                <td>$last_update</td>
-                                            </tr>";
+                                                <td>$last_update</td>";
+                                                if ($status == 0)
+                                                    echo "<td><i class='fa-solid fa-lock closed-dis'></i></td>";
+                                                else
+                                                    echo "<td><i class='fa-solid fa-lock-open open-dis'></i></td>";
+                                        echo "</tr>";
                                     }
 
                                     echo "</tbody>

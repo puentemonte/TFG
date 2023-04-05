@@ -2,7 +2,7 @@
     include_once 'header.php';
 ?>
 
-<body class="text-center">
+<body>
 <main class="form-signin w-100 m-auto">
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
@@ -55,7 +55,7 @@
     ?>
     <form action="includes/addbook_inc.php" method="post" enctype="multipart/form-data" novalidate>
         <div class="mt-custom">
-            <h2 class="h3 mb-3 fw-normal">Añadir libro</h2>
+            <h2 class="h3 mb-3 fw-normal text-center">Añadir libro</h2>
         </div>
         <div class="form-floating">
             <input type="text" class="form-control" name="title" placeholder="Título">
@@ -94,6 +94,7 @@
             <label for="floatingInput" class='floating-input'>Sinopsis*</label>
         </div>
         <div>
+            <label class="floating-input text-upld"> Portada</label>
             <input type="file" class="form-control upload" name="cover" accept="image/png, image/jpeg, image/jpg">
         </div>
         <button class="w-100 btn btn-lg custom-color-button mb-custom" name="submit" type="submit">Añadir libro</button>

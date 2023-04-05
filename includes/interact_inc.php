@@ -29,12 +29,11 @@ if(isset($_GET["rating"])) { // updating the rating
         header("location: ../book.php?isbn=$isbn");
 }
 
-if(isset($_POST["comment"])) { // adding a review
-    $comment = $_POST["review"];
+if(isset($_POST["comment"])) { // adding or removing a review
     $isbn = $_GET["isbn"];
-
-    // insert the comment
+    $comment = $_POST["review"];
     $ret = add_review($isbn, $conn, $comment);
+    
     if ($ret == false)
         header("location: ../login.php"); // el usuario debe iniciar sesión 
     else    
@@ -47,6 +46,18 @@ if(isset($_POST["pages"])) { // updating the pages read
 
     //update the number of pages read
     $ret = update_pages_read($isbn, $conn, $pages);
+    if ($ret == false)
+        header("location: ../login.php"); // el usuario debe iniciar sesión 
+    else    
+        header("location: ../book.php?isbn=$isbn");
+}
+
+if(isset($_GET["deletecomment"])) {
+    $comment = NULL;
+    $isbn = $_GET["isbn"];
+    $uid = $_GET["uid"];
+    $ret = del_review($isbn, $conn, $comment, $uid);
+    
     if ($ret == false)
         header("location: ../login.php"); // el usuario debe iniciar sesión 
     else    

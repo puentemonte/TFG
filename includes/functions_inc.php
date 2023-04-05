@@ -406,11 +406,18 @@ function update_list($isbn, $conn, $list) {
 
     $query = mysqli_query($conn, "SELECT * FROM books_users WHERE userId = '$userid' AND isbn = '$isbn';");
 
-    if (mysqli_num_rows($query) > 0) // already exists -> update
-        $update = mysqli_query($conn, "UPDATE books_users SET pages = '$max_pages', list = '$list' WHERE userId = '$userid' AND isbn = '$isbn';");
-    else // doesn't exist -> insert
-        $insert = mysqli_query($conn, "INSERT INTO books_users (isbn, userId, pages, list) VALUES ('$isbn', '$userid', '$max_pages', '$list');");
-    
+    if (mysqli_num_rows($query) > 0) { // already exists -> update
+        if ($list == "read")
+            $update = mysqli_query($conn, "UPDATE books_users SET pages = '$max_pages', list = '$list' WHERE userId = '$userid' AND isbn = '$isbn';");
+        else
+            $update = mysqli_query($conn, "UPDATE books_users SET list = '$list' WHERE userId = '$userid' AND isbn = '$isbn';");
+    }
+    else {// doesn't exist -> insert
+        if ($list == "read")
+            $insert = mysqli_query($conn, "INSERT INTO books_users (isbn, userId, pages, list) VALUES ('$isbn', '$userid', '$max_pages', '$list');");
+        else
+            $insert = mysqli_query($conn, "INSERT INTO books_users (isbn, userId, pages, list) VALUES ('$isbn', '$userid', '0', '$list');");
+    }
     $update = date("Y-m-d H:i:s");
     mysqli_query($conn, "UPDATE books_users SET dateStamp = '$update' WHERE userId = '$userid' AND isbn = '$isbn'");
     return true;
@@ -1142,4 +1149,12 @@ function get_event_name($conn, $eid){
     while($row = mysqli_fetch_array($query))
         $rows[] = $row;
     return $rows[0]['title'];
+}
+
+function delete_club($conn, $cid){ 
+    return mysqli_query($conn, "DELETE FROM clubs WHERE cid = '$cid';");
+}
+
+function del_review($isbn, $conn, $comment, $uid){
+    return mysqli_query($conn, "UPDATE books_users SET review = '$comment' WHERE userId = '$uid' AND isbn = '$isbn';");
 }

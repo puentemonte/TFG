@@ -7,11 +7,12 @@ require_once "functions_inc.php";
 if (isset($_GET["cid"])) { // remove a club's member
     $cid = $_GET["cid"];
 
-    // update the members list
-    $ret = quit_club($conn, $cid);
-
-    if ($ret == false)
-        header("location: ../login.php"); // the user must log in 
-    else
+    if(isset($_GET["creator"])){
+        delete_club($conn, $cid);
+        header("location: ../index.php");
+    }
+    else {
+        quit_club($conn, $cid);
         header("location: ../club.php?id=$cid");
+    }
 }
