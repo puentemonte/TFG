@@ -5,9 +5,15 @@
     require_once "./includes/functions_inc.php"; 
 
     if(isset($_GET['isbn'])){
-        $ret = get_full_info($conn, $_GET['isbn'], $_SESSION['userid']);
+        $ret = get_full_info($conn, $_GET['isbn']);
         $cover = $ret['image'];
-        $session_uid = $_SESSION['userid'];
+
+        if (!session_id()) session_start();
+
+        if (!isset($_SESSION['userid'])) // not logged
+            $session_uid = 0; 
+        else
+            $session_uid = $_SESSION["userid"];
 
         $title = $ret['title'];
         $release = $ret['releaseDate'];

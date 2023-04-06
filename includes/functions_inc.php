@@ -272,7 +272,14 @@ function deleteUsr($conn, $pwd) {
     exit();
 }
 
-function get_full_info($conn, $isbn, $uid){
+function get_full_info($conn, $isbn){
+    if (!session_id()) session_start();
+
+    if (!isset($_SESSION['userid'])) // not logged
+        $uid = 0; 
+    else
+        $uid = $_SESSION["userid"];
+
     // get the data from books table
     $query = mysqli_query($conn, "SELECT * FROM books WHERE isbn='$isbn';");
     $book_data = mysqli_fetch_array($query);
