@@ -139,7 +139,7 @@ form{
 
 .alert{
     width: 600px;
-    background-color: var(--tertiary-color);
+    background-color: rgb(255, 187, 187);
     margin-left: auto;
     margin-right: auto;
 }
