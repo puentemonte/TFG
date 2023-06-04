@@ -97,7 +97,7 @@
                 <option value="Ella">Ella</option>
                 <option value="Elle">Elle</option>
             </select>
-            <label for="floatingInput">Pronombres</label>
+            <label for="floatingInput" class='floating-input'>Pronombres</label>
         </div>
         <button class="w-100 btn btn-lg custom-color-button mb-custom" name="submit" type="submit">Registrarse</button>
   </form>

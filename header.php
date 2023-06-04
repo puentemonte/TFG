@@ -69,7 +69,6 @@
             </a>
             <ul class='dropdown-menu text-small'>
               <li><a class='dropdown-item' href='profile.php?uid=$uid'>Mi perfil</a></li>
-              <li><a class='dropdown-item' href='clubs.php'>Mis clubes</a></li>
               <li><a class='dropdown-item' href='myevents.php'>Mis eventos</a></li>
               <li><hr class='dropdown-divider'></li>";
 

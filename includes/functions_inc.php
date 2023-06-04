@@ -169,7 +169,8 @@ function invalidPwd($pwd){
 }
 
 function createUser($conn, $fname, $surname, $username, $email, $pwd, $pronouns, $descr){
-    $sql ="INSERT INTO users (userEmail, userUid, userPwd, userName, userSurname, userDescription, userPronouns) VALUES (?, ?, ?, ?, ?, ?, ?);";
+    $sql ="INSERT INTO users (userEmail, userUid, userPwd, userName, userSurname, userDescription, userPronouns) 
+            VALUES (?, ?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
         header("location: ../signup.php?error=stmtfailed");
@@ -1042,12 +1043,14 @@ function ask_verified($conn, $fullname, $motivation){
 }
 
 function isAdmin($conn, $uid){
-    $query = mysqli_query($conn, "SELECT * FROM users WHERE userId = '$uid';");
-    $rows = array();
-    while($row = mysqli_fetch_array($query))
-        $rows[] = $row;
-    if($rows[0]['administrator']){
-        return true;
+    if($uid !== 0) {
+        $query = mysqli_query($conn, "SELECT * FROM users WHERE userId = '$uid';");
+        $rows = array();
+        while($row = mysqli_fetch_array($query))
+            $rows[] = $row;
+        if($rows[0]['administrator']){
+            return true;
+        }
     }
     return false;
 }

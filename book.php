@@ -10,9 +10,8 @@
 
         if (!session_id()) session_start();
 
-        if (!isset($_SESSION['userid'])) // not logged
-            $session_uid = 0; 
-        else
+        $session_uid = 0;
+        if (isset($_SESSION['userid'])) 
             $session_uid = $_SESSION["userid"];
 
         $title = $ret['title'];
@@ -83,6 +82,7 @@
                                                             <div class = 'col'>
                                                                 <h6 class='fw-bold mb-1'><a class='profile-link' href=profile.php?uid=$session_uid>@$username</a></h6>
                                                                 <p class='mb-0'>$comment </p>
+                                                                <label>$session_uid</label>
                                                             </div>";
                                                             if (isAdmin($conn, $session_uid) || $uid == $session_uid){
                                                                 echo "<div class='col-1'>
